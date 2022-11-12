@@ -1,5 +1,5 @@
 import React from 'react';
-import {IAnchor} from "../../../shared/interfaces";
+import {IAnchor} from "../../../interfaces";
 
 export const Anchor = ({destinationUrl, onClick, children, ...rest}: IAnchor) => {
    return (

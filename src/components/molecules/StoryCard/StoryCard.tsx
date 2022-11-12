@@ -1,14 +1,19 @@
 import './StoryCard.css';
 import React, {useState} from "react";
 import {Anchor, Div} from "../../atoms";
-import {IStoryCard} from "../../../shared/interfaces";
+import {IStory} from "../../../interfaces";
 import useAnalyticsEventTracker from "../../../hooks/useAnalyticsEventTracker";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import PlaceholderImage from "../../../shared/assets/background.webp";
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {usePlatform} from "../../../hooks/usePlatform";
 
-export const StoryCard = ({title, subtitle, imageUrl, readLink, type, ...rest}: IStoryCard) => {
+interface IStoryCard extends React.HTMLAttributes<Element> {
+   story: IStory,
+   isLatest: boolean,
+}
+
+export const StoryCard = ({story: {title, subtitle, imageUrl, externalReadLink}, isLatest, ...rest}: IStoryCard) => {
    const platform = usePlatform();
    const gaEventTracker = useAnalyticsEventTracker('Story');
    const [latestCoverHeight, setLatestCoverHeight] = useState(platform === 'mobile' ? '200px' : '550px');
@@ -25,19 +30,19 @@ export const StoryCard = ({title, subtitle, imageUrl, readLink, type, ...rest}: 
 
    return (
       <Div {...rest} style={{position: 'relative'}}>
-         <Anchor onClick={trackOpenEvent} destinationUrl={readLink}>
+         <Anchor onClick={trackOpenEvent} destinationUrl={externalReadLink}>
             <LazyLoadImage
                afterLoad={afterCoverLoaded}
                width='100%'
-               height={ type === 'latest' ? latestCoverHeight : previousCoverHeight}
+               height={ isLatest ? latestCoverHeight : previousCoverHeight}
                placeholderSrc={PlaceholderImage}
                src={imageUrl}
                className="card-img-top"
                effect="blur"
                alt={title}/>
             <Div className={'small-card_title mb-0'}>
-               <Div className={`${type === 'latest' ? 'h1 ms-3 mb-2' : 'h5'} mb-0`}>{title}</Div>
-               {type === 'latest' && (
+               <Div className={`${isLatest ? 'h1 ms-3 mb-2' : 'h5'} mb-0`}>{title}</Div>
+               {isLatest && (
                   <Div className={'h4 ms-3'}>{subtitle}</Div>
                )}
             </Div>

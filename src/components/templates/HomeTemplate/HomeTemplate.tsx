@@ -1,18 +1,18 @@
 import React from "react";
-import {IStoryCard} from "../../../shared/interfaces";
+import {IStory} from "../../../interfaces";
 import {Div} from "../../atoms";
 import {NavigationBar} from "../../molecules/NavigationBar/NavigationBar";
 import {LatestStory, PreviousStories} from "../../organisms";
 import BackgroundImage from "../../../shared/assets/background.webp";
 
 interface HomeTemplateProps {
-   latestStory: IStoryCard;
-   stories: IStoryCard[];
+   latestStory: IStory;
+   stories: IStory[];
 }
 
 export const HomeTemplate = ({latestStory, stories}:HomeTemplateProps) => {
    return (
-      <Div style={{backgroundImage: `url(${BackgroundImage})`, backgroundSize: 'cover', backgroundAttachment: 'fixed'}}>
+      <Div>
          <NavigationBar/>
          <Div id="homePageContainer" className="container full-height" style={{maxWidth: '1000px'}}>
             <Div className="row py-5">
@@ -21,8 +21,8 @@ export const HomeTemplate = ({latestStory, stories}:HomeTemplateProps) => {
                      title={latestStory.title}
                      subtitle={latestStory.subtitle}
                      imageUrl={latestStory.imageUrl}
-                     readLink={latestStory.readLink}
-                     type="latest"/>
+                     publishDate={latestStory.publishDate}
+                     externalReadLink={latestStory.externalReadLink}/>
                </Div>
                <Div className="col-lg-12 py-lg-5 text-start">
                   <PreviousStories stories={stories}/>

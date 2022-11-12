@@ -1,10 +1,10 @@
 import React from "react";
 import {Div, Span} from "../../atoms";
 import {StoryCard} from "../../molecules";
-import {IStoryCard} from "../../../shared/interfaces";
+import {IStory} from "../../../interfaces";
 
 interface PreviousStoriesProps {
-   stories: IStoryCard[]
+   stories: IStory[]
 }
 
 export const PreviousStories = ({stories}: PreviousStoriesProps) => {
@@ -16,12 +16,9 @@ export const PreviousStories = ({stories}: PreviousStoriesProps) => {
                return (
                   <Div key={`previous-story-${index}`} className="col-md-6">
                      <StoryCard
-                        className="mt-4"
-                        title={story.title}
-                        subtitle={story.subtitle}
-                        imageUrl={story.imageUrl}
-                        readLink={story.readLink}
-                        type="previous"/>
+                        story={story}
+                        isLatest={false}
+                        className="mt-4"/>
                   </Div>
                )
             })}
