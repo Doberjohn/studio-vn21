@@ -1,7 +1,7 @@
 import React from "react";
 import {Div, Span} from "../../atoms";
-import {StoryCard} from "../../molecules";
 import {IStory} from "../../../interfaces";
+import {StoryCard} from "../index";
 
 export const LatestStory = (story: IStory) => {
    return (

@@ -1,12 +1,12 @@
-import './StoryCard.css';
-import React, {useState} from "react";
-import {Anchor, Div} from "../../atoms";
-import {IStory} from "../../../interfaces";
-import useAnalyticsEventTracker from "../../../hooks/useAnalyticsEventTracker";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import React, { useState } from "react";
 import PlaceholderImage from "../../../shared/assets/background.webp";
+import useAnalyticsEventTracker from "../../../hooks/useAnalyticsEventTracker";
+import { Anchor, Div } from "../../atoms";
+import { IStory } from "../../../interfaces";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { usePlatform } from "../../../hooks/usePlatform";
+import './StoryCard.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import {usePlatform} from "../../../hooks/usePlatform";
 
 interface IStoryCard extends React.HTMLAttributes<Element> {
    story: IStory,

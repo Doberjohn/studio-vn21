@@ -1,3 +1,3 @@
-import {StoryCard} from "./StoryCard/StoryCard";
+import {NavigationBar} from "./NavigationBar/NavigationBar";
 
-export {StoryCard};
+export {NavigationBar};

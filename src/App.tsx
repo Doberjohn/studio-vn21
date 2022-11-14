@@ -1,9 +1,12 @@
-import './App.css';
 import React from 'react';
-import {Div} from "./components/atoms";
-import {HomePage} from "./pages";
-import ReactGA from 'react-ga4';
 import Parse from 'parse';
+import ReactGA from 'react-ga4';
+import {HomePage, ReaderPage} from "./pages";
+import {BrowserRouter as Router,
+   Routes,
+   Route} from "react-router-dom";
+import {NavigationBar} from "./components/molecules";
+import './App.css';
 
 const PARSE_APPLICATION_ID = '28MROMpvLMLK7ZqZkAb4SiYQxySdZ2jtXUxl7p0w';
 const PARSE_HOST_URL = 'https://parseapi.back4app.com/';
@@ -15,9 +18,13 @@ ReactGA.initialize("G-28MLPHX55W");
 
 function App() {
    return (
-      <Div>
-         <HomePage/>
-      </Div>
+      <Router>
+         <NavigationBar/>
+         <Routes>
+            <Route path="/" element={<HomePage/>}/>
+            <Route path="/reader/:storyId" element={<ReaderPage/>}/>
+         </Routes>
+      </Router>
    );
 }
 

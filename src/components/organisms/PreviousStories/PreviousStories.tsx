@@ -1,6 +1,6 @@
 import React from "react";
 import {Div, Span} from "../../atoms";
-import {StoryCard} from "../../molecules";
+import {StoryCard} from "../index";
 import {IStory} from "../../../interfaces";
 
 interface PreviousStoriesProps {
