@@ -14,23 +14,19 @@
 
 body {
   margin: 0;
-  font-family: FS-Me, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
   background-color: #282828;
 }
 
-.studio-vn21-brand {
-  font-family: UDD, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: 24px;
+#mainContent {
+  font-family: FS-Me, sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.studio-vn21-brand {
+  font-family: UDD, sans-serif;
+  font-size: 24px;
 }
 
 :root {
