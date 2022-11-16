@@ -10,7 +10,7 @@ export const ReaderTemplate = ({storyId}: ReaderTemplateProps) => {
    console.log(storyId)
    return (
       <Div className="container py-5">
-         <Div className="row pt-5 pb-4">
+         <Div className="row pt-3 pb-4">
             <StoryCard
                story={
                   {
