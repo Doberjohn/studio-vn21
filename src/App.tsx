@@ -21,12 +21,10 @@ function App() {
    return (
       <Router>
          <NavigationBar/>
-         <Div id="mainContent">
-            <Routes>
-               <Route path="/" element={<HomePage/>}/>
-               <Route path="/reader/:storyId" element={<ReaderPage/>}/>
-            </Routes>
-         </Div>
+         <Routes>
+            <Route path="/" element={<HomePage/>}/>
+            <Route path="/reader/:storyId" element={<ReaderPage/>}/>
+         </Routes>
       </Router>
    );
 }
