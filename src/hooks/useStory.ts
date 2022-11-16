@@ -21,7 +21,6 @@ export const useStory = () => {
             }
          });
 
-         console.log(mappedStories)
          setStories(mappedStories);
       } catch (e) {
          console.error(e);

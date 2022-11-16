@@ -43,7 +43,7 @@ export const StoryCard = ({story: {title, subtitle, imageUrl, externalReadLink},
             <Div className={'small-card_title mb-0'}>
                <Div className={`${isLatest ? 'h1 ms-3 mb-2' : 'h5'} mb-0`}>{title}</Div>
                {isLatest && (
-                  <Div className={'h4 ms-3'}>{subtitle}</Div>
+                  <Div className={'h4 ms-3 mb-0'}>{subtitle}</Div>
                )}
             </Div>
          </Anchor>

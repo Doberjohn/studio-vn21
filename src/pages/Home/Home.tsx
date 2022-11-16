@@ -7,10 +7,8 @@ export const Home = () => {
    const { stories, readStories } = useStory();
 
    useEffect(() => {
-      readStories().then((stories) => {
-         console.log(stories);
-      });
-   }, [readStories]);
+      readStories();
+   }, []);
 
    if (stories.length === 0) return null;
    return <HomeTemplate latestStory={stories[0]} stories={stories.slice(1, 7)}/>
