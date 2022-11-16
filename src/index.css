@@ -50,3 +50,21 @@ a {
 .text-justify {
   text-align: justify;
 }
+
+.full-height {
+  min-height: 100vh;
+}
+
+.navbar {
+  position: fixed;
+  z-index: 11;
+  width: 100vw;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.narrow-container {
+  max-width: 1000px;
+}

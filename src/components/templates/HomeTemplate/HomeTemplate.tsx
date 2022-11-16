@@ -11,7 +11,7 @@ interface HomeTemplateProps {
 export const HomeTemplate = ({latestStory, stories}:HomeTemplateProps) => {
    return (
       <Div>
-         <Div className="container full-height py-5">
+         <Div className="container narrow-container full-height py-5">
             <Div className="row">
                <Div className="col-lg-12 py-5">
                   <LatestStory

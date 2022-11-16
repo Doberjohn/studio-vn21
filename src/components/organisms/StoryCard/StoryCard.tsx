@@ -15,13 +15,13 @@ interface IStoryCard extends React.HTMLAttributes<Element> {
 
 export const StoryCard = ({story: {title, subtitle, imageUrl, externalReadLink}, isLatest, ...rest}: IStoryCard) => {
    const platform = usePlatform();
-   const gaEventTracker = useAnalyticsEventTracker('Story');
+   // const gaEventTracker = useAnalyticsEventTracker('Story');
    const [latestCoverHeight, setLatestCoverHeight] = useState(platform === 'mobile' ? '200px' : '550px');
    const [previousCoverHeight, setPreviousCoverHeight] = useState(platform === 'mobile' ? '200px' : '270px');
 
-   const trackOpenEvent = () => {
-      gaEventTracker("Read on Medium", title);
-   }
+   // const trackOpenEvent = () => {
+   //    gaEventTracker("Read on Medium", title);
+   // }
 
    const afterCoverLoaded = () => {
       setLatestCoverHeight('initial');
@@ -30,7 +30,8 @@ export const StoryCard = ({story: {title, subtitle, imageUrl, externalReadLink},
 
    return (
       <Div {...rest} style={{position: 'relative'}}>
-         <Anchor onClick={trackOpenEvent} destinationUrl={externalReadLink}>
+         {/*<Anchor onClick={trackOpenEvent} destinationUrl={externalReadLink}>*/}
+         <Div>
             <LazyLoadImage
                afterLoad={afterCoverLoaded}
                width='100%'
@@ -46,7 +47,7 @@ export const StoryCard = ({story: {title, subtitle, imageUrl, externalReadLink},
                   <Div className={'h4 ms-3 mb-0'}>{subtitle}</Div>
                )}
             </Div>
-         </Anchor>
+         </Div>
       </Div>
    )
 }
