@@ -21,6 +21,13 @@ body {
   background-color: #282828;
 }
 
+.studio-vn21-brand {
+  font-family: UDD, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 24px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

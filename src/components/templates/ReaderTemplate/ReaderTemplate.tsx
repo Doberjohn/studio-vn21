@@ -1,7 +1,6 @@
 import React from "react";
 import {Div, Paragraph} from "../../atoms";
 import {StoryCard} from "../../organisms";
-import {usePlatform} from "../../../hooks/usePlatform";
 
 interface ReaderTemplateProps {
    storyId: string;
@@ -9,8 +8,6 @@ interface ReaderTemplateProps {
 
 export const ReaderTemplate = ({storyId}: ReaderTemplateProps) => {
    console.log(storyId)
-   const platform = usePlatform();
-
    return (
       <Div className="container narrow-container py-5">
          <Div className="row pt-3 pb-4">
