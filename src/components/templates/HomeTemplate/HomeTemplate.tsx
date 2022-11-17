@@ -14,8 +14,8 @@ export const HomeTemplate = ({ latestStory, stories }: HomeTemplateProps) => {
    const navigate = useNavigate();
    // const gaEventTracker = useAnalyticsEventTracker('Story');
 
-   const openStoryInternally = () => {
-      navigate('reader/the-spark-of-creativity');
+   const openStoryInternally = (storyId: string) => {
+      navigate(`reader/${storyId}`);
       // gaEventTracker('Read on site', title);
    };
 

@@ -1,11 +1,11 @@
 import { IStory } from '../../../interfaces';
+import React from 'react';
 import { StoryCard } from '../index';
 import { Div, Span } from '../../atoms';
-import React, { MouseEventHandler } from 'react';
 
 interface PreviousStoriesProps {
    stories: IStory[],
-   onClickAction: MouseEventHandler,
+   onClickAction: (storyId: string) => void,
 }
 
 export const PreviousStories = ({ stories, onClickAction }: PreviousStoriesProps) => {

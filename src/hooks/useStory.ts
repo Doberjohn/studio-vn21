@@ -16,6 +16,7 @@ export const useStory = () => {
             return {
                title: backendProduct.get('title'),
                subtitle: backendProduct.get('subtitle'),
+               storyId: backendProduct.get('storyId'),
                imageUrl: backendProduct.get('coverImage')._url,
                externalReadLink: backendProduct.get('externalLink'),
                publishDate: backendProduct.get('publishDate'),
@@ -30,11 +31,7 @@ export const useStory = () => {
 
    const getStoryInfo = (storyId: string): IStory => {
       const stories = state.stories;
-
-      console.log(storyId);
-      console.log(stories);
-
-      return stories[0];
+      return stories.find((story) => story.storyId === storyId) as IStory;
    };
 
    return { stories: state.stories, getStoriesFromBackend, getStoryInfo };

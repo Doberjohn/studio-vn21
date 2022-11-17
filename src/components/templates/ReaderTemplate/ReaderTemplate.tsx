@@ -9,7 +9,6 @@ interface ReaderTemplateProps {
 
 export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
    if (!story) return null;
-
    return (
       <Div className='container narrow-container py-5'>
          <Div className='row pt-3 pb-4'>
