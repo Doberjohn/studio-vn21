@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const calculatePlatform = () => {
    let platform = 'mobile';
@@ -10,7 +10,7 @@ const calculatePlatform = () => {
    }
 
    return platform;
-}
+};
 
 export const usePlatform = () => {
    const [platform, setPlatform] = useState(calculatePlatform);
@@ -20,9 +20,9 @@ export const usePlatform = () => {
    };
 
    useEffect(() => {
-      window.addEventListener("resize", updateMedia);
-      return () => window.removeEventListener("resize", updateMedia);
+      window.addEventListener('resize', updateMedia);
+      return () => window.removeEventListener('resize', updateMedia);
    });
 
    return platform;
-}
+};

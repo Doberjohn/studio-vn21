@@ -1,19 +1,19 @@
-import React from "react";
-import {IStory} from "../../../interfaces";
-import {Div} from "../../atoms";
-import {LatestStory, PreviousStories} from "../../organisms";
+import { Div } from '../../atoms';
+import { IStory } from '../../../interfaces';
+import React from 'react';
+import { LatestStory, PreviousStories } from '../../organisms';
 
 interface HomeTemplateProps {
    latestStory: IStory;
    stories: IStory[];
 }
 
-export const HomeTemplate = ({latestStory, stories}:HomeTemplateProps) => {
+export const HomeTemplate = ({ latestStory, stories }:HomeTemplateProps) => {
    return (
       <Div>
-         <Div className="container narrow-container full-height py-5">
-            <Div className="row">
-               <Div className="col-lg-12 py-5">
+         <Div className='container narrow-container full-height py-5'>
+            <Div className='row'>
+               <Div className='col-lg-12 py-5'>
                   <LatestStory
                      title={latestStory.title}
                      subtitle={latestStory.subtitle}
@@ -21,11 +21,11 @@ export const HomeTemplate = ({latestStory, stories}:HomeTemplateProps) => {
                      publishDate={latestStory.publishDate}
                      externalReadLink={latestStory.externalReadLink}/>
                </Div>
-               <Div className="col-lg-12 py-lg-5 text-start">
+               <Div className='col-lg-12 py-lg-5 text-start'>
                   <PreviousStories stories={stories}/>
                </Div>
             </Div>
          </Div>
       </Div>
-   )
-}
+   );
+};

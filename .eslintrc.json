@@ -1,0 +1,36 @@
+{
+  "root": true,
+  "globals": {
+    "React": "writable"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": { "project": ["./tsconfig.json"] },
+  "plugins": [
+    "@typescript-eslint",
+    "react"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "semi": ["error", "always"],
+    "semi-spacing": ["error", {"before": false, "after": false}],
+    "semi-style": ["error", "last"],
+    "quotes": ["error", "single"],
+    "jsx-quotes": ["error", "prefer-single"],
+    "no-multi-spaces": ["error", { "ignoreEOLComments": false }],
+    "max-len": ["error", { "code": 100,
+      "tabWidth": 3,
+      "ignoreStrings": true
+    }],
+    "sort-imports": ["error", {
+      "ignoreCase": true,
+      "ignoreDeclarationSort": false,
+      "ignoreMemberSort": false,
+      "memberSyntaxSortOrder": ["all", "single", "multiple", "none"],
+      "allowSeparatedGroups": false
+    }],
+    "object-curly-spacing": ["error", "always"]
+  }
+}

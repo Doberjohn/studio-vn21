@@ -1,4 +1,3 @@
-import {IStory} from "./story";
-import {IAnchor} from "./anchor";
+import { IStory } from './story';
 
-export type {IStory, IAnchor}
+export type { IStory };

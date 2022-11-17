@@ -1,4 +1,4 @@
-import {Home} from './Home/Home';
-import {Reader} from './Reader/Reader';
+import { Home } from './Home/Home';
+import { Reader } from './Reader/Reader';
 
-export {Home as HomePage, Reader as ReaderPage}
+export { Home as HomePage, Reader as ReaderPage };

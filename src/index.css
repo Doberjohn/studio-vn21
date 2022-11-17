@@ -47,6 +47,12 @@ a {
   min-height: 100vh;
 }
 
+.perfecty-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .navbar {
   position: fixed;
   z-index: 11;
@@ -59,4 +65,14 @@ a {
 
 .narrow-container {
   max-width: 1000px;
+}
+
+.floatingchat-container-wrap, .floating-chat-kofi-popup-iframe, .floating-chat-kofi-popup-iframe-mobi {
+  right: 16px;
+  left: initial;
+}
+
+.floatingchat-container-wrap-mobi {
+  right: 0;
+  left: initial;
 }

@@ -1,6 +1,6 @@
-import {useState} from "react";
-import {IStory} from "../interfaces";
+import { IStory } from '../interfaces';
 import Parse from 'parse';
+import { useState } from 'react';
 
 export const useStory = () => {
    const [stories, setStories] = useState<IStory[]>([]);
@@ -18,14 +18,14 @@ export const useStory = () => {
                imageUrl: backendProduct.get('coverImage')._url,
                externalReadLink: backendProduct.get('externalLink'),
                publishDate: backendProduct.get('publishDate'),
-            }
+            };
          });
 
          setStories(mappedStories);
       } catch (e) {
          console.error(e);
       }
-   }
+   };
 
-   return { stories, readStories }
-}
+   return { stories, readStories };
+};

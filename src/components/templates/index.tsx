@@ -1,4 +1,4 @@
-import {HomeTemplate} from "./HomeTemplate/HomeTemplate";
-import {ReaderTemplate} from "./ReaderTemplate/ReaderTemplate";
+import { HomeTemplate } from './HomeTemplate/HomeTemplate';
+import { ReaderTemplate } from './ReaderTemplate/ReaderTemplate';
 
-export {HomeTemplate, ReaderTemplate}
+export { HomeTemplate, ReaderTemplate };

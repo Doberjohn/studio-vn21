@@ -47,5 +47,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "description": "Official Studio VN21 website",
+  "main": "index.tsx",
+  "repository": "https://gitlab.com/jf-react-projects/studio-vn21.git",
+  "author": "johnn <johnf@risk.nl>",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "2.7.1"
   }
 }

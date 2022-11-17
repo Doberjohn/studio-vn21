@@ -6,8 +6,8 @@ interface ImageProps {
    [x:string]: any;
 }
 
-export const Image = ({src, alternativeText, ...rest}: ImageProps) => {
+export const Image = ({ src, alternativeText, ...rest }: ImageProps) => {
    return (
       <img src={src} {...rest} alt={alternativeText}/>
-   )
-}
+   );
+};

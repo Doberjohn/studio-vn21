@@ -1,7 +1,6 @@
-import {Div} from "./Div";
-import {Span} from "./Span";
-import {Paragraph} from "./Paragraph";
-import {Image} from "./Image";
-import {Anchor} from "./Anchor";
+import { Div } from './Div';
+import { Image } from './Image';
+import { Paragraph } from './Paragraph';
+import { Span } from './Span';
 
-export {Div, Span, Paragraph, Image, Anchor}
+export { Div, Span, Paragraph, Image };
