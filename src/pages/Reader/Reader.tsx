@@ -5,11 +5,9 @@ import { useStory } from '../../hooks/useStory';
 
 export const Reader = () => {
    const params = useParams();
-   const storyId = params.storyId;
    const { getStoryInfo } = useStory();
-
-   if (!storyId) return null;
-
+   const storyId = params.storyId || '';
    const story = getStoryInfo(storyId);
+
    return <ReaderTemplate story={story}/>;
 };

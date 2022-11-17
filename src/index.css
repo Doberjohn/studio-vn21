@@ -73,6 +73,6 @@ a {
 }
 
 .floatingchat-container-wrap-mobi {
-  right: 0;
+  right: 0 !important;
   left: initial !important;
 }

@@ -31,6 +31,7 @@ export const useStory = () => {
 
    const getStoryInfo = (storyId: string): IStory => {
       const stories = state.stories;
+      if (stories.length === 0) getStoriesFromBackend();
       return stories.find((story) => story.storyId === storyId) as IStory;
    };
 

@@ -7,10 +7,10 @@ import { LatestStory, PreviousStories } from '../../organisms';
 
 interface HomeTemplateProps {
    latestStory: IStory;
-   stories: IStory[];
+   previousStories: IStory[];
 }
 
-export const HomeTemplate = ({ latestStory, stories }: HomeTemplateProps) => {
+export const HomeTemplate = ({ latestStory, previousStories }: HomeTemplateProps) => {
    const navigate = useNavigate();
    // const gaEventTracker = useAnalyticsEventTracker('Story');
 
@@ -27,7 +27,7 @@ export const HomeTemplate = ({ latestStory, stories }: HomeTemplateProps) => {
                   <LatestStory story={latestStory} onClickAction={openStoryInternally}/>
                </Div>
                <Div className='col-lg-12 py-lg-5 text-start'>
-                  <PreviousStories stories={stories} onClickAction={openStoryInternally}/>
+                  <PreviousStories stories={previousStories} onClickAction={openStoryInternally}/>
                </Div>
             </Div>
          </Div>

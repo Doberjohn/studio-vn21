@@ -21,5 +21,5 @@ export const Home = () => {
       </Div>
    );
 
-   return <HomeTemplate latestStory={stories[0]} stories={stories.slice(1, 7)}/>;
+   return <HomeTemplate latestStory={stories[0]} previousStories={stories.slice(1, 7)}/>;
 };
