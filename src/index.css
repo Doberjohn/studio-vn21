@@ -69,10 +69,10 @@ a {
 
 .floatingchat-container-wrap, .floating-chat-kofi-popup-iframe, .floating-chat-kofi-popup-iframe-mobi {
   right: 16px;
-  left: initial;
+  left: initial !important;
 }
 
 .floatingchat-container-wrap-mobi {
   right: 0;
-  left: initial;
+  left: initial !important;
 }
