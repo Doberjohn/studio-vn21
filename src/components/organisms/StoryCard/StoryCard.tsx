@@ -2,26 +2,23 @@ import { Div } from '../../atoms';
 import { IStory } from '../../../interfaces';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import PlaceholderImage from '../../../shared/assets/background.webp';
-// import useAnalyticsEventTracker from '../../../hooks/useAnalyticsEventTracker';
 import { usePlatform } from '../../../hooks/usePlatform';
-import React, { useState } from 'react';
+import React, { MouseEventHandler, useState } from 'react';
 import './StoryCard.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 interface IStoryCard extends React.HTMLAttributes<Element> {
    story: IStory,
    isLatest: boolean,
+   onClickAction?: MouseEventHandler,
 }
 
-export const StoryCard = ({ story: { title, subtitle, imageUrl }, isLatest, ...rest }: IStoryCard) => {
+export const StoryCard = (
+   { story: { title, subtitle, imageUrl }, isLatest, onClickAction }: IStoryCard) => {
    const platform = usePlatform();
-   // const gaEventTracker = useAnalyticsEventTracker('Story');
+
    const [latestCoverHeight, setLatestCoverHeight] = useState(platform === 'mobile' ? '200px' : '550px');
    const [previousCoverHeight, setPreviousCoverHeight] = useState(platform === 'mobile' ? '200px' : '270px');
-
-   const openStoryInternally = () => {
-      // gaEventTracker('Read on site', title);
-   };
 
    const afterCoverLoaded = () => {
       setLatestCoverHeight('initial');
@@ -29,16 +26,14 @@ export const StoryCard = ({ story: { title, subtitle, imageUrl }, isLatest, ...r
    };
 
    return (
-      <Div {...rest} style={{ position: 'relative' }}>
-         {/*<Anchor onClick={trackOpenEvent} destinationUrl={externalReadLink}>*/}
-         <Div onClick={openStoryInternally}>
+      <Div className='position-relative mt-4 px-0 cursor-pointer' onClick={onClickAction}>
+         <Div>
             <LazyLoadImage
                afterLoad={afterCoverLoaded}
                width='100%'
                height={ isLatest ? latestCoverHeight : previousCoverHeight}
                placeholderSrc={PlaceholderImage}
                src={imageUrl}
-               className='card-img-top'
                effect='blur'
                alt={title}/>
             <Div className={'small-card_title mb-0'}>

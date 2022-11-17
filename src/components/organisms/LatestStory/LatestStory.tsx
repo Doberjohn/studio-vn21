@@ -1,16 +1,21 @@
 import { IStory } from '../../../interfaces';
-import React from 'react';
 import { StoryCard } from '../index';
 import { Div, Span } from '../../atoms';
+import React, { MouseEventHandler } from 'react';
 
-export const LatestStory = (story: IStory) => {
+interface LatestStoryProps {
+   story: IStory,
+   onClickAction: MouseEventHandler,
+}
+
+export const LatestStory = ({ story, onClickAction }: LatestStoryProps) => {
    return (
       <Div>
          <Span className='h2'>Latest story</Span>
          <StoryCard
             story={story}
             isLatest={true}
-            className='mt-4'/>
+            onClickAction={onClickAction}/>
       </Div>
    );
 };

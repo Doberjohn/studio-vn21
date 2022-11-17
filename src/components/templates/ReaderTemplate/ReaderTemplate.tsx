@@ -1,28 +1,21 @@
+import { IStory } from '../../../interfaces';
 import React from 'react';
 import { StoryCard } from '../../organisms';
 import { Div, Paragraph } from '../../atoms';
 
 interface ReaderTemplateProps {
-   storyId: string;
+   story: IStory;
 }
 
-export const ReaderTemplate = ({ storyId }: ReaderTemplateProps) => {
-   console.log(storyId);
+export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
+   if (!story) return null;
+
    return (
       <Div className='container narrow-container py-5'>
          <Div className='row pt-3 pb-4'>
             <StoryCard
-               story={
-                  {
-                     title: 'The spark of creativity',
-                     subtitle: 'Let imagination be your guide',
-                     imageUrl: 'https://miro.medium.com/max/720/1*8HBbDc7QRDQmkekKXf9_bg.png',
-                     externalReadLink: '',
-                     publishDate: new Date()
-                  }
-               }
-               isLatest={true}
-               className='px-0'/>
+               story={story}
+               isLatest={true}/>
          </Div>
          <Div className='row'>
             <Div className='col-md-8 px-4' style={{ fontSize: 18 }}>

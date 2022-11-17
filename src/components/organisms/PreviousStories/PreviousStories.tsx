@@ -1,13 +1,14 @@
 import { IStory } from '../../../interfaces';
-import React from 'react';
 import { StoryCard } from '../index';
 import { Div, Span } from '../../atoms';
+import React, { MouseEventHandler } from 'react';
 
 interface PreviousStoriesProps {
-   stories: IStory[]
+   stories: IStory[],
+   onClickAction: MouseEventHandler,
 }
 
-export const PreviousStories = ({ stories }: PreviousStoriesProps) => {
+export const PreviousStories = ({ stories, onClickAction }: PreviousStoriesProps) => {
    return (
       <Div>
          <Span className='h2'>Previous stories</Span>
@@ -18,7 +19,7 @@ export const PreviousStories = ({ stories }: PreviousStoriesProps) => {
                      <StoryCard
                         story={story}
                         isLatest={false}
-                        className='mt-4'/>
+                        onClickAction={onClickAction}/>
                   </Div>
                );
             })}

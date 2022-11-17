@@ -1,11 +1,12 @@
 import { IStory } from '../interfaces';
 import Parse from 'parse';
-import { useState } from 'react';
+import React from 'react';
+import { StoryContext } from '../contexts/Story';
 
 export const useStory = () => {
-   const [stories, setStories] = useState<IStory[]>([]);
+   const { state, dispatch } = React.useContext(StoryContext);
 
-   const readStories = async function() {
+   const getStoriesFromBackend = async function() {
       try {
          const query = new Parse.Query('Story');
          query.equalTo('isReadable', true);
@@ -21,11 +22,20 @@ export const useStory = () => {
             };
          });
 
-         setStories(mappedStories);
+         dispatch({ type: 'SET_STORIES', payload: mappedStories });
       } catch (e) {
          console.error(e);
       }
    };
 
-   return { stories, readStories };
+   const getStoryInfo = (storyId: string): IStory => {
+      const stories = state.stories;
+
+      console.log(storyId);
+      console.log(stories);
+
+      return stories[0];
+   };
+
+   return { stories: state.stories, getStoriesFromBackend, getStoryInfo };
 };

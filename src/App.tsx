@@ -2,6 +2,7 @@ import { NavigationBar } from './components/molecules';
 import Parse from 'parse';
 import React from 'react';
 import ReactGA from 'react-ga4';
+import { StoryProvider } from './contexts/Story';
 import { HomePage, ReaderPage } from './pages';
 import { Route,
    BrowserRouter as Router,
@@ -18,13 +19,15 @@ ReactGA.initialize('G-28MLPHX55W');
 
 function App() {
    return (
-      <Router>
-         <NavigationBar/>
-         <Routes>
-            <Route path='/' element={<HomePage/>}/>
-            <Route path='/reader/:storyId' element={<ReaderPage/>}/>
-         </Routes>
-      </Router>
+      <StoryProvider>
+         <Router>
+            <NavigationBar/>
+            <Routes>
+               <Route path='/' element={<HomePage/>}/>
+               <Route path='/reader/:storyId' element={<ReaderPage/>}/>
+            </Routes>
+         </Router>
+      </StoryProvider>
    );
 }
 
