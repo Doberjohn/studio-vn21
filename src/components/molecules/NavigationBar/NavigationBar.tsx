@@ -9,7 +9,7 @@ export const NavigationBar = () => {
 
    return (
       <Div className='navbar navbar-dark bg-dark'>
-         <Div className={`ps-0 container ${platform === 'mobile' ? 'justify-content-center' : ''}`}>
+         <Div className={`container ${platform === 'mobile' ? 'justify-content-center' : ''}`}>
             <Div className='navbar-brand text-center cursor-pointer' onClick={() => navigate('/')}>
                <Image src='https://studio-vn21.s3.eu-central-1.amazonaws.com/elizabeth_logo.png' width='30' height='30'
                       className='d-inline-block align-top' alternativeText='elizabeth_logo'/>

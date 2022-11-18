@@ -11,11 +11,11 @@ interface PreviousStoriesProps {
 export const PreviousStories = ({ stories, onClickAction }: PreviousStoriesProps) => {
    return (
       <Div>
-         <Span className='h2'>Previous stories</Span>
+         <Div className='h2 mb-4'>Previous stories</Div>
          <Div className='row'>
             {stories.map((story, index) => {
                return (
-                  <Div key={`previous-story-${index}`} className='col-md-6'>
+                  <Div key={`previous-story-${index}`} className='col-md-6 mb-4'>
                      <StoryCard
                         story={story}
                         isLatest={false}

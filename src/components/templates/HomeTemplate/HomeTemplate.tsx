@@ -21,7 +21,7 @@ export const HomeTemplate = ({ latestStory, previousStories }: HomeTemplateProps
 
    return (
       <Div>
-         <Div className='container narrow-container full-height py-5'>
+         <Div className='container narrow-container full-height pt-5'>
             <Div className='row'>
                <Div className='col-lg-12 py-5'>
                   <LatestStory story={latestStory} onClickAction={openStoryInternally}/>

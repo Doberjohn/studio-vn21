@@ -32,7 +32,7 @@ export const StoryCard = (
    };
 
    return (
-      <Div className='position-relative mt-4 px-0 cursor-pointer' onClick={onClick}>
+      <Div className={`position-relative mt-0 px-0 ${onClickAction ? 'cursor-pointer' : ''}`} onClick={onClick}>
          <Div>
             <LazyLoadImage
                afterLoad={afterCoverLoaded}

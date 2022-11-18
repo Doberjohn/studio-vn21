@@ -1,7 +1,7 @@
+import { Div } from '../../atoms';
 import { IStory } from '../../../interfaces';
 import React from 'react';
 import { StoryCard } from '../index';
-import { Div, Span } from '../../atoms';
 
 interface LatestStoryProps {
    story: IStory,
@@ -11,7 +11,7 @@ interface LatestStoryProps {
 export const LatestStory = ({ story, onClickAction }: LatestStoryProps) => {
    return (
       <Div>
-         <Span className='h2'>Latest story</Span>
+         <Div className='h2 mb-4'>Latest story</Div>
          <StoryCard
             story={story}
             isLatest={true}
