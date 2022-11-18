@@ -9,6 +9,10 @@ interface ReaderTemplateProps {
 
 export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
    if (!story) return null;
+   const contentParts = story.content.split(/[\n]/g).filter((entry) => entry !== '');
+
+   console.log(story);
+   window.scrollTo({ top: 0, left:0, behavior: 'auto' });
    return (
       <Div className='container narrow-container pt-5'>
          <Div className='row pt-2 pb-4'>
@@ -17,13 +21,15 @@ export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
                isLatest={true}/>
          </Div>
          <Div className='row'>
-            <Div className='col-md-7 px-4' style={{ fontSize: 18 }}>
-               <Paragraph
-                  className='text-justify'>{'They all look so happy. And why wouldn’t they be? It’s the happiest day of their life and one more “worst day” of mine. After all these years, I have gotten used to asking them to smile at me. Though, I haven’t been able to smile myself behind the camera.'}</Paragraph>
-               <Paragraph
-                  className='text-justify'>{'I am trapped in a job I used to love, and now it makes me sick. Photography was my life and passion, but I traded my imagination for a salary. Thus, weddings had my creativity run dry.'}</Paragraph>
-               <Paragraph
-                  className='text-justify'>{'I fear the day my love for my art will cease to exist.'}</Paragraph>
+            <Div className='col-md-8 h5 px-3 mb-0'>
+               {contentParts.map((part) => {
+                  return (
+                     <Paragraph>{part}</Paragraph>
+                  );
+               })}
+            </Div>
+            <Div className='col-md-4' style={{ borderLeft: '1px solid' }}>
+               <Div></Div>
             </Div>
          </Div>
       </Div>

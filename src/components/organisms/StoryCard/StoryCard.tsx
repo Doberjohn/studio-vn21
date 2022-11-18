@@ -43,9 +43,9 @@ export const StoryCard = (
                effect='blur'
                alt={title}/>
             <Div className={'small-card_title mb-0'}>
-               <Div className={`${isLatest ? 'h1 ms-0 mb-2' : 'h5 mb-0'}`}>{title}</Div>
+               <Div className={`${isLatest ? 'h4 ms-0 mb-2' : 'h4 mb-0'}`}>{title}</Div>
                {isLatest && (
-                  <Div className='h5 ms-0 mb-0'>{subtitle}</Div>
+                  <Div className='h6 ms-0 mb-0'>{subtitle}</Div>
                )}
             </Div>
          </Div>

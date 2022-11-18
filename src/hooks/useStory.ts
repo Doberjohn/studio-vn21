@@ -16,6 +16,7 @@ export const useStory = () => {
             return {
                title: backendProduct.get('title'),
                subtitle: backendProduct.get('subtitle'),
+               content: backendProduct.get('content'),
                storyId: backendProduct.get('storyId'),
                imageUrl: backendProduct.get('coverImage')._url,
                externalReadLink: backendProduct.get('externalLink'),
