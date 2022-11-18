@@ -11,7 +11,7 @@ interface PreviousStoriesProps {
 export const PreviousStories = ({ stories, onClickAction }: PreviousStoriesProps) => {
    return (
       <Div>
-         <Div className='h2 mb-4'>Previous stories</Div>
+         <Div className='h2 mb-2'>Previous stories</Div>
          <Div className='row'>
             {stories.map((story, index) => {
                return (

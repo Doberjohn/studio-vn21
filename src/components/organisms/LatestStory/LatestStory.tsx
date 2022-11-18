@@ -11,7 +11,7 @@ interface LatestStoryProps {
 export const LatestStory = ({ story, onClickAction }: LatestStoryProps) => {
    return (
       <Div>
-         <Div className='h2 mb-4'>Latest story</Div>
+         <Div className='h2 mb-2'>Latest story</Div>
          <StoryCard
             story={story}
             isLatest={true}

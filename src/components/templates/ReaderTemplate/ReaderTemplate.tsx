@@ -11,7 +11,6 @@ export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
    if (!story) return null;
    const contentParts = story.content.split(/[\n]/g).filter((entry) => entry !== '');
 
-   console.log(story);
    window.scrollTo({ top: 0, left:0, behavior: 'auto' });
    return (
       <Div className='container narrow-container pt-5'>
