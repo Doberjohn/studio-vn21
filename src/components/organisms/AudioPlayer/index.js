@@ -11,8 +11,6 @@ import pauseBtn from './icons/pause.png';
 import Play from './components/Play';
 import playBtn from './icons/play.png';
 import PlayerTemplate from './components/PlayerTemplate';
-import PlaylistItem from './components/PlaylistItem';
-import PlaylistTemplate from './components/PlaylistTemplate';
 import Previous from './components/Previous';
 import previousBtn from './icons/previous.png';
 import Progress from './components/Progress';
@@ -40,14 +38,10 @@ const colors = `html{
 
 const AudioPlayer = ({
   trackList,
-  showPlaylist = false,
+  setIsPlaying,
   autoPlayNextTrack = true,
   customColorScheme = colors,
 }) => {
-  const [query] = useState('');
-
-  let playlist = [];
-
   const [audio, setAudio] = useState(null);
   const [active, setActive] = useState(false);
   const [title, setTitle] = useState('');
@@ -61,7 +55,7 @@ const AudioPlayer = ({
   const [looped, setLooped] = useState(false);
 
   const [filter] = useState([]);
-  let [curTrack, setCurTrack] = useState(0);
+  let [curTrack] = useState(0);
 
   const GlobalStyles = createGlobalStyle`${customColorScheme}`;
 
@@ -99,29 +93,11 @@ const AudioPlayer = ({
     };
   }, []);
 
-  const tags = [];
-  trackList.forEach((track) => {
-    track.tags.forEach((tag) => {
-      if (!tags.includes(tag)) {
-        tags.push(tag);
-      }
-    });
-  });
-
-  const shufflePlaylist = (arr) => {
-    if (arr.length === 1) return arr;
-    const rand = Math.floor(Math.random() * arr.length);
-    return [arr[rand], ...shufflePlaylist(arr.filter((_, i) => i !== rand))];
-  };
-
   const isInitialMount = useRef(true);
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
     } else {
-      if (shuffled) {
-        playlist = shufflePlaylist(playlist);
-      }
       !looped && autoPlayNextTrack ? next() : play();
     }
   }, [end]);
@@ -138,6 +114,10 @@ const AudioPlayer = ({
       audio.currentTime = Math.round((drag * audio.duration) / 100);
     }
   }, [drag]);
+
+  useEffect(() => {
+    setIsPlaying(active);
+  }, [active]);
 
   const play = () => {
     setActive(true);
@@ -162,38 +142,21 @@ const AudioPlayer = ({
   }, [curTrack]);
 
   const previous = () => {
-    const index = playlist.indexOf(curTrack);
-    index !== 0
-      ? setCurTrack((curTrack = playlist[index - 1]))
-      : setCurTrack((curTrack = playlist[playlist.length - 1]));
+    console.log('previous');
   };
 
   const next = () => {
-    const index = playlist.indexOf(curTrack);
-    index !== playlist.length - 1
-      ? setCurTrack((curTrack = playlist[index + 1]))
-      : setCurTrack((curTrack = playlist[0]));
+    console.log('next');
   };
 
   const shuffle = () => {
     setShuffled(!shuffled);
   };
 
-  const playlistItemClickHandler = (e) => {
-    const num = Number(e.currentTarget.getAttribute('data-key'));
-    const index = playlist.indexOf(num);
-    setCurTrack((curTrack = playlist[index]));
-    play();
-  };
-
   const isInitialFilter = useRef(true);
   useEffect(() => {
     if (isInitialFilter.current) {
       isInitialFilter.current = false;
-    } else {
-      if (!playlist.includes(curTrack)) {
-        setCurTrack((curTrack = playlist[0]));
-      }
     }
   }, [filter]);
 
@@ -245,33 +208,6 @@ const AudioPlayer = ({
           />
         </div>
       </PlayerTemplate>
-
-      {showPlaylist && (
-        <PlaylistTemplate>
-          {trackList
-            .sort((a, b) => (a.title > b.title ? 1 : -1))
-            .map((el, index) => {
-              if (
-                filter.length === 0 ||
-                filter.some((filter) => el.tags.includes(filter))
-              ) {
-                if (el.title.toLowerCase().includes(query.toLowerCase())) {
-                  playlist.push(index);
-                  return (
-                    <PlaylistItem
-                      className={curTrack === index ? 'active' : ''}
-                      key={index}
-                      data_key={index}
-                      title={el.title}
-                      src={el.url}
-                      onClick={playlistItemClickHandler}
-                    />
-                  );
-                }
-              }
-            })}
-        </PlaylistTemplate>
-      )}
     </PageTemplate>
   );
 };

@@ -18,6 +18,7 @@ export const useStory = () => {
                subtitle: backendProduct.get('subtitle'),
                content: backendProduct.get('content'),
                storyId: backendProduct.get('storyId'),
+               transcript: backendProduct.get('transcript'),
                imageUrl: backendProduct.get('coverImage')._url,
                voiceoverUrl: backendProduct.get('voiceover')?._url,
                externalReadLink: backendProduct.get('externalLink'),
