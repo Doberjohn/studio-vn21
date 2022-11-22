@@ -7,36 +7,28 @@ interface ReaderTemplateProps {
    story: IStory;
 }
 
-const tracks = [
-   {
-      url: 'https://audioplayer.madza.dev/Madza-Chords_of_Life.mp3',
-      title: 'Madza - Chords of Life',
-      tags: ['house'],
-   },
-   {
-      url: 'https://audioplayer.madza.dev/Madza-Late_Night_Drive.mp3',
-      title: 'Madza - Late Night Drive',
-      tags: ['dnb'],
-   },
-   {
-      url: 'https://audioplayer.madza.dev/Madza-Persistence.mp3',
-      title: 'Madza - Persistence',
-      tags: ['dubstep'],
-   },
-];
-
 export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
    if (!story) return null;
    const contentParts = story.content.split(/[\n]/g).filter((entry) => entry !== '');
-
    window.scrollTo({ top: 0, left:0, behavior: 'auto' });
+
    return (
       <Div className='container narrow-container pt-5'>
-         <AudioPlayer trackList={tracks}/>
-         <Div className='row pt-2 pb-4'>
+         <Div className='row pt-2'>
             <StoryCard
                story={story}
                isLatest={true}/>
+         </Div>
+         <Div className='row py-4 px-3'>
+            {story.voiceoverUrl && (
+               <AudioPlayer trackList={[
+                  {
+                     url: story.voiceoverUrl,
+                     title: `Studio VN21 - ${story.title}`,
+                     tags: ['house'],
+                  },
+               ]}/>
+            )}
          </Div>
          <Div className='row'>
             <Div className='col-md-8 h5 px-3 mb-0'>

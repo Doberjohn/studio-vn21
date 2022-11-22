@@ -7,5 +7,6 @@ export interface IStory extends React.HTMLAttributes<Element> {
    subtitle: string;
    imageUrl: string;
    publishDate: Date;
+   voiceoverUrl?: string;
    externalReadLink?: string;
 }

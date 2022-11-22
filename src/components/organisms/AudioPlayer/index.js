@@ -16,53 +16,35 @@ import PlaylistTemplate from './components/PlaylistTemplate';
 import Previous from './components/Previous';
 import previousBtn from './icons/previous.png';
 import Progress from './components/Progress';
-import Search from './components/Search';
 import Shuffle from './components/Shuffle';
 import shuffleAllBtn from './icons/shuffle_all.png';
 import shuffleNoneBtn from './icons/shuffle_none.png';
 import styles from './styles/Player.module.css';
-import TagItem from './components/TagItem';
-import TagsTemplate from './components/TagsTemplate';
 import Time from './components/Time';
 import Title from './components/Title';
 import Volume from './components/Volume';
 
-
-
 import React, { useEffect, useRef, useState } from 'react';
 
 const colors = `html{
-    --tagsBackground: #9440f3;
-    --tagsText: #ffffff;
-    --tagsBackgroundHoverActive: #2cc0a0;
-    --tagsTextHoverActive: #ffffff;
-    --searchBackground: #18191f;
-    --searchText: #ffffff;
-    --searchPlaceHolder: #575a77;
     --playerBackground: #18191f;
     --titleColor: #ffffff;
     --timeColor: #ffffff;
-    --progressSlider: #9440f3;
+    --progressSlider: #ff5500;
     --progressUsed: #ffffff;
     --progressLeft: #151616;
-    --volumeSlider: #9440f3;
+    --volumeSlider: #ff5500;
     --volumeUsed: #ffffff;
     --volumeLeft:  #151616;
-    --playlistBackground: #18191f;
-    --playlistText: #575a77;
-    --playlistBackgroundHoverActive:  #18191f;
-    --playlistTextHoverActive: #ffffff;
   }`;
 
-export const AudioPlayer = ({
+const AudioPlayer = ({
   trackList,
-  includeTags = true,
-  includeSearch = false,
-  showPlaylist = true,
+  showPlaylist = false,
   autoPlayNextTrack = true,
   customColorScheme = colors,
 }) => {
-  const [query, updateQuery] = useState('');
+  const [query] = useState('');
 
   let playlist = [];
 
@@ -73,12 +55,12 @@ export const AudioPlayer = ({
   const [time, setTime] = useState(0);
   const [slider, setSlider] = useState(1);
   const [drag, setDrag] = useState(0);
-  const [volume, setVolume] = useState(0.8);
-  let [end, setEnd] = useState(0);
+  const [volume, setVolume] = useState(1);
+  const [end, setEnd] = useState(0);
   const [shuffled, setShuffled] = useState(false);
   const [looped, setLooped] = useState(false);
 
-  const [filter, setFilter] = useState([]);
+  const [filter] = useState([]);
   let [curTrack, setCurTrack] = useState(0);
 
   const GlobalStyles = createGlobalStyle`${customColorScheme}`;
@@ -101,7 +83,7 @@ export const AudioPlayer = ({
 
     const setAudioVolume = () => setVolume(audio.volume);
 
-    const setAudioEnd = () => setEnd((end += 1));
+    const setAudioEnd = () => setEnd((end) => end + 1);
 
     // events on audio object
     audio.addEventListener('loadeddata', setAudioData);
@@ -172,7 +154,7 @@ export const AudioPlayer = ({
   };
 
   useEffect(() => {
-    if (audio != null) {
+    if (audio && curTrack) {
       audio.src = trackList[curTrack].url;
       setTitle(trackList[curTrack].title);
       play();
@@ -215,42 +197,9 @@ export const AudioPlayer = ({
     }
   }, [filter]);
 
-  const tagClickHandler = (e) => {
-    const tag = e.currentTarget.innerHTML;
-    if (!filter.includes(tag)) {
-      setFilter([...filter, tag]);
-    } else {
-      const filteredArray = filter.filter((item) => item !== tag);
-      setFilter([...filteredArray]);
-    }
-  };
-
   return (
     <PageTemplate>
       <GlobalStyles />
-      {includeTags && (
-        <TagsTemplate>
-          {tags.map((tag, index) => {
-            return (
-              <TagItem
-                key={index}
-                className={
-                  filter.length !== 0 && filter.includes(tag) ? 'active' : ''
-                }
-                tag={tag}
-                onClick={tagClickHandler}
-              />
-            );
-          })}
-        </TagsTemplate>
-      )}
-      {includeSearch && (
-        <Search
-          value={query}
-          onChange={(e) => updateQuery(e.target.value.toLowerCase())}
-          placeholder={`Search ${trackList.length} tracks...`}
-        />
-      )}
       <PlayerTemplate>
         <div className={styles.title_time_wrapper}>
           <Title title={title} />
@@ -326,3 +275,5 @@ export const AudioPlayer = ({
     </PageTemplate>
   );
 };
+
+export default AudioPlayer;

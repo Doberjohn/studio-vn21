@@ -8,7 +8,7 @@ const Volume = (props) => {
         type='range'
         min='1'
         max='100'
-        defaultValue='80'
+        defaultValue='100'
         className={styles.slider}
         id='myRange'
         onChange={props.onChange}

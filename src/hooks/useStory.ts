@@ -19,6 +19,7 @@ export const useStory = () => {
                content: backendProduct.get('content'),
                storyId: backendProduct.get('storyId'),
                imageUrl: backendProduct.get('coverImage')._url,
+               voiceoverUrl: backendProduct.get('voiceover')?._url,
                externalReadLink: backendProduct.get('externalLink'),
                publishDate: backendProduct.get('publishDate'),
             };
