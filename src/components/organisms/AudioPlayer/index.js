@@ -31,10 +31,10 @@ const colors = `html{
     --titleColor: #ffffff;
     --timeColor: #ffffff;
     --progressSlider: #ff5500;
-    --progressUsed: #ffffff;
+    --progressUsed: #ff5500;
     --progressLeft: #151616;
     --volumeSlider: #ff5500;
-    --volumeUsed: #ffffff;
+    --volumeUsed: #ff5500;
     --volumeLeft:  #151616;
   }`;
 

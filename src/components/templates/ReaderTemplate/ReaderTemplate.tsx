@@ -19,7 +19,7 @@ export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
                story={story}
                isLatest={true}/>
          </Div>
-         <Div className='row py-4 px-3'>
+         <Div className='row py-4'>
             {story.voiceoverUrl && (
                <AudioPlayer trackList={[
                   {
