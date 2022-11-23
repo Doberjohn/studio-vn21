@@ -2,23 +2,29 @@ import { IStory } from '../interfaces';
 import Parse from 'parse';
 import React from 'react';
 import { StoryContext } from '../contexts/Story';
+import { useTranscriptParser } from './useTranscriptParser';
 
 export const useStory = () => {
    const { state, dispatch } = React.useContext(StoryContext);
+   const { transcriptParser } = useTranscriptParser();
 
    const getStoriesFromBackend = async function() {
       try {
          const query = new Parse.Query('Story');
          query.equalTo('isReadable', true);
          query.descending('publishDate');
+
          const backendStories = await query.find();
+
          const mappedStories = backendStories.map((backendProduct) => {
             return {
                title: backendProduct.get('title'),
                subtitle: backendProduct.get('subtitle'),
-               content: backendProduct.get('content'),
+               content: backendProduct.get('content')
+                  .split(/[\n]/g)
+                  .filter((entry: string) => entry !== ''),
                storyId: backendProduct.get('storyId'),
-               transcript: backendProduct.get('transcript'),
+               transcript: transcriptParser(backendProduct.get('transcript')),
                imageUrl: backendProduct.get('coverImage')._url,
                voiceoverUrl: backendProduct.get('voiceover')?._url,
                externalReadLink: backendProduct.get('externalLink'),
