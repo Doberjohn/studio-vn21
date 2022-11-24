@@ -1,7 +1,7 @@
 import { Div } from '../../atoms';
 import { IStory } from '../../../interfaces';
-import { AudioPlayer, StoryCard } from '../../organisms';
 import React, { useEffect, useState } from 'react';
+import { StoryCard, VOPlayer } from '../../organisms';
 
 interface ReaderTemplateProps {
    story: IStory;
@@ -9,21 +9,28 @@ interface ReaderTemplateProps {
 
 export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
    if (!story) return null;
+   const storyWords = story.content.map((paragraph) => paragraph.split( ' '));
+   const wordElements = storyWords.flat().map((word, index) => {
+      return {
+         word,
+         index
+      };
+   });
 
    const [selectedWord, setSelectedWord] = useState(0);
    const [isPlaying, setIsPlaying] = useState(false);
+   const [lastVOPosition, setLastVOPosition] = useState(0);
 
-   let intervals: number[];
-   if (story.transcript) {
-      intervals = story.transcript.timestamps;
-   }
+   const timestamps = story.transcript ? story.transcript.timestamps : [];
 
-   const time = (interval: number) => {
-      setTimeout(() => {
-         if (selectedWord <= intervals.length) {
-            setSelectedWord(selectedWord + 1);
-         }
-      }, interval);
+   const updateTimeout = (interval: number) => {
+      if (isPlaying) {
+         setTimeout(() => {
+            if (selectedWord <= timestamps.length) {
+               setSelectedWord(selectedWord + 1);
+            }
+         }, interval);
+      }
    };
 
    useEffect(() => {
@@ -32,15 +39,19 @@ export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
 
    useEffect(() => {
       if (story.transcript && selectedWord > 0) {
-         time(intervals[selectedWord] - intervals[selectedWord - 1] - 25);
+         updateTimeout(timestamps[selectedWord] - timestamps[selectedWord - 1] - 25);
       }
    }, [selectedWord]);
 
    useEffect(() => {
       if (story.transcript && isPlaying) {
-         time(intervals[selectedWord] - 100);
+         updateTimeout(timestamps[selectedWord]- lastVOPosition- 100);
       }
    }, [isPlaying]);
+
+   const updateVOPosition = (time: number) => {
+      setLastVOPosition(time);
+   };
 
    return (
       <Div className='container narrow-container pt-5'>
@@ -51,34 +62,37 @@ export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
          </Div>
          <Div className='row py-4 px-3'>
             {story.voiceoverUrl && (
-               <AudioPlayer
-                  setIsPlaying={setIsPlaying}
-                  trackList={[{
+               <VOPlayer
+                  voiceover={{
                      url: story.voiceoverUrl,
                      title: `Studio VN21 - ${story.title}`,
-                     tags: ['house'],
-                  },
-               ]}/>
+                  }}
+                  setIsPlaying={setIsPlaying}
+                  updateVOPosition={updateVOPosition}
+                  />
             )}
          </Div>
          <Div className='row'>
             <Div className='col-md-8 h5 px-3 mb-0'>
-               {story.content.map((paragraph, paragraphIndex) => {
+               {wordElements.map((wordElement) => {
                   return (
-                     <Div key={`paragraph-${paragraphIndex}`} className='mb-3'>{
-                        paragraph.split(' ').map((word, wordIndex) => {
-                           return <Div key={`paragraph-${paragraphIndex}-word-${wordIndex}`}
-                                       className='d-inline-block p-1' style={
-                              {
-                                 backgroundColor: isPlaying && selectedWord === wordIndex ? 'rgba(255, 85, 0, 0.8)' : 'initial'
-                              }
-                           } >{word}</Div>;
-                        })
-                     }</Div>
-               );
+                     <>
+                        <Div key={`word-${wordElement.index}`}
+                             className='d-inline-block px-1' style={
+                           {
+                              borderBottom: isPlaying && selectedWord === wordElement.index ?
+                                 '3px solid #ff5500' : '3px solid transparent'
+                           }
+                        } >{wordElement.word}
+                        </Div>
+                        {(wordElement.index === 49 || wordElement.index === 86) ? (
+                           <p/>
+                        ) : null}
+                     </>
+                  );
                })}
             </Div>
-            <Div className='col-md-4' style={{ borderLeft: '1px solid' }}/>
+            <Div className='col-md-4' style={{ borderLeft: '2px solid' }}/>
          </Div>
       </Div>
    );

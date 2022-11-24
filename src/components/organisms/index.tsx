@@ -1,6 +1,6 @@
-import AudioPlayer from './AudioPlayer';
 import { LatestStory } from './LatestStory/LatestStory';
 import { PreviousStories } from './PreviousStories/PreviousStories';
 import { StoryCard } from './StoryCard/StoryCard';
+import { VOPlayer } from './AudioPlayer';
 
-export { AudioPlayer, LatestStory, PreviousStories, StoryCard };
+export { VOPlayer, LatestStory, PreviousStories, StoryCard };

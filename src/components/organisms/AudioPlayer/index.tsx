@@ -21,8 +21,17 @@ import styles from './styles/Player.module.css';
 import Time from './components/Time';
 import Title from './components/Title';
 import Volume from './components/Volume';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 
-import React, { useEffect, useRef, useState } from 'react';
+interface VOPlayerProps {
+  voiceover: {
+    url: string;
+    title: string;
+  },
+  setIsPlaying: (status: boolean) => void;
+  updateVOPosition: (time: number) => void;
+  customColorScheme?: string;
+}
 
 const colors = `html{
     --playerBackground: #18191f;
@@ -36,13 +45,13 @@ const colors = `html{
     --volumeLeft:  #151616;
   }`;
 
-const AudioPlayer = ({
-  trackList,
+export const VOPlayer = ({
+  voiceover,
   setIsPlaying,
-  autoPlayNextTrack = true,
+  updateVOPosition,
   customColorScheme = colors,
-}) => {
-  const [audio, setAudio] = useState(null);
+}: VOPlayerProps) => {
+  const [audio, setAudio] = useState<HTMLAudioElement>();
   const [active, setActive] = useState(false);
   const [title, setTitle] = useState('');
   const [length, setLength] = useState(0);
@@ -53,16 +62,14 @@ const AudioPlayer = ({
   const [end, setEnd] = useState(0);
   const [shuffled, setShuffled] = useState(false);
   const [looped, setLooped] = useState(false);
-
   const [filter] = useState([]);
-  let [curTrack] = useState(0);
 
   const GlobalStyles = createGlobalStyle`${customColorScheme}`;
 
-  const fmtMSS = (s) => new Date(1000 * s).toISOString().substr(15, 4);
+  const fmtMSS = (s: number) => new Date(1000 * s).toISOString().substr(15, 4);
 
   useEffect(() => {
-    const audio = new Audio(trackList[curTrack].url);
+    const audio = new Audio(voiceover.url);
 
     const setAudioData = () => {
       setLength(audio.duration);
@@ -72,7 +79,7 @@ const AudioPlayer = ({
     const setAudioTime = () => {
       const curTime = audio.currentTime;
       setTime(curTime);
-      setSlider(curTime ? ((curTime * 100) / audio.duration).toFixed(1) : 0);
+      setSlider(curTime ? parseFloat(((curTime * 100) / audio.duration).toFixed(1)) : 0);
     };
 
     const setAudioVolume = () => setVolume(audio.volume);
@@ -86,20 +93,15 @@ const AudioPlayer = ({
     audio.addEventListener('ended', setAudioEnd);
 
     setAudio(audio);
-    setTitle(trackList[curTrack].title);
+    setTitle(voiceover.title);
 
     return () => {
       audio.pause();
     };
   }, []);
 
-  const isInitialMount = useRef(true);
   useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-    } else {
-      !looped && autoPlayNextTrack ? next() : play();
-    }
+    looped ? play() : reset();
   }, [end]);
 
   useEffect(() => {
@@ -117,36 +119,34 @@ const AudioPlayer = ({
 
   useEffect(() => {
     setIsPlaying(active);
+    updateVOPosition(audio?.currentTime ? audio.currentTime * 1000 : 0);
   }, [active]);
 
   const play = () => {
+    audio?.play();
     setActive(true);
-    audio.play();
   };
 
   const pause = () => {
+    audio?.pause();
     setActive(false);
-    audio.pause();
+  };
+
+  const reset = () => {
+    audio?.pause();
+    if (audio) audio.currentTime = 0;
   };
 
   const loop = () => {
     setLooped(!looped);
   };
 
-  useEffect(() => {
-    if (audio && curTrack) {
-      audio.src = trackList[curTrack].url;
-      setTitle(trackList[curTrack].title);
-      play();
-    }
-  }, [curTrack]);
-
   const previous = () => {
-    console.log('previous');
+    console.warn('previous');
   };
 
   const next = () => {
-    console.log('next');
+    console.warn('next');
   };
 
   const shuffle = () => {
@@ -175,9 +175,9 @@ const AudioPlayer = ({
 
         <Progress
           value={slider}
-          onChange={(e) => {
-            setSlider(e.target.value);
-            setDrag(e.target.value);
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            setSlider(parseFloat(e.target.value));
+            setDrag(parseFloat(e.target.value));
           }}
           onMouseUp={play}
           onTouchEnd={play}
@@ -202,8 +202,8 @@ const AudioPlayer = ({
           </ButtonsBox>
           <Volume
             value={volume}
-            onChange={(e) => {
-              setVolume(e.target.value / 100);
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setVolume(parseInt(e.target.value) / 100);
             }}
           />
         </div>
@@ -211,5 +211,3 @@ const AudioPlayer = ({
     </PageTemplate>
   );
 };
-
-export default AudioPlayer;
