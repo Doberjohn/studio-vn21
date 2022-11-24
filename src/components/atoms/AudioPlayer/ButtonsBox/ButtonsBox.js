@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ButtonsBox.module.css';
+import styles from './ButtonBox.module.css';
 
 const ButtonsBox = ({ children }) => {
   return <div className={styles.wrapper}>{children}</div>;

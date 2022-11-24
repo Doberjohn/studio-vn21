@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './LoopCurrent.module.css';
+import styles from './Loop.module.css';
 
-const LoopCurrent = (props) => {
+const Loop = (props) => {
   return (
     <img
       className={styles.loop_current}
@@ -11,4 +11,4 @@ const LoopCurrent = (props) => {
   );
 };
 
-export default LoopCurrent;
+export default Loop;

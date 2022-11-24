@@ -1,26 +1,11 @@
-import ButtonsBox from './components/ButtonsBox';
 import { createGlobalStyle } from 'styled-components';
-import LoopCurrent from './components/LoopCurrent';
-import loopCurrentBtn from './icons/loop_current.png';
-import loopNoneBtn from './icons/loop_none.png';
-import Next from './components/Next';
-import nextBtn from './icons/next.png';
-import PageTemplate from './components/PageTemplate';
-import Pause from './components/Pause';
-import pauseBtn from './icons/pause.png';
-import Play from './components/Play';
-import playBtn from './icons/play.png';
-import PlayerTemplate from './components/PlayerTemplate';
-import Previous from './components/Previous';
-import previousBtn from './icons/previous.png';
-import Progress from './components/Progress';
-import Shuffle from './components/Shuffle';
-import shuffleAllBtn from './icons/shuffle_all.png';
-import shuffleNoneBtn from './icons/shuffle_none.png';
-import styles from './styles/Player.module.css';
-import Time from './components/Time';
-import Title from './components/Title';
-import Volume from './components/Volume';
+import styles from './VOPlayer.module.css';
+import {
+  ButtonsBox, Loop, Next, PageTemplate, Pause, Play, PlayerTemplate, Previous, Shuffle, Time,
+  Title } from '../../atoms';
+import { loopCurrentBtn, loopNoneBtn, nextBtn, pauseBtn, playBtn, previousBtn, shuffleAllBtn,
+  shuffleNoneBtn } from '../../../shared/assets/icons';
+import { Progress, Volume } from '../../molecules';
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 interface VOPlayerProps {
@@ -28,8 +13,6 @@ interface VOPlayerProps {
     url: string;
     title: string;
   },
-  setIsPlaying: (status: boolean) => void;
-  updateVOPosition: (time: number) => void;
   customColorScheme?: string;
 }
 
@@ -47,8 +30,6 @@ const colors = `html{
 
 export const VOPlayer = ({
   voiceover,
-  setIsPlaying,
-  updateVOPosition,
   customColorScheme = colors,
 }: VOPlayerProps) => {
   const [audio, setAudio] = useState<HTMLAudioElement>();
@@ -117,11 +98,6 @@ export const VOPlayer = ({
     }
   }, [drag]);
 
-  useEffect(() => {
-    setIsPlaying(active);
-    updateVOPosition(audio?.currentTime ? audio.currentTime * 1000 : 0);
-  }, [active]);
-
   const play = () => {
     audio?.play();
     setActive(true);
@@ -133,7 +109,7 @@ export const VOPlayer = ({
   };
 
   const reset = () => {
-    audio?.pause();
+    pause();
     if (audio) audio.currentTime = 0;
   };
 
@@ -184,7 +160,7 @@ export const VOPlayer = ({
         />
         <div className={styles.buttons_volume_wrapper}>
           <ButtonsBox>
-            <LoopCurrent
+            <Loop
               src={looped ? loopCurrentBtn : loopNoneBtn}
               onClick={loop}
             />
