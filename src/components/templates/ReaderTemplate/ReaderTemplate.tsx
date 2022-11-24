@@ -1,5 +1,6 @@
-import { Div } from '../../atoms';
 import { IStory } from '../../../interfaces';
+import { useStory } from '../../../hooks';
+import { Div, Span } from '../../atoms';
 import React, { useEffect, useState } from 'react';
 import { StoryCard, VOPlayer } from '../../organisms';
 
@@ -7,26 +8,24 @@ interface ReaderTemplateProps {
    story: IStory;
 }
 
+interface IWordElement {
+   word: string;
+   index: number;
+}
+
 export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
    if (!story) return null;
-   const storyWords = story.content.map((paragraph) => paragraph.split( ' '));
-   const wordElements = storyWords.flat().map((word, index) => {
-      return {
-         word,
-         index
-      };
-   });
 
+   const { getStoryContentDetails } = useStory();
    const [selectedWord, setSelectedWord] = useState(0);
    const [isPlaying, setIsPlaying] = useState(false);
    const [lastVOPosition, setLastVOPosition] = useState(0);
-
-   const timestamps = story.transcript ? story.transcript.timestamps : [];
+   const { storyWords, storyBreakpoints, storyTimestamps } = getStoryContentDetails(story.storyId);
 
    const updateTimeout = (interval: number) => {
       if (isPlaying) {
          setTimeout(() => {
-            if (selectedWord <= timestamps.length) {
+            if (selectedWord <= storyTimestamps.length) {
                setSelectedWord(selectedWord + 1);
             }
          }, interval);
@@ -39,13 +38,13 @@ export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
 
    useEffect(() => {
       if (story.transcript && selectedWord > 0) {
-         updateTimeout(timestamps[selectedWord] - timestamps[selectedWord - 1] - 25);
+         updateTimeout(storyTimestamps[selectedWord] - storyTimestamps[selectedWord - 1] - 25);
       }
    }, [selectedWord]);
 
    useEffect(() => {
       if (story.transcript && isPlaying) {
-         updateTimeout(timestamps[selectedWord]- lastVOPosition- 100);
+         updateTimeout(storyTimestamps[selectedWord]- lastVOPosition- 100);
       }
    }, [isPlaying]);
 
@@ -73,22 +72,21 @@ export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
             )}
          </Div>
          <Div className='row'>
-            <Div className='col-md-8 h5 px-3 mb-0'>
-               {wordElements.map((wordElement) => {
+            <Div className='col-md-8 h5 p-3 pt-0'>
+               {storyWords.map((wordElement: IWordElement) => {
                   return (
-                     <>
-                        <Div key={`word-${wordElement.index}`}
-                             className='d-inline-block px-1' style={
+                     <Span key={`word-${wordElement.index}`}>
+                        <Div className='d-inline-block px-1' style={
                            {
                               borderBottom: isPlaying && selectedWord === wordElement.index ?
                                  '3px solid #ff5500' : '3px solid transparent'
                            }
                         } >{wordElement.word}
                         </Div>
-                        {(wordElement.index === 49 || wordElement.index === 86) ? (
+                        {(storyBreakpoints.includes(wordElement.index)) ? (
                            <p/>
                         ) : null}
-                     </>
+                     </Span>
                   );
                })}
             </Div>

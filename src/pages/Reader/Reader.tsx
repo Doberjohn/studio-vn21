@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReaderTemplate } from '../../components/templates';
 import { useParams } from 'react-router-dom';
-import { useStory } from '../../hooks/useStory';
+import { useStory } from '../../hooks';
 
 export const Reader = () => {
    const params = useParams();

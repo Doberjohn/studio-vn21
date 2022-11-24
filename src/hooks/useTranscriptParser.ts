@@ -16,12 +16,12 @@ export const useTranscriptParser = () => {
 
    const parseGoogleSpeechAPIData = (data: GoogleSpeechAPIResponse): ITranscript => {
       const parsedTranscript: ITranscript = { words: [], timestamps: [] };
-      const wordsArray = [...data.results[0].alternatives[0].words];
+      const wordsArray = [...data.results[0].alternatives[0].words].slice(1);
 
-      for (let i = 1;i < wordsArray.length;i++) {
-         parsedTranscript.words = [...parsedTranscript.words, wordsArray[i].word];
+      for (const wordElement of wordsArray) {
+         parsedTranscript.words = [...parsedTranscript.words, wordElement.word];
          parsedTranscript.timestamps = [...parsedTranscript.timestamps,
-            parseFloat(wordsArray[i].endTime.substring(0, wordsArray[i].endTime.indexOf('s'))) * 1000];
+            parseFloat(wordElement.endTime.substring(0, wordElement.endTime.indexOf('s'))) * 1000];
       }
 
       return parsedTranscript;

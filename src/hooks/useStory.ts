@@ -44,5 +44,32 @@ export const useStory = () => {
       return stories.find((story) => story.storyId === storyId) as IStory;
    };
 
-   return { stories: state.stories, getStoriesFromBackend, getStoryInfo };
+   const getStoryContentDetails = (storyId: string) => {
+      const stories = state.stories;
+      if (stories.length === 0) getStoriesFromBackend();
+      const story = stories.find((story) => story.storyId === storyId) as IStory;
+
+      const storyParagraphs = story.content.map((paragraph) => paragraph.split( ' '));
+      const storyWords = storyParagraphs.flat().map((word, index) => {
+         return {
+            word,
+            index
+         };
+      });
+
+      let accumulator = 0;
+      const storyBreakpoints = storyParagraphs.map(
+         (paragraph) => {
+            const result = paragraph.length + accumulator - 1;
+            accumulator = accumulator + paragraph.length;
+            return result;
+         })
+         .slice(0, storyParagraphs.length - 1);
+
+      const storyTimestamps = story.transcript ? story.transcript.timestamps : [];
+
+      return { storyParagraphs, storyWords, storyBreakpoints, storyTimestamps };
+   };
+
+   return { stories: state.stories, getStoriesFromBackend, getStoryInfo, getStoryContentDetails };
 };

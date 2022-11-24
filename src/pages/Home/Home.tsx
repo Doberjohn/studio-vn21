@@ -1,5 +1,5 @@
 import { HomeTemplate } from '../../components/templates';
-import { useStory } from '../../hooks/useStory';
+import { useStory } from '../../hooks';
 import { Div, LoadingSpinner } from '../../components/atoms';
 import React, { useEffect, useState } from 'react';
 
