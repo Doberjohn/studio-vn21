@@ -14,6 +14,9 @@ interface VOPlayerProps {
     title: string;
   },
   customColorScheme?: string;
+  setIsPlaying: (status: boolean) => void;
+  updateVOPosition: (time: number) => void;
+
 }
 
 const colors = `html{
@@ -31,6 +34,8 @@ const colors = `html{
 export const VOPlayer = ({
   voiceover,
   customColorScheme = colors,
+  setIsPlaying,
+  updateVOPosition
 }: VOPlayerProps) => {
   const [audio, setAudio] = useState<HTMLAudioElement>();
   const [active, setActive] = useState(false);
@@ -80,6 +85,11 @@ export const VOPlayer = ({
       audio.pause();
     };
   }, []);
+
+  useEffect(() => {
+    setIsPlaying(active);
+    updateVOPosition(audio?.currentTime ? audio.currentTime * 1000 : 0);
+  }, [active]);
 
   useEffect(() => {
     looped ? play() : reset();
