@@ -1,11 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 import styles from './VOPlayer.module.css';
 import {
-  ButtonsBox, Loop, Next, PageTemplate, Pause, Play, PlayerTemplate, Previous, Shuffle, Time,
-  Title } from '../../atoms';
+  ButtonsBox, Loop, Next, PageTemplate, Pause, Play, PlayerTemplate, Previous, Progress,
+  Shuffle, Time, Title, Volume } from './components';
 import { loopCurrentBtn, loopNoneBtn, nextBtn, pauseBtn, playBtn, previousBtn, shuffleAllBtn,
-  shuffleNoneBtn } from '../../../shared/assets/icons';
-import { Progress, Volume } from '../../molecules';
+  shuffleNoneBtn } from './icons';
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 interface VOPlayerProps {
