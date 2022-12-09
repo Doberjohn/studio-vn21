@@ -1,3 +1,3 @@
-import { IStory, ITranscript } from './story';
+import { IStory } from './story';
 
-export type { IStory, ITranscript };
+export type { IStory };

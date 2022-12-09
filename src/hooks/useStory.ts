@@ -2,11 +2,9 @@ import { IStory } from '../interfaces';
 import Parse from 'parse';
 import React from 'react';
 import { StoryContext } from '../contexts/Story';
-import { useTranscriptParser } from './useTranscriptParser';
 
 export const useStory = () => {
    const { state, dispatch } = React.useContext(StoryContext);
-   const { transcriptParser } = useTranscriptParser();
 
    const getStoriesFromBackend = async function() {
       try {
@@ -24,7 +22,7 @@ export const useStory = () => {
                   .split(/[\n]/g)
                   .filter((entry: string) => entry !== ''),
                storyId: backendProduct.get('storyId'),
-               transcript: transcriptParser(backendProduct.get('transcript')),
+               timestamps: backendProduct.get('voiceoverTimestamps'),
                imageUrl: backendProduct.get('coverImage')._url,
                voiceoverUrl: backendProduct.get('voiceover')?._url,
                externalReadLink: backendProduct.get('externalLink'),
@@ -66,7 +64,7 @@ export const useStory = () => {
          })
          .slice(0, storyParagraphs.length - 1);
 
-      const storyTimestamps = story.transcript ? story.transcript.timestamps : [];
+      const storyTimestamps = story.timestamps;
 
       return { storyParagraphs, storyWords, storyBreakpoints, storyTimestamps };
    };
