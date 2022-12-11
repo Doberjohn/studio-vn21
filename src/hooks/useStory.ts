@@ -47,8 +47,9 @@ export const useStory = () => {
       if (stories.length === 0) getStoriesFromBackend();
       const story = stories.find((story) => story.storyId === storyId) as IStory;
 
-      const storyParagraphs = story.content.map((paragraph) => paragraph.split( ' '));
-      const storyWords = storyParagraphs.flat().map((word, index) => {
+      const paragraphs = story.content.map((paragraph) => paragraph.split( ' '));
+      const sentences = story.content.map((paragraph) => paragraph.split( /[.?] /));
+      const words = paragraphs.flat().map((word, index) => {
          return {
             word,
             index
@@ -56,17 +57,24 @@ export const useStory = () => {
       });
 
       let accumulator = 0;
-      const storyBreakpoints = storyParagraphs.map(
+      const paragraphBreakpoints = paragraphs.map(
          (paragraph) => {
             const result = paragraph.length + accumulator - 1;
             accumulator = accumulator + paragraph.length;
             return result;
          })
-         .slice(0, storyParagraphs.length - 1);
+         .slice(0, paragraphs.length - 1);
 
-      const storyTimestamps = story.timestamps;
+      accumulator = 0;
+      const sentenceBreakpoints = sentences.flat().map((sentence) => {
+         const result = sentence.split(' ').length + accumulator - 1;
+         accumulator = accumulator + sentence.split(' ').length;
+         return result;
+      });
 
-      return { storyParagraphs, storyWords, storyBreakpoints, storyTimestamps };
+      const audioTimestamps = story.timestamps;
+
+      return { paragraphs, words, paragraphBreakpoints, sentenceBreakpoints, audioTimestamps };
    };
 
    return { stories: state.stories, getStoriesFromBackend, getStoryInfo, getStoryContentDetails };
