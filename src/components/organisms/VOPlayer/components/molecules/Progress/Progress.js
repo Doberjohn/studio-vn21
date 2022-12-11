@@ -8,7 +8,7 @@ const Progress = (props) => {
         type='range'
         min='1'
         max='100'
-        step='1'
+        step='0.1'
         value={props.value}
         className={styles.slider}
         id='myRange'

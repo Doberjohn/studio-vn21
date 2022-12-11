@@ -17,14 +17,22 @@ export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
    if (!story) return null;
 
    const { getStoryContentDetails } = useStory();
+   const [voPosition, setVOPosition] = useState(0);
    const [isPlaying, setIsPlaying] = useState(false);
-   const [lastVOPosition, setLastVOPosition] = useState(0);
+   const [selectedWord, setSelectedWord] = useState(0);
    const { storyWords, storyBreakpoints, storyTimestamps } = getStoryContentDetails(story.storyId);
-   console.log(storyTimestamps);
 
    useEffect(() => {
       window.scrollTo({ top: 0, left:0, behavior: 'auto' });
    }, []);
+
+   useEffect(() => {
+      if (isPlaying) {
+         const index = storyTimestamps.find((ts) => ts >= voPosition) || 0;
+         const word = storyTimestamps.indexOf(index) || 0;
+         setSelectedWord(word ? word : 0);
+      }
+   }, [voPosition]);
 
    return (
       <Div className='container narrow-container pt-5'>
@@ -36,23 +44,21 @@ export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
          <Div className='row py-4 px-3'>
             {story.voiceoverUrl && (
                <VOPlayer
-                  voiceover={{
-                     url: story.voiceoverUrl,
-                     title: `Studio VN21 - ${story.title}`,
-                  }}
+                  title={story.title}
+                  voiceoverUrl={story.voiceoverUrl}
                   setIsPlaying={setIsPlaying}
-                  updateVOPosition={setLastVOPosition}
+                  setVOPosition={setVOPosition}
                   />
             )}
          </Div>
          <Div className='row'>
             <Div className='col-md-8 h5 p-3 pt-0'>
-               {storyWords.map((wordElement: IWordElement) => {
+               {storyWords.map((wordElement: IWordElement, index) => {
                   return (
                      <Span key={`word-${wordElement.index}`}>
                         <Div className='d-inline-block p-1' style={
                            {
-                              borderBottom: isPlaying ?
+                              borderBottom: isPlaying && selectedWord === index ?
                                  '3px solid #ff5500' : '3px solid transparent'
                            }
                         } >{wordElement.word}

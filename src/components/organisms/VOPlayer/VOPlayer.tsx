@@ -1,24 +1,26 @@
 import { createGlobalStyle } from 'styled-components';
 import styles from './VOPlayer.module.css';
-import {
-  ButtonsBox, Loop, Next, PageTemplate, Pause, Play, PlayerTemplate, Previous, Progress,
-  Shuffle, Time, Title, Volume } from './components';
-import { loopCurrentBtn, loopNoneBtn, nextBtn, pauseBtn, playBtn, previousBtn, shuffleAllBtn,
-  shuffleNoneBtn } from './icons';
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { useKeyPress } from '@johnfanidis/usekeypress';
+import { PageTemplate, Pause, Play, PlayerTemplate, Progress, Time, Title } from './components';
+import { pauseBtn, playBtn } from './icons';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 interface VOPlayerProps {
-  voiceover: {
-    url: string;
-    title: string;
-  },
-  customColorScheme?: string;
+  title: string;
+  voiceoverUrl: string;
+  setVOPosition: (time: number) => void;
   setIsPlaying: (status: boolean) => void;
-  updateVOPosition: (time: number) => void;
-
+  controlsEnabled?: boolean;
 }
 
-const colors = `html{
+const keyboardConfig = {
+  toggleVoiceoverStatus: 32, // Space
+  resetVoiceover: 36, // Home
+  moveBackward: 81, // Q
+  moveForward: 69, // E
+};
+
+const colorScheme = `html{
     --playerBackground: #18191f;
     --titleColor: #ffffff;
     --timeColor: #ffffff;
@@ -31,30 +33,30 @@ const colors = `html{
   }`;
 
 export const VOPlayer = ({
-  voiceover,
-  customColorScheme = colors,
+  voiceoverUrl,
+  title,
   setIsPlaying,
-  updateVOPosition
+  setVOPosition,
+  controlsEnabled = false,
 }: VOPlayerProps) => {
   const [audio, setAudio] = useState<HTMLAudioElement>();
   const [active, setActive] = useState(false);
-  const [title, setTitle] = useState('');
   const [length, setLength] = useState(0);
   const [time, setTime] = useState(0);
   const [slider, setSlider] = useState(1);
   const [drag, setDrag] = useState(0);
   const [volume, setVolume] = useState(1);
   const [end, setEnd] = useState(0);
-  const [shuffled, setShuffled] = useState(false);
-  const [looped, setLooped] = useState(false);
-  const [filter] = useState([]);
 
-  const GlobalStyles = createGlobalStyle`${customColorScheme}`;
+  const pressedSpaceKey = useKeyPress(keyboardConfig.toggleVoiceoverStatus);
+  const pressedHomeKey = useKeyPress(keyboardConfig.resetVoiceover);
+  const pressedLeftArrowKey = useKeyPress(keyboardConfig.moveBackward);
+  const pressedRightArrowKey = useKeyPress(keyboardConfig.moveForward);
 
-  const fmtMSS = (s: number) => new Date(1000 * s).toISOString().substr(15, 4);
+  const GlobalStyles = createGlobalStyle`${colorScheme}`;
 
   useEffect(() => {
-    const audio = new Audio(voiceover.url);
+    const audio = new Audio(voiceoverUrl);
 
     const setAudioData = () => {
       setLength(audio.duration);
@@ -68,44 +70,84 @@ export const VOPlayer = ({
     };
 
     const setAudioVolume = () => setVolume(audio.volume);
-
     const setAudioEnd = () => setEnd((end) => end + 1);
 
-    // events on audio object
+    setAudio(audio);
     audio.addEventListener('loadeddata', setAudioData);
     audio.addEventListener('timeupdate', setAudioTime);
     audio.addEventListener('volumechange', setAudioVolume);
     audio.addEventListener('ended', setAudioEnd);
 
-    setAudio(audio);
-    setTitle(voiceover.title);
-
     return () => {
       audio.pause();
+      audio.removeEventListener('loadeddata', setAudioData);
+      audio.removeEventListener('timeupdate', setAudioTime);
+      audio.removeEventListener('volumechange', setAudioVolume);
+      audio.removeEventListener('ended', setAudioEnd);
     };
-  }, []);
+  }, [voiceoverUrl]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (audio) {
+        setVOPosition(audio.currentTime * 1000);
+      }
+    }, 50);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [setVOPosition, audio]);
 
   useEffect(() => {
     setIsPlaying(active);
-    updateVOPosition(audio?.currentTime ? audio.currentTime * 1000 : 0);
-  }, [active]);
+  }, [setIsPlaying, active]);
 
   useEffect(() => {
-    looped ? play() : reset();
+    reset();
+    // eslint-disable-next-line
   }, [end]);
 
   useEffect(() => {
     if (audio != null) {
       audio.volume = volume;
     }
+    // eslint-disable-next-line
   }, [volume]);
 
   useEffect(() => {
     if (audio != null) {
       pause();
-      audio.currentTime = Math.round((drag * audio.duration) / 100);
+      audio.currentTime = Math.round((drag * audio.duration)) / 100;
     }
+    // eslint-disable-next-line
   }, [drag]);
+
+  useEffect(() => {
+    if (controlsEnabled && pressedSpaceKey) {
+      if (active) pause();
+      else play();
+    }
+    // eslint-disable-next-line
+  }, [audio, pressedSpaceKey]);
+
+  useEffect(() => {
+    if (controlsEnabled && audio && pressedHomeKey) {
+      audio.currentTime = 0;
+    }
+  }, [audio, pressedHomeKey]);
+
+  useEffect(() => {
+    if (controlsEnabled && audio && pressedLeftArrowKey) {
+      audio.currentTime = audio.currentTime - 2;
+    }
+  }, [audio, pressedLeftArrowKey]);
+
+  useEffect(() => {
+    if (controlsEnabled && audio && pressedRightArrowKey) {
+      audio.currentTime = audio.currentTime + 2;
+    }
+  }, [audio, pressedRightArrowKey]);
 
   const play = () => {
     audio?.play();
@@ -122,77 +164,38 @@ export const VOPlayer = ({
     if (audio) audio.currentTime = 0;
   };
 
-  const loop = () => {
-    setLooped(!looped);
-  };
-
-  const previous = () => {
-    console.warn('previous');
-  };
-
-  const next = () => {
-    console.warn('next');
-  };
-
-  const shuffle = () => {
-    setShuffled(!shuffled);
-  };
-
-  const isInitialFilter = useRef(true);
-  useEffect(() => {
-    if (isInitialFilter.current) {
-      isInitialFilter.current = false;
-    }
-  }, [filter]);
+  const formatTimestamp = (s: number) => new Date(1000 * s).toISOString().substring(15, 19);
 
   return (
-    <PageTemplate>
-      <GlobalStyles />
-      <PlayerTemplate>
-        <div className={styles.title_time_wrapper}>
-          <Title title={title} />
-          <Time
-            time={`${!time ? '0:00' : fmtMSS(time)}/${
-              !length ? '0:00' : fmtMSS(length)
-            }`}
-          />
-        </div>
-
-        <Progress
-          value={slider}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            setSlider(parseFloat(e.target.value));
-            setDrag(parseFloat(e.target.value));
-          }}
-          onMouseUp={play}
-          onTouchEnd={play}
-        />
-        <div className={styles.buttons_volume_wrapper}>
-          <ButtonsBox>
-            <Loop
-              src={looped ? loopCurrentBtn : loopNoneBtn}
-              onClick={loop}
-            />
-            <Previous src={previousBtn} onClick={previous} />
-            {active ? (
+     <PageTemplate>
+       <GlobalStyles />
+       <PlayerTemplate>
+         <div>
+           {active ? (
               <Pause src={pauseBtn} onClick={pause} />
-            ) : (
+           ) : (
               <Play src={playBtn} onClick={play} />
-            )}
-            <Next src={nextBtn} onClick={next} />
-            <Shuffle
-              src={shuffled ? shuffleAllBtn : shuffleNoneBtn}
-              onClick={shuffle}
-            />
-          </ButtonsBox>
-          <Volume
-            value={volume}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              setVolume(parseInt(e.target.value) / 100);
-            }}
-          />
-        </div>
-      </PlayerTemplate>
-    </PageTemplate>
+           )}
+         </div>
+         <div className='w-100 ms-4 mb-3'>
+           <div className={styles.title_time_wrapper}>
+             <Title title={title} />
+             <Time
+                time={`${!time ? '0:00' : formatTimestamp(time)}/${
+                   !length ? '0:00' : formatTimestamp(length)
+                }`}
+             />
+           </div>
+
+           <Progress
+              value={slider}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                setSlider(parseFloat(e.target.value));
+                setDrag(parseFloat(e.target.value));
+              }}
+           />
+         </div>
+       </PlayerTemplate>
+     </PageTemplate>
   );
 };
