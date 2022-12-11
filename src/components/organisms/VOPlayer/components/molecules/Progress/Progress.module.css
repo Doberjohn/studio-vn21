@@ -37,9 +37,3 @@
   background: var(--progressSlider);
   cursor: pointer;
 }
-
-@media only screen and (max-width: 600px) {
-  .container {
-    margin: 40px 0;
-  }
-}
