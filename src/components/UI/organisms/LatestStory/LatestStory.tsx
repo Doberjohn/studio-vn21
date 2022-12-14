@@ -1,5 +1,5 @@
 import { Div } from '../../atoms';
-import { IStory } from '../../../interfaces';
+import { IStory } from '../../../../interfaces';
 import React from 'react';
 import { StoryCard } from '../index';
 

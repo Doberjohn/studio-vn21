@@ -1,4 +1,4 @@
-import { IStory } from '../../../interfaces';
+import { IStory } from '../../../../interfaces';
 import React from 'react';
 import { StoryCard } from '../index';
 import { Div, Span } from '../../atoms';

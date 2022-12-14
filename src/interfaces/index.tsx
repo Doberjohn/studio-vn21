@@ -1,3 +1,4 @@
 import { IStory } from './story';
+import { IWordElement } from './story';
 
-export type { IStory };
+export type { IStory, IWordElement };

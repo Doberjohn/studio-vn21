@@ -1,7 +1,7 @@
 @font-face {
   font-family: "FS-Me";
   src: local("FS-Me"),
-  url("fonts/FS-Me.otf") format("opentype");
+  url("shared/fonts/FS-Me.otf") format("opentype");
   font-weight: normal;
 }
 
@@ -72,6 +72,7 @@ a {
   max-width: 1000px;
 }
 
+/* Ko-Fi support us button */
 .floatingchat-container-wrap, .floating-chat-kofi-popup-iframe, .floating-chat-kofi-popup-iframe-mobi {
   right: 16px;
   left: initial !important;

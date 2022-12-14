@@ -1,16 +1,12 @@
 import { IStory } from '../../../interfaces';
+import { IWordElement } from '../../../interfaces';
 import { useStory } from '../../../hooks';
-import { Div, Span } from '../../atoms';
+import { Div, Span } from '../../UI/atoms';
 import React, { useEffect, useState } from 'react';
-import { StoryCard, VOPlayer } from '../../organisms';
+import { StoryCard, VOPlayer } from '../../UI/organisms';
 
 interface ReaderTemplateProps {
    story: IStory;
-}
-
-interface IWordElement {
-   word: string;
-   index: number;
 }
 
 export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
@@ -25,7 +21,7 @@ export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
       getStoryContentDetails(story.storyId);
 
    useEffect(() => {
-      window.scrollTo({ top: 0, left:0, behavior: 'auto' });
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
    }, []);
 
    useEffect(() => {
@@ -38,7 +34,7 @@ export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
       }
    }, [voPosition]);
 
-   const test = (index: number):boolean => {
+   const test = (index: number): boolean => {
       if (isPlaying) {
          if (activeSentenceIndex === 0 && index <= sentenceBreakpoints[0]) return true;
          else if (index > sentenceBreakpoints[activeSentenceIndex - 1] &&
@@ -63,22 +59,22 @@ export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
                   voiceoverUrl={story.voiceoverUrl}
                   setIsPlaying={setIsPlaying}
                   setVOPosition={setVOPosition}
-                  />
+               />
             )}
          </Div>
          <Div className='row'>
             <Div className='col-md-8 h5 p-3 pt-0'>
-               {words.map((wordElement: IWordElement, index) => {
+               {words.map((wordElement: IWordElement, index: number) => {
                   return (
                      <Span key={`word-${wordElement.index}`}>
                         <Div className='d-inline-block p-1' style={
                            isPlaying && activeWordIndex === index ? {
                               background: 'rgba(255,85,0,0.6)',
                               borderRadius: 3,
-                           }: test(index) ? {
+                           } : test(index) ? {
                               background: 'rgba(255,85,0,0.2)',
-                           }: {}
-                        } >{wordElement.word}
+                           } : {}
+                        }>{wordElement.text}
                         </Div>
                         {(paragraphBreakpoints.includes(wordElement.index)) ? (
                            <p/>

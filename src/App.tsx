@@ -1,9 +1,9 @@
-import { NavigationBar } from './components/molecules';
+import { NavigationBar } from './components/UI/molecules';
 import Parse from 'parse';
 import React from 'react';
 import ReactGA from 'react-ga4';
 import { StoryProvider } from './contexts/Story';
-import { HomePage, ReaderPage } from './pages';
+import { HomePage, ReaderPage } from './components/pages';
 import { Route,
    BrowserRouter as Router,
    Routes } from 'react-router-dom';

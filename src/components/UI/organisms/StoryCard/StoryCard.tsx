@@ -1,8 +1,8 @@
 import { Div } from '../../atoms';
-import { IStory } from '../../../interfaces';
+import { IStory } from '../../../../interfaces';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import PlaceholderImage from '../../../shared/assets/background.webp';
-import { usePlatform } from '../../../hooks/usePlatform';
+import PlaceholderImage from '../../../../shared/assets/background.webp';
+import { usePlatform } from '../../../../hooks';
 import React, { useState } from 'react';
 import './StoryCard.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';

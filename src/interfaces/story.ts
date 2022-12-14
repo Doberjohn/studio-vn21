@@ -11,3 +11,8 @@ export interface IStory extends React.HTMLAttributes<Element> {
    voiceoverUrl?: string;
    externalReadLink?: string;
 }
+
+export interface IWordElement {
+   text: string;
+   index: number;
+}
