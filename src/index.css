@@ -1,9 +1,21 @@
+:root {
+  --bs-studio-primary: #ff5500;
+  --bs-studio-primary-hover: #db4300;
+  --bs-studio-primary-active: #bb3d00;
+}
+
+html {
+  /* helps with auto scrolling to the top of the story */
+  scroll-behavior: auto !important;
+}
+
 @font-face {
   font-family: "FS-Me";
   src: local("FS-Me"),
   url("shared/fonts/FS-Me.otf") format("opentype");
   font-weight: normal;
 }
+
 
 body {
   margin: 0;
@@ -13,20 +25,6 @@ body {
   color: white;
   background-color: #282828;
   user-select: none;
-}
-
-html {
-  scroll-behavior: auto !important;
-}
-
-.studio-vn21-brand {
-  font-size: 24px;
-}
-
-:root {
-  --bs-studio-primary: #ff5500;
-  --bs-studio-primary-hover: #db4300;
-  --bs-studio-primary-active: #bb3d00;
 }
 
 .btn-primary {
@@ -40,10 +38,6 @@ html {
   --bs-btn-disabled-border-color: var(--bs-studio-primary);
 }
 
-a {
-  color: inherit !important;
-}
-
 .text-justify {
   text-align: justify;
 }
@@ -52,16 +46,10 @@ a {
   min-height: 100vh;
 }
 
-.perfecty-centered {
+.perfectly-centered {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.navbar {
-  position: fixed;
-  z-index: 11;
-  width: 100vw;
 }
 
 .cursor-pointer {

@@ -1,6 +1,9 @@
 import { IStory } from '../../interfaces';
 
-export const reducer = (state: {stories: IStory[]}, action: {type: string, payload: any}) => {
+export interface Action {type: string, payload: IStory[]}
+interface State {stories: IStory[]}
+
+export const reducer = (state: State, action: Action) => {
    switch (action.type) {
       case 'SET_STORIES':
          return {

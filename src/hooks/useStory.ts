@@ -14,7 +14,7 @@ export const useStory = () => {
          query.descending('publishDate');
 
          query.find().then((backendStories) => {
-            const mappedStories = backendStories.map((backendProduct) => {
+            const mappedStories: IStory[] = backendStories.map((backendProduct) => {
                return {
                   title: backendProduct.get('title'),
                   subtitle: backendProduct.get('subtitle'),
