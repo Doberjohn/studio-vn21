@@ -1,9 +1,9 @@
 import React from 'react';
 
-interface ImageProps {
+interface ImageProps extends
+   React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {
    sourceImageUrl: string;
    alternativeText: string;
-   [x:string]: any;
 }
 
 export const Image = ({ sourceImageUrl, alternativeText, ...rest }: ImageProps) => {

@@ -2,9 +2,9 @@ import { Div } from '../../atoms';
 import { IStory } from '../../../../interfaces';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import PlaceholderImage from '../../../../shared/assets/background.webp';
+import styles from './StoryCard.module.css';
 import { usePlatform } from '../../../../hooks';
 import React, { useState } from 'react';
-import './StoryCard.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 interface IStoryCard extends React.HTMLAttributes<Element> {
@@ -42,7 +42,7 @@ export const StoryCard = (
                src={imageUrl}
                effect='blur'
                alt={title}/>
-            <Div className={'small-card_title mb-0'}>
+            <Div className={`${styles.smallCardTitle} mb-0`}>
                <Div className={`${isLatest ? 'h1 ms-0 mb-2' : 'h4 mb-0'}`}>{title}</Div>
                {isLatest && (
                   <Div className={`${platform === 'mobile' ? 'h6' : 'h5'} ms-0 mb-0`}>{subtitle}</Div>
