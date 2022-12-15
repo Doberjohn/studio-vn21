@@ -16,7 +16,7 @@ export const HomeTemplate = ({ latestStory, previousStories, isLoading }: HomeTe
    // const gaEventTracker = useAnalyticsEventTracker('Story');
 
    const openStoryInternally = (storyId: string) => {
-      navigate(`reader/${storyId}`);
+      navigate(`story/${storyId}`);
       // gaEventTracker('Read on site', title);
    };
 

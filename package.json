@@ -1,6 +1,6 @@
 {
   "name": "studio-vn21",
-  "version": "0.5.0",
+  "version": "0.10.3",
   "private": true,
   "dependencies": {
     "@johnfanidis/usekeypress": "^1.0.7",
