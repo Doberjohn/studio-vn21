@@ -24,7 +24,7 @@ function App() {
             <NavigationBar/>
             <Routes>
                <Route path='/' element={<HomePage/>}/>
-               <Route path='/reader/:storyId' element={<ReaderPage/>}/>
+               <Route path='/story/:storyId' element={<ReaderPage/>}/>
             </Routes>
          </Router>
       </StoryProvider>
