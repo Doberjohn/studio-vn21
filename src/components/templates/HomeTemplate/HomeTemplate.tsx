@@ -1,8 +1,9 @@
+import { Div } from '../../UI/atoms';
 import { IStory } from '../../../interfaces';
+import { LoadingSpinner } from '../../UI/molecules';
 import React from 'react';
 // import useAnalyticsEventTracker from '../../../hooks/useAnalyticsEventTracker';
 import { useNavigate } from 'react-router-dom';
-import { Div, LoadingSpinner } from '../../UI/atoms';
 import { LatestStory, PreviousStories } from '../../UI/organisms';
 
 interface HomeTemplateProps {

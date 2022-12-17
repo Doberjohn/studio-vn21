@@ -1,4 +1,3 @@
-import { ButtonsBox, PageTemplate, Pause, Play, PlayerTemplate, Time, Title } from './atoms';
-import { Progress, Volume } from './molecules';
+import { ButtonsBox, PageTemplate, Pause, Play, PlayerTemplate } from './atoms';
 
-export { ButtonsBox, PageTemplate, Pause, Play, PlayerTemplate, Progress, Time, Title, Volume };
+export { ButtonsBox, PageTemplate, Pause, Play, PlayerTemplate };
