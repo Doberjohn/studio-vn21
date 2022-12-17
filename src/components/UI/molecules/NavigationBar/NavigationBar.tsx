@@ -14,8 +14,12 @@ export const NavigationBar = () => {
          <Div className={`container ${platform === 'mobile' ? 'justify-content-center' : ''}`}>
             <Div className='navbar-brand text-center cursor-pointer d-flex align-items-center'
                  onClick={() => navigate('/')}>
-               <Image sourceImageUrl={elizabeth} width='40' height='40'
-                      className='d-inline-block align-top' alternativeText='elizabeth'/>
+               <Image
+                  width='40'
+                  height='40'
+                  sourceImageUrl={elizabeth}
+                  alternativeText='elizabeth'
+                  className='d-inline-block align-top'/>
                <Span className={`${styles.studioBrandName} ms-2`}>Studio VN21</Span>
             </Div>
          </Div>
