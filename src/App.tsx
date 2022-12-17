@@ -8,7 +8,6 @@ import { HomePage, ReaderPage } from './components/pages';
 import { Route,
    BrowserRouter as Router,
    Routes } from 'react-router-dom';
-import './App.css';
 
 const PARSE_APPLICATION_ID = '28MROMpvLMLK7ZqZkAb4SiYQxySdZ2jtXUxl7p0w';
 const PARSE_HOST_URL = 'https://parseapi.back4app.com/';
@@ -34,3 +33,18 @@ function App() {
 }
 
 export default App;
+
+//@todo in the future
+// <iframe id='kofiframe'
+//         src='https://ko-fi.com/studiovn21/?hidefeed=true&widget=true&embed=true&preview=true'
+//         style={{
+//            zIndex: 100,
+//            width: 400,
+//            height: 700,
+//            borderRadius: 8,
+//            position: 'fixed',
+//            top: '50%',
+//            left: '50%',
+//            marginTop: '-350px',
+//            marginLeft: '-250px',
+//            background: '#f9f9f9' }} title='studiovn21'/>
