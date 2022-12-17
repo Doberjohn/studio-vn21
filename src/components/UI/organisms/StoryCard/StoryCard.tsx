@@ -1,8 +1,8 @@
-import styled from 'styled-components';
 import { Div } from '../../atoms';
 import { IStory } from '../../../../interfaces';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import PlaceholderImage from '../../../../shared/assets/background.webp';
+import styled from 'styled-components';
 import { usePlatform } from '../../../../hooks';
 import React, { useState } from 'react';
 import 'react-lazy-load-image-component/src/effects/blur.css';
