@@ -1,3 +1,4 @@
+import { LoadingSpinner } from './LoadingSpinner/LoadingSpinner';
 import { NavigationBar } from './NavigationBar/NavigationBar';
 
-export { NavigationBar };
+export { LoadingSpinner, NavigationBar };
