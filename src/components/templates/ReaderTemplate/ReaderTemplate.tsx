@@ -55,7 +55,6 @@ export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
          <Div className='row py-4 px-3'>
             {story.voiceoverUrl && (
                <VOPlayer
-                  title={story.title}
                   voiceoverUrl={story.voiceoverUrl}
                   setIsPlaying={setIsPlaying}
                   setVOPosition={setVOPosition}
