@@ -1,9 +1,11 @@
 import React from 'react';
 
-export const Paragraph = ({ children, ...rest }: React.HTMLAttributes<HTMLParagraphElement>) => {
+const Paragraph = ({ children, ...rest }: React.HTMLAttributes<HTMLParagraphElement>) => {
    return (
       <p {...rest}>
          {children}
       </p>
    );
 };
+
+export default Paragraph;

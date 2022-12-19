@@ -6,8 +6,10 @@ interface ImageProps extends
    alternativeText: string;
 }
 
-export const Image = ({ sourceImageUrl, alternativeText, ...rest }: ImageProps) => {
+const Image = ({ sourceImageUrl, alternativeText, ...rest }: ImageProps) => {
    return (
       <img src={sourceImageUrl} alt={alternativeText} {...rest}/>
    );
 };
+
+export default Image;

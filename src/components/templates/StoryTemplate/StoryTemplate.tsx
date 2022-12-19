@@ -9,7 +9,7 @@ interface ReaderTemplateProps {
    story: IStory;
 }
 
-export const ReaderTemplate = ({ story }: ReaderTemplateProps) => {
+export const StoryTemplate = ({ story }: ReaderTemplateProps) => {
    if (!story) return null;
 
    const { getStoryContentDetails } = useStory();

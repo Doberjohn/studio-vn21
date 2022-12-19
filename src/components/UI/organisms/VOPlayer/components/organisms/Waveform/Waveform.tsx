@@ -5,14 +5,16 @@ interface WaveformProps {
    audioUrl: string;
    isPlaying: boolean;
    setSeek: (newPosition: number) => void
+   setWaveformLoaded: (loaded: boolean) => void
 }
 
-export const Waveform = ({ audioUrl, isPlaying, setSeek }: WaveformProps) => {
+export const Waveform = ({ audioUrl, isPlaying, setSeek, setWaveformLoaded }: WaveformProps) => {
    const containerRef = useRef<HTMLDivElement>(null);
    const waveSurferRef = useRef<WaveSurfer>();
 
    useEffect(() => {
-      waveSurferRef.current?.playPause();
+      if (isPlaying) waveSurferRef.current?.play();
+      else waveSurferRef.current?.pause();
    }, [isPlaying]);
 
    useEffect(() => {
@@ -27,6 +29,8 @@ export const Waveform = ({ audioUrl, isPlaying, setSeek }: WaveformProps) => {
          progressColor: '#fff',
          backgroundColor: '#202020',
          container: containerRef.current as HTMLDivElement,
+         fillParent: false,
+         scrollParent: false
       });
 
       waveSurfer.toggleMute();
@@ -34,6 +38,7 @@ export const Waveform = ({ audioUrl, isPlaying, setSeek }: WaveformProps) => {
 
       waveSurfer.on('ready', () => {
          waveSurferRef.current = waveSurfer;
+         setWaveformLoaded(true);
       });
 
       waveSurfer.on('seek', (newPosition: number) => {
@@ -47,6 +52,6 @@ export const Waveform = ({ audioUrl, isPlaying, setSeek }: WaveformProps) => {
    }, [audioUrl]);
 
    return (
-      <div ref={containerRef} />
+      <div className='w-25' ref={containerRef} />
    );
 };

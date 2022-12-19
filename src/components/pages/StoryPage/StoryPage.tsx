@@ -1,13 +1,13 @@
 import React from 'react';
-import { ReaderTemplate } from '../../templates';
+import { StoryTemplate } from '../../templates';
 import { useParams } from 'react-router-dom';
 import { useStory } from '../../../hooks';
 
-export const Reader = () => {
+export const StoryPage = () => {
    const params = useParams();
    const { getStoryInfo } = useStory();
    const storyId = params.storyId || '';
    const story = getStoryInfo(storyId);
 
-   return <ReaderTemplate story={story}/>;
+   return <StoryTemplate story={story}/>;
 };

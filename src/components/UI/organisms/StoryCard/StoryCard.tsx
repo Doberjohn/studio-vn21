@@ -1,11 +1,22 @@
 import { Div } from '../../atoms';
 import { IStory } from '../../../../interfaces';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import PlaceholderImage from '../../../../shared/assets/background.webp';
+import PlaceholderImage from '../../../../shared/assets/storyLoadingArt.webp';
 import styled from 'styled-components';
 import { usePlatform } from '../../../../hooks';
 import React, { useState } from 'react';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+
+const CardTitle = styled.div`
+  position: absolute;
+  font-weight: 600;
+  left: 0;
+  bottom: 0;
+  background: black;
+  width: 100%;
+  padding: 10px;
+  opacity: 0.8;
+`;
 
 interface IStoryCard extends React.HTMLAttributes<Element> {
    story: IStory,
@@ -14,7 +25,7 @@ interface IStoryCard extends React.HTMLAttributes<Element> {
 }
 
 export const StoryCard = (
-   { story: { title, subtitle, storyId, imageUrl }, isLatest, onClickAction }: IStoryCard) => {
+   { story: { title, storyId, imageUrl }, isLatest, onClickAction }: IStoryCard) => {
    const platform = usePlatform();
 
    const [latestCoverHeight, setLatestCoverHeight] = useState(platform === 'mobile' ? '200px' : '550px');
@@ -42,24 +53,8 @@ export const StoryCard = (
                src={imageUrl}
                effect='blur'
                alt={title}/>
-            <CardTitle className='mb-0'>
-               <Div className={`${isLatest ? 'h1 ms-0 mb-2' : 'h4 mb-0'}`}>{title}</Div>
-               {isLatest && (
-                  <Div className={`${platform === 'mobile' ? 'h6' : 'h5'} ms-0 mb-0`}>{subtitle}</Div>
-               )}
-            </CardTitle>
+            <CardTitle className={`${isLatest ? 'h1 ms-0' : 'h5'} mb-0`}>{title}</CardTitle>
          </Div>
       </Div>
    );
 };
-
-const CardTitle = styled.div`
-  position: absolute;
-  font-weight: 600;
-  left: 0;
-  bottom: 0;
-  background: black;
-  width: 100%;
-  padding: 10px;
-  opacity: 0.8;
-`;
