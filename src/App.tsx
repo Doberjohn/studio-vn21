@@ -18,8 +18,6 @@ Parse.serverURL = PARSE_HOST_URL;
 
 ReactGA.initialize('G-28MLPHX55W');
 
-screen.orientation.lock('portrait');
-
 inject();
 
 function App() {
