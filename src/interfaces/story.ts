@@ -2,12 +2,12 @@ import React from 'react';
 
 export interface IStory extends React.HTMLAttributes<Element> {
    title: string;
-   content: string[];
    storyId: string;
    subtitle: string;
    imageUrl: string;
-   timestamps: number[];
    publishDate: Date;
+   content: string[];
+   timestamps: number[];
    voiceoverUrl?: string;
    externalReadLink?: string;
 }

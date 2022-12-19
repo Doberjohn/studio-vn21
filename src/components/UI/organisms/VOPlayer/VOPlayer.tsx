@@ -1,4 +1,3 @@
-import { createGlobalStyle } from 'styled-components';
 import { Waveform } from './components/organisms';
 import { PageTemplate, Pause, Play, PlayerTemplate } from './components';
 import { pauseBtn, playBtn } from './icons';
@@ -9,12 +8,10 @@ interface VOPlayerProps {
    setVOPosition: (time: number) => void;
    setIsPlaying: (status: boolean) => void;
 }
-export const VOPlayer = ({
-                            voiceoverUrl,
-                            setIsPlaying,
-                            setVOPosition,
-                         }: VOPlayerProps) => {
+
+export const VOPlayer = ({ voiceoverUrl, setIsPlaying, setVOPosition }: VOPlayerProps) => {
    const [audio, setAudio] = useState<HTMLAudioElement>();
+   const [waveformLoaded, setWaveformLoaded] = useState(false);
    const [active, setActive] = useState(false);
    const [seek, setSeek] = useState(0);
    const [end, setEnd] = useState(0);
@@ -81,22 +78,31 @@ export const VOPlayer = ({
    return (
       <PageTemplate>
          <PlayerTemplate>
-            <div>
-               {active ?
-                  <Pause src={pauseBtn} onClick={pause} />:
-                  <Play src={playBtn} onClick={play} />}
-            </div>
-            <div className='w-100 ms-4'>
-               <Waveform audioUrl={voiceoverUrl} isPlaying={active} setSeek={setSeek}/>
-            </div>
-            {/*<div>*/}
-            {/*  <Time*/}
-            {/*     time={`${!time ? '0:00' : formatTimestamp(time)}/${*/}
-            {/*        !length ? '0:00' : formatTimestamp(length)*/}
-            {/*     }`}*/}
-            {/*  />*/}
-            {/*</div>*/}
+            {waveformLoaded &&
+                <div>
+                   {active ?
+                      <Pause src={pauseBtn} onClick={pause}/> :
+                      <Play src={playBtn} onClick={play}/>
+                   }
+                </div>
+            }
+            {audio &&
+               <div className='w-100 ms-4'>
+                  <Waveform
+                     setSeek={setSeek}
+                     isPlaying={active}
+                     audioUrl={audio.src || ''}
+                     setWaveformLoaded={setWaveformLoaded}/>
+               </div>
+            }
          </PlayerTemplate>
+         {/*<div>*/}
+         {/*  <Time*/}
+         {/*     time={`${!time ? '0:00' : formatTimestamp(time)}/${*/}
+         {/*        !length ? '0:00' : formatTimestamp(length)*/}
+         {/*     }`}*/}
+         {/*  />*/}
+         {/*</div>*/}
       </PageTemplate>
    );
 };

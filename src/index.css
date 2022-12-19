@@ -1,7 +1,4 @@
 :root {
-  --bs-studio-primary: #ff5500;
-  --bs-studio-primary-hover: #db4300;
-  --bs-studio-primary-active: #bb3d00;
   --bs-dark: #202020;
 }
 
@@ -23,20 +20,9 @@ body {
   font-family: FS-Me, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: white;
+  color: var(--bs-white);
   background-color: #0F0F0F;
   user-select: none;
-}
-
-.btn-primary {
-  --bs-btn-bg: var(--bs-studio-primary);
-  --bs-btn-border-color: var(--bs-studio-primary);
-  --bs-btn-hover-bg: var(--bs-studio-primary-hover);
-  --bs-btn-hover-border-color: var(--bs-studio-primary-hover);
-  --bs-btn-active-bg: var(--bs-studio-primary-active);
-  --bs-btn-active-border-color: var(--bs-studio-primary-active);
-  --bs-btn-disabled-bg: var(--bs-studio-primary);
-  --bs-btn-disabled-border-color: var(--bs-studio-primary);
 }
 
 .text-justify {

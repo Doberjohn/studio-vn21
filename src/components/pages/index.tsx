@@ -1,4 +1,5 @@
-import { Home } from './Home/Home';
-import { Reader } from './Reader/Reader';
+import { BrowsePage } from './BrowsePage/BrowsePage';
+import { LandingPage } from './LandingPage/LandingPage';
+import { StoryPage } from './StoryPage/StoryPage';
 
-export { Home as HomePage, Reader as ReaderPage };
+export { BrowsePage, LandingPage, StoryPage };

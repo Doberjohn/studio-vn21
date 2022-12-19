@@ -12,15 +12,15 @@ interface HomeTemplateProps {
    isLoading: boolean;
 }
 
-export const HomeTemplate = ({ latestStory, previousStories, isLoading }: HomeTemplateProps) => {
+export const BrowseTemplate = ({ latestStory, previousStories, isLoading }: HomeTemplateProps) => {
    const navigate = useNavigate();
    // const gaEventTracker = useAnalyticsEventTracker('Story');
 
    const openStoryPage = (storyId: string) => {
-      navigate(`story/${storyId}`);
+      navigate(`/story/${storyId}`);
       // gaEventTracker('Read on site', title);
    };
-   
+
    return (
       <Div>
          {isLoading ? (

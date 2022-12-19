@@ -1,4 +1,5 @@
-import { HomeTemplate } from './HomeTemplate/HomeTemplate';
-import { ReaderTemplate } from './ReaderTemplate/ReaderTemplate';
+import { BrowseTemplate } from './BrowseTemplate/BrowseTemplate';
+import { LandingTemplate } from './LandingTemplate/LandingTemplate';
+import { StoryTemplate } from './StoryTemplate/StoryTemplate';
 
-export { HomeTemplate, ReaderTemplate };
+export { BrowseTemplate, LandingTemplate, StoryTemplate };

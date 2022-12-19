@@ -5,15 +5,28 @@ import { useNavigate } from 'react-router-dom';
 import { usePlatform } from '../../../../hooks';
 import { Div, Image } from '../../atoms';
 
+const StudioNavbar = styled.span`
+  position: fixed;
+  z-index: 11;
+  width: 100vw;
+`;
+
+const StudioBrandName = styled.span`
+  font-size: 24px;
+`;
+
 export const NavigationBar = () => {
    const navigate = useNavigate();
    const platform = usePlatform();
+
+   // hide navbar in landing page
+   if (window.location.pathname === '/') return null;
 
    return (
       <StudioNavbar className='navbar navbar-dark bg-dark'>
          <Div className={`container ${platform === 'mobile' ? 'justify-content-center' : ''}`}>
             <Div className='navbar-brand text-center cursor-pointer d-flex align-items-center'
-                 onClick={() => navigate('/')}>
+                 onClick={() => navigate('/browse')}>
                <Image
                   width='40'
                   height='40'
@@ -26,13 +39,3 @@ export const NavigationBar = () => {
       </StudioNavbar>
    );
 };
-
-const StudioNavbar = styled.span`
-  position: fixed;
-  z-index: 11;
-  width: 100vw;
-`;
-
-const StudioBrandName = styled.span`
-  font-size: 24px;
-`;
