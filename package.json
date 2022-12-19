@@ -1,6 +1,6 @@
 {
   "name": "studio-vn21",
-  "version": "0.22.1",
+  "version": "0.22.2",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",

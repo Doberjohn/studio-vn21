@@ -17,14 +17,9 @@ const LandingPageArtCover = styled.div`
 `;
 
 const ArtCoverWrapper = styled.div`
-  position: relative;
-`;
-
-const BrowseCollectionButton = styled(Button)`
-  top: 70%;
-  width: 160px;
-  left: calc(50% - 80px);
-  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const LandingTemplate = () => {
@@ -32,11 +27,11 @@ export const LandingTemplate = () => {
    return (
       <ArtCoverWrapper>
          <LandingPageArtCover/>
-         <BrowseCollectionButton
-            className='btn btn-light'
+         <Button
+            className='btn btn-light btn-lg position-absolute'
             onClick={() => navigate('/browse')}>
             Browse collection
-         </BrowseCollectionButton>
+         </Button>
       </ArtCoverWrapper>
    );
 };
