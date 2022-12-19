@@ -24,6 +24,7 @@ const BrowseCollectionButton = styled(Button)`
   top: 70%;
   width: 160px;
   left: calc(50% - 80px);
+  position: absolute;
 `;
 
 export const LandingTemplate = () => {
@@ -32,7 +33,7 @@ export const LandingTemplate = () => {
       <ArtCoverWrapper>
          <LandingPageArtCover/>
          <BrowseCollectionButton
-            className='btn btn-light position-absolute'
+            className='btn btn-light'
             onClick={() => navigate('/browse')}>
             Browse collection
          </BrowseCollectionButton>
