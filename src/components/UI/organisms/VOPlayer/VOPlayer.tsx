@@ -86,15 +86,15 @@ export const VOPlayer = ({ voiceoverUrl, setIsPlaying, setVOPosition }: VOPlayer
                    }
                 </div>
             }
-            {audio &&
-               <div className='w-100 ms-4'>
-                  <Waveform
-                     setSeek={setSeek}
-                     isPlaying={active}
-                     audioUrl={audio.src || ''}
-                     setWaveformLoaded={setWaveformLoaded}/>
-               </div>
-            }
+            {/*{audio &&*/}
+            {/*   <div className='w-100 ms-4'>*/}
+            {/*      <Waveform*/}
+            {/*         setSeek={setSeek}*/}
+            {/*         isPlaying={active}*/}
+            {/*         audioUrl={audio.src || ''}*/}
+            {/*         setWaveformLoaded={setWaveformLoaded}/>*/}
+            {/*   </div>*/}
+            {/*}*/}
          </PlayerTemplate>
          {/*<div>*/}
          {/*  <Time*/}

@@ -29,8 +29,6 @@ export const Waveform = ({ audioUrl, isPlaying, setSeek, setWaveformLoaded }: Wa
          progressColor: '#fff',
          backgroundColor: '#202020',
          container: containerRef.current as HTMLDivElement,
-         fillParent: false,
-         scrollParent: false
       });
 
       waveSurfer.toggleMute();
@@ -52,6 +50,6 @@ export const Waveform = ({ audioUrl, isPlaying, setSeek, setWaveformLoaded }: Wa
    }, [audioUrl]);
 
    return (
-      <div className='w-25' ref={containerRef} />
+      <div className='w-100' ref={containerRef} />
    );
 };
