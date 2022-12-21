@@ -5,14 +5,19 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 const coverArtConfig = {
-   width: '100vw'
+   width: '100vw',
+   height: '50vh',
+   mode: 'cover',
+   posX: '75%',
+   posY: '75%',
 };
 
 const LandingPageArtCover = styled.div`
   width: ${coverArtConfig.width};
-  height: 50vh;
-  background-size: cover;
-  background-position: 75% 75%;
+  height: ${coverArtConfig.height};
+  background-size: ${coverArtConfig.mode};
+  background-position-x: ${coverArtConfig.posX};
+  background-position-y: ${coverArtConfig.posY};
   background-image: url(${landingPageArt});
 `;
 
@@ -22,16 +27,18 @@ const ArtCoverWrapper = styled.div`
   justify-content: center;
 `;
 
+const BrowseCollectionButton = styled(Button)``;
+
 export const LandingTemplate = () => {
    const navigate = useNavigate();
    return (
       <ArtCoverWrapper>
          <LandingPageArtCover/>
-         <Button
+         <BrowseCollectionButton
             className='btn btn-light btn-lg position-absolute'
             onClick={() => navigate('/browse')}>
             Browse collection
-         </Button>
+         </BrowseCollectionButton>
       </ArtCoverWrapper>
    );
 };

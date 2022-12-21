@@ -9,7 +9,6 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const CardTitle = styled.div`
   position: absolute;
-  font-weight: 600;
   left: 0;
   bottom: 0;
   background: black;
@@ -53,7 +52,7 @@ export const StoryCard = (
                src={imageUrl}
                effect='blur'
                alt={title}/>
-            <CardTitle className={`${isLatest ? 'h1 ms-0' : 'h5'} mb-0`}>{title}</CardTitle>
+            <CardTitle className={`${isLatest ? 'h1' : 'h5'} mb-0`}>{title}</CardTitle>
          </Div>
       </Div>
    );
