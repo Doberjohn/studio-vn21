@@ -22,9 +22,8 @@ export const Waveform = ({ audioUrl, isPlaying, setSeek, setWaveformLoaded }: Wa
          barWidth: 1,
          height: 100,
          barHeight: 2,
-         cursorWidth: 1,
+         cursorWidth: 0,
          responsive: true,
-         cursorColor: '#fff',
          waveColor: '#333333',
          progressColor: '#fff',
          backgroundColor: '#202020',
@@ -50,6 +49,6 @@ export const Waveform = ({ audioUrl, isPlaying, setSeek, setWaveformLoaded }: Wa
    }, [audioUrl]);
 
    return (
-      <div className='w-100' ref={containerRef} />
+      <div ref={containerRef} />
    );
 };

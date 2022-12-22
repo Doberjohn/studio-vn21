@@ -2,7 +2,6 @@ import { inject } from '@vercel/analytics';
 import { NavigationBar } from './components/UI/molecules';
 import Parse from 'parse';
 import React from 'react';
-import ReactGA from 'react-ga4';
 import { StoryProvider } from './contexts/Story';
 import { BrowsePage, LandingPage, StoryPage } from './components/pages';
 import { Route,
@@ -15,8 +14,6 @@ const PARSE_JAVASCRIPT_KEY = '6ukF9YJa5Iw0qieyHTZF5XwZgJ13rn2y4LznBP6K';
 
 Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
 Parse.serverURL = PARSE_HOST_URL;
-
-ReactGA.initialize('G-28MLPHX55W');
 
 inject();
 
