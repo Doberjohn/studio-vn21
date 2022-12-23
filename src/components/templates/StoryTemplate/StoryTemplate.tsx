@@ -52,16 +52,7 @@ export const StoryTemplate = ({ story }: ReaderTemplateProps) => {
                story={story}
                isLatest={true}/>
          </Div>
-         <Div className='row py-4 px-3'>
-            {story.voiceoverUrl && (
-               <VOPlayer
-                  voiceoverUrl={story.voiceoverUrl}
-                  setIsPlaying={setIsPlaying}
-                  setVOPosition={setVOPosition}
-               />
-            )}
-         </Div>
-         <Div className='row'>
+         <Div className='row py-4'>
             <Div className='col-md-8 h5 p-3 pt-0'>
                {words.map((wordElement: IWordElement, index: number) => {
                   return (
@@ -83,6 +74,16 @@ export const StoryTemplate = ({ story }: ReaderTemplateProps) => {
                })}
             </Div>
             <Div className='col-md-4' style={{ borderLeft: '2px solid' }}/>
+         </Div>
+         <Div className='row'>
+            {story.voiceoverUrl && story.voiceoverPCM && (
+               <VOPlayer
+                  voiceoverUrl={story.voiceoverUrl}
+                  voiceoverPCM={story.voiceoverPCM}
+                  setIsPlaying={setIsPlaying}
+                  setVOPosition={setVOPosition}
+               />
+            )}
          </Div>
       </Div>
    );

@@ -2,13 +2,14 @@ import WaveSurfer from 'wavesurfer.js';
 import React, { useEffect, useRef } from 'react';
 
 interface WaveformProps {
-   audioUrl: string;
+   audio: HTMLAudioElement;
+   audioPCM: number[];
    isPlaying: boolean;
    setSeek: (newPosition: number) => void
-   setWaveformLoaded: (loaded: boolean) => void
 }
 
-export const Waveform = ({ audioUrl, isPlaying, setSeek, setWaveformLoaded }: WaveformProps) => {
+export const Waveform = (
+   { audio, audioPCM, isPlaying, setSeek }: WaveformProps) => {
    const containerRef = useRef<HTMLDivElement>(null);
    const waveSurferRef = useRef<WaveSurfer>();
 
@@ -19,34 +20,34 @@ export const Waveform = ({ audioUrl, isPlaying, setSeek, setWaveformLoaded }: Wa
 
    useEffect(() => {
       const waveSurfer = WaveSurfer.create({
-         barWidth: 1,
-         height: 100,
+         backend: 'MediaElement',
+         backgroundColor: '#202020',
          barHeight: 2,
+         barWidth: 1,
+         container: containerRef.current as HTMLDivElement,
          cursorWidth: 0,
+         height: 50,
+         progressColor: '#fff',
          responsive: true,
          waveColor: '#333333',
-         progressColor: '#fff',
-         backgroundColor: '#202020',
-         container: containerRef.current as HTMLDivElement,
       });
-
-      waveSurfer.toggleMute();
-      waveSurfer.load(audioUrl);
 
       waveSurfer.on('ready', () => {
          waveSurferRef.current = waveSurfer;
-         setWaveformLoaded(true);
       });
 
       waveSurfer.on('seek', (newPosition: number) => {
          setSeek(newPosition * waveSurfer.getDuration());
       });
 
+      waveSurfer.toggleMute();
+      waveSurfer.load(audio, audioPCM);
+
       return () => {
          waveSurfer.destroy();
       };
 
-   }, [audioUrl]);
+   }, [audio]);
 
    return (
       <div ref={containerRef} />
