@@ -47,13 +47,11 @@ export const StoryTemplate = ({ story }: ReaderTemplateProps) => {
 
    return (
       <Div className='container narrow-container pt-5'>
-         <Div className='row pt-2'>
-            <StoryCard
-               story={story}
-               isLatest={true}/>
+         <Div className='row pt-5 h1'>
+            {story.title}
          </Div>
          <Div className='row py-4'>
-            <Div className='col-md-8 h5 p-3 pt-0'>
+            <Div className='col-md-8 h5 ps-0 pt-0'>
                {words.map((wordElement: IWordElement, index: number) => {
                   return (
                      <Span key={`word-${wordElement.index}`}>
@@ -73,7 +71,13 @@ export const StoryTemplate = ({ story }: ReaderTemplateProps) => {
                   );
                })}
             </Div>
-            <Div className='col-md-4' style={{ borderLeft: '2px solid' }}/>
+            <Div className='col-md-4' style={{ borderLeft: '2px solid' }}>
+               <Div className='row ps-4'>
+                  <StoryCard
+                     story={story}
+                     isLatest={false}/>
+               </Div>
+            </Div>
          </Div>
          <Div className='row'>
             {story.voiceoverUrl && story.voiceoverPCM && (
