@@ -26,7 +26,7 @@ export const LandingTemplate = () => {
    return (
       <ArtCoverWrapper>
          <LandingPageArtCover src={landingPageArt}/>
-         <Div className='text-center'>
+         <Div className='text-center w-50'>
             <Div className='h1 mb-4' style={{ transform: 'scale(1.5)' }}>Welcome to Studio VN21</Div>
             <Div className='h5 mb-5' style={{ transform: 'scale(1.3)' }}>The best place on the Internet to read short stories</Div>
             <BrowseCollectionButton
