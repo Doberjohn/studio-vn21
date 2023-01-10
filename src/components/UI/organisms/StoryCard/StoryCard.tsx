@@ -7,15 +7,15 @@ import { usePlatform } from '../../../../hooks';
 import React, { useState } from 'react';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-const CardTitle = styled.div`
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  background: black;
-  width: 100%;
-  padding: 10px;
-  opacity: 0.8;
-`;
+// const CardTitle = styled.div`
+//   position: absolute;
+//   left: 0;
+//   bottom: 0;
+//   background: black;
+//   width: 100%;
+//   padding: 10px;
+//   opacity: 0.8;
+// `;
 
 interface IStoryCard extends React.HTMLAttributes<Element> {
    story: IStory,
@@ -52,7 +52,7 @@ export const StoryCard = (
                src={imageUrl}
                effect='blur'
                alt={title}/>
-            <CardTitle className={`${isLatest ? 'h1' : 'h5'} mb-0`}>{title}</CardTitle>
+            {/*<CardTitle className={`${isLatest ? 'h1' : 'h5'} mb-0`}>{title}</CardTitle>*/}
          </Div>
       </Div>
    );
