@@ -6,8 +6,8 @@ const Pause = ({ src, onClick }: React.ImgHTMLAttributes<HTMLImageElement>) => {
 };
 
 const PauseIcon = styled.img`
-  width: 60px;
-  height: 60px;
+  width: 30px;
+  height: 30px;
   transition: transform 0.2s;
 
   &:hover {

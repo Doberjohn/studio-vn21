@@ -2,23 +2,22 @@ import { inject } from '@vercel/analytics';
 import { NavigationBar } from './components/UI/molecules';
 import Parse from 'parse';
 import React from 'react';
-import ReactGA from 'react-ga4';
 import { StoryProvider } from './contexts/Story';
 import { BrowsePage, LandingPage, StoryPage } from './components/pages';
 import { Route,
    BrowserRouter as Router,
    Routes } from 'react-router-dom';
 
-const PARSE_APPLICATION_ID = '28MROMpvLMLK7ZqZkAb4SiYQxySdZ2jtXUxl7p0w';
-const PARSE_HOST_URL = 'https://parseapi.back4app.com/';
-const PARSE_JAVASCRIPT_KEY = '6ukF9YJa5Iw0qieyHTZF5XwZgJ13rn2y4LznBP6K';
-
+// initialize parse database
+const PARSE_APPLICATION_ID = process.env.REACT_APP_PARSE_APPLICATION_ID as string;
+const PARSE_HOST_URL = process.env.REACT_APP_PARSE_HOST_URL as string;
+const PARSE_JAVASCRIPT_KEY = process.env.REACT_APP_PARSE_JAVASCRIPT_KEY as string;
 Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
 Parse.serverURL = PARSE_HOST_URL;
 
-ReactGA.initialize('G-28MLPHX55W');
+inject(); // enable vercel analytics
 
-inject();
+console.log(process.env);
 
 function App() {
    return (
