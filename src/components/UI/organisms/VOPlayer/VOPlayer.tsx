@@ -79,21 +79,21 @@ export const VOPlayer = (
    return (
       <PageTemplate>
          <PlayerTemplate>
-            <div>
-               {active ?
-                  <Pause src={pauseBtn} onClick={pause}/> :
-                  <Play src={playBtn} onClick={play}/>
-               }
-            </div>
-            {audio &&
-               <div className='w-100 ms-4'>
-                  <Waveform
-                     audio={audio}
-                     audioPCM={voiceoverPCM}
-                     isPlaying={active}
-                     setSeek={setSeek}/>
-               </div>
-            }
+            {/*<div>*/}
+            {/*   {active ?*/}
+            {/*      <Pause src={pauseBtn} onClick={pause}/> :*/}
+            {/*      <Play src={playBtn} onClick={play}/>*/}
+            {/*   }*/}
+            {/*</div>*/}
+            {/*{audio &&*/}
+            {/*   <div className='w-100 ms-4'>*/}
+            {/*      <Waveform*/}
+            {/*         audio={audio}*/}
+            {/*         audioPCM={voiceoverPCM}*/}
+            {/*         isPlaying={active}*/}
+            {/*         setSeek={setSeek}/>*/}
+            {/*   </div>*/}
+            {/*}*/}
          </PlayerTemplate>
          {/*<div>*/}
          {/*  <Time*/}
