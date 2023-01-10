@@ -5,13 +5,14 @@ import React, { useEffect, useState } from 'react';
 
 interface VOPlayerProps {
    voiceoverUrl: string;
+   voiceoverPCM: number[];
    setVOPosition: (time: number) => void;
    setIsPlaying: (status: boolean) => void;
 }
 
-export const VOPlayer = ({ voiceoverUrl, setIsPlaying, setVOPosition }: VOPlayerProps) => {
+export const VOPlayer = (
+   { voiceoverUrl, voiceoverPCM, setIsPlaying, setVOPosition }: VOPlayerProps) => {
    const [audio, setAudio] = useState<HTMLAudioElement>();
-   const [waveformLoaded, setWaveformLoaded] = useState(false);
    const [active, setActive] = useState(false);
    const [seek, setSeek] = useState(0);
    const [end, setEnd] = useState(0);
@@ -78,23 +79,21 @@ export const VOPlayer = ({ voiceoverUrl, setIsPlaying, setVOPosition }: VOPlayer
    return (
       <PageTemplate>
          <PlayerTemplate>
-            {waveformLoaded &&
-                <div>
-                   {active ?
-                      <Pause src={pauseBtn} onClick={pause}/> :
-                      <Play src={playBtn} onClick={play}/>
-                   }
-                </div>
+            <div>
+               {active ?
+                  <Pause src={pauseBtn} onClick={pause}/> :
+                  <Play src={playBtn} onClick={play}/>
+               }
+            </div>
+            {audio &&
+               <div className='w-100 ms-4'>
+                  <Waveform
+                     audio={audio}
+                     audioPCM={voiceoverPCM}
+                     isPlaying={active}
+                     setSeek={setSeek}/>
+               </div>
             }
-            {/*{audio &&*/}
-            {/*   <div className='w-100 ms-4'>*/}
-            {/*      <Waveform*/}
-            {/*         setSeek={setSeek}*/}
-            {/*         isPlaying={active}*/}
-            {/*         audioUrl={audio.src || ''}*/}
-            {/*         setWaveformLoaded={setWaveformLoaded}/>*/}
-            {/*   </div>*/}
-            {/*}*/}
          </PlayerTemplate>
          {/*<div>*/}
          {/*  <Time*/}

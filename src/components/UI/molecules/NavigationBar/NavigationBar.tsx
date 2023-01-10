@@ -24,7 +24,7 @@ export const NavigationBar = () => {
 
    return (
       <StudioNavbar className='navbar navbar-dark bg-dark'>
-         <Div className={`container ${platform === 'mobile' ? 'justify-content-center' : ''}`}>
+         <Div className={`container ps-0 ${platform === 'mobile' ? 'justify-content-center' : ''}`}>
             <Div className='navbar-brand text-center cursor-pointer d-flex align-items-center'
                  onClick={() => navigate('/browse')}>
                <Image

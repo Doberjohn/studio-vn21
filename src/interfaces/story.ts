@@ -1,18 +1,17 @@
 import React from 'react';
 
 export interface IStory extends React.HTMLAttributes<Element> {
-   title: string;
-   storyId: string;
-   subtitle: string;
+   content: string[];
    imageUrl: string;
    publishDate: Date;
-   content: string[];
+   storyId: string;
    timestamps: number[];
+   title: string;
    voiceoverUrl?: string;
-   externalReadLink?: string;
+   voiceoverPCM?: number[];
 }
 
 export interface IWordElement {
-   text: string;
    index: number;
+   text: string;
 }

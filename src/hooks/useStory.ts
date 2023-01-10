@@ -16,17 +16,16 @@ export const useStory = () => {
          query.find().then((backendStories) => {
             const mappedStories: IStory[] = backendStories.map((backendProduct) => {
                return {
-                  title: backendProduct.get('title'),
-                  subtitle: backendProduct.get('subtitle'),
                   content: backendProduct.get('content')
                      .split(/[\n]/g)
                      .filter((entry: string) => entry !== ''),
-                  storyId: backendProduct.get('storyId'),
-                  timestamps: backendProduct.get('voiceoverTimestamps'),
                   imageUrl: backendProduct.get('coverImage')._url,
-                  voiceoverUrl: backendProduct.get('voiceover')?._url,
-                  externalReadLink: backendProduct.get('externalLink'),
+                  storyId: backendProduct.get('storyId'),
+                  title: backendProduct.get('title'),
+                  timestamps: backendProduct.get('voiceoverTimestamps'),
                   publishDate: backendProduct.get('publishDate'),
+                  voiceoverUrl: backendProduct.get('voiceover')?._url,
+                  voiceoverPCM: backendProduct.get('voiceoverPCM'),
                };
             });
 
