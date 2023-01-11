@@ -12,6 +12,7 @@ interface ReaderTemplateProps {
 export const StoryTemplate = ({ story }: ReaderTemplateProps) => {
    if (!story) return null;
 
+   const isProdEnv = process.env.REACT_APP_VERCEL_ENV === 'production';
    const { getStoryContentDetails } = useStory();
    const [voPosition, setVOPosition] = useState(0);
    const [isPlaying, setIsPlaying] = useState(false);
@@ -79,16 +80,18 @@ export const StoryTemplate = ({ story }: ReaderTemplateProps) => {
                </Div>
             </Div>
          </Div>
-         <Div className='row'>
-            {story.voiceoverUrl && story.voiceoverPCM && (
-               <VOPlayer
-                  voiceoverUrl={story.voiceoverUrl}
-                  voiceoverPCM={story.voiceoverPCM}
-                  setIsPlaying={setIsPlaying}
-                  setVOPosition={setVOPosition}
-               />
-            )}
-         </Div>
+         {!isProdEnv && (
+            <Div className='row'>
+               {story.voiceoverUrl && story.voiceoverPCM && (
+                  <VOPlayer
+                     voiceoverUrl={story.voiceoverUrl}
+                     voiceoverPCM={story.voiceoverPCM}
+                     setIsPlaying={setIsPlaying}
+                     setVOPosition={setVOPosition}
+                  />
+               )}
+            </Div>
+         )}
       </Div>
    );
 };
