@@ -37,7 +37,7 @@ export const NavigationBar = () => {
                      className='d-inline-block align-top'/>
                   <StudioBrandName className='ms-2'>Studio VN21</StudioBrandName>
                </Div>
-               {!isPreviewEnv && (
+               {isPreviewEnv && (
                   <Span style={{ position: 'absolute', right: 30, fontStyle: 'italic' }}>{process.env.REACT_APP_VERSION}@alpha</Span>
                )}
             </Div>
