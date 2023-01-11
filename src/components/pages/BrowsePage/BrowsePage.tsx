@@ -4,12 +4,10 @@ import React, { useEffect, useState } from 'react';
 
 export const BrowsePage = () => {
    const { stories, getStoriesFromBackend } = useStory();
-   const [ isLoadingStories, setIsLoadingStories ] = useState(stories.length === 0);
+   const [ isLoadingStories, setIsLoadingStories ] = useState(true);
 
    useEffect(() => {
-      if (stories.length === 0) {
-         getStoriesFromBackend();
-      }
+      getStoriesFromBackend();
    }, []);
 
    useEffect(() => {
