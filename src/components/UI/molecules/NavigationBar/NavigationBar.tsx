@@ -31,8 +31,7 @@ export const NavigationBar = () => {
    return (
       <StudioNavbar className='navbar navbar-dark bg-dark'>
          <Div className={`container ps-0 ${platform === 'mobile' ? 'justify-content-center' : ''}`}>
-            <Div className='navbar-brand text-center d-flex align-items-center'
-                 onClick={() => navigate('/browse')}>
+            <Div className='navbar-brand text-center d-flex align-items-center'>
                <Div className='d-flex align-items-center'>
                   <Image
                      width='40'
@@ -40,7 +39,11 @@ export const NavigationBar = () => {
                      sourceImageUrl={elizabeth}
                      alternativeText='elizabeth'
                      className='d-inline-block align-top'/>
-                  <StudioBrandName className='ms-2 cursor-pointer'>Studio VN21</StudioBrandName>
+                  <StudioBrandName
+                     className='ms-2 cursor-pointer'
+                     onClick={() => navigate('/browse')}>
+                     Studio VN21
+                  </StudioBrandName>
                </Div>
                <AppVersion>Version: {process.env.REACT_APP_VERSION}</AppVersion>
             </Div>
