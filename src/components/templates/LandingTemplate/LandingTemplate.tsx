@@ -2,39 +2,50 @@ import landingPageArt from '../../../shared/assets/landingPageArt.webp';
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { usePlatform } from '../../../hooks';
 import { Button, Div } from '../../UI/atoms';
-
-const LandingPageArtCover = styled.img`
-  top: 0;
-  right: 0;
-  height: 100vh;
-  position: absolute;
-`;
 
 const ArtCoverWrapper = styled.div`
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: left;
-  margin-left: 2rem;
+  justify-content: center;
+  text-align: center;
 `;
 
-const BrowseCollectionButton = styled(Button)``;
+const LandingPageArtCover = styled.div`
+  background-image: url(${landingPageArt});
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+`;
 
 export const LandingTemplate = () => {
+   const platform = usePlatform();
    const navigate = useNavigate();
    return (
-      <ArtCoverWrapper>
-         <LandingPageArtCover src={landingPageArt}/>
-         <Div className='text-center w-50'>
-            <Div className='h1 mb-4' style={{ transform: 'scale(1.5)' }}>Welcome to Studio VN21</Div>
-            <Div className='h5 mb-5' style={{ transform: 'scale(1.3)' }}>The best place on the Internet to read short stories</Div>
-            <BrowseCollectionButton
-               className='btn btn-light btn-lg'
-               onClick={() => navigate('/browse')}>
-               Start reading now
-            </BrowseCollectionButton>
+      <Div className='container' style={{ maxWidth: '100vw' }}>
+         <Div className='row'>
+            <Div className='col-12 col-xl-5'>
+               <ArtCoverWrapper>
+                  <Div className='h1 mb-4'>
+                     Welcome to Studio VN21
+                  </Div>
+                  <Div className='h5 mb-5'>
+                     The best place to read short stories online
+                  </Div>
+                  <Button
+                     className='btn btn-light btn-lg'
+                     onClick={() => navigate('/browse')}>
+                     Start reading now
+                  </Button>
+               </ArtCoverWrapper>
+            </Div>
+            { platform === 'desktop' && (
+               <LandingPageArtCover className='col'/>
+            ) }
          </Div>
-      </ArtCoverWrapper>
+      </Div>
    );
 };
