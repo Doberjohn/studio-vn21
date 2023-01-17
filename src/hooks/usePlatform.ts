@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react';
 
 const calculatePlatform = () => {
-   let platform = 'mobile';
-
-   if (window.innerWidth > 1450) {
-      platform = 'desktop';
+   if (window.innerWidth > 1200) {
+      return 'desktop';
    } else if (window.innerWidth > 600) {
-      platform = 'tablet';
+      return 'tablet';
    }
-
-   return platform;
+   return 'mobile';
 };
 
 export const usePlatform = () => {

@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { usePlatform } from '../../../../hooks';
-import { Div, Image, Span } from '../../atoms';
+import { Div, Image } from '../../atoms';
 
 const StudioNavbar = styled.span`
   position: fixed;
@@ -15,10 +15,15 @@ const StudioBrandName = styled.span`
   font-size: 24px;
 `;
 
+const AppVersion = styled.span`
+  position: absolute;
+  right: 30px;
+  font-style: italic;
+`;
+
 export const NavigationBar = () => {
    const navigate = useNavigate();
    const platform = usePlatform();
-   const isPreviewEnv = process.env.REACT_APP_VERCEL_ENV === 'preview';
 
    // hide navbar in landing page
    if (window.location.pathname === '/') return null;
@@ -37,9 +42,7 @@ export const NavigationBar = () => {
                      className='d-inline-block align-top'/>
                   <StudioBrandName className='ms-2'>Studio VN21</StudioBrandName>
                </Div>
-               {isPreviewEnv && (
-                  <Span style={{ position: 'absolute', right: 30, fontStyle: 'italic' }}>{process.env.REACT_APP_VERSION}@alpha</Span>
-               )}
+               <AppVersion>{process.env.REACT_APP_VERSION}</AppVersion>
             </Div>
          </Div>
       </StudioNavbar>
