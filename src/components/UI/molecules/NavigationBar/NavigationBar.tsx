@@ -45,7 +45,9 @@ export const NavigationBar = () => {
                      Studio VN21
                   </StudioBrandName>
                </Div>
-               <AppVersion>Version: {process.env.REACT_APP_VERSION}</AppVersion>
+               {platform !== 'mobile' && (
+                  <AppVersion>Version: {process.env.REACT_APP_VERSION}</AppVersion>
+               )}
             </Div>
          </Div>
       </StudioNavbar>

@@ -33,6 +33,10 @@ body {
   min-height: 100vh;
 }
 
+.full-width {
+  min-width: 100vw;
+}
+
 .perfectly-centered {
   display: flex;
   align-items: center;
