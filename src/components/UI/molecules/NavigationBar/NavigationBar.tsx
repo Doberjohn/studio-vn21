@@ -42,7 +42,9 @@ export const NavigationBar = () => {
                      className='d-inline-block align-top'/>
                   <StudioBrandName className='ms-2 cursor-pointer'>Studio VN21</StudioBrandName>
                </Div>
-               <AppVersion>Version: {process.env.REACT_APP_VERSION}</AppVersion>
+               {platform !== 'mobile' && (
+                  <AppVersion>Version: {process.env.REACT_APP_VERSION}</AppVersion>
+               )}
             </Div>
          </Div>
       </StudioNavbar>
