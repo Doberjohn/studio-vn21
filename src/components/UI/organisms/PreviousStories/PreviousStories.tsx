@@ -5,12 +5,11 @@ import { StoryCard } from '../index';
 
 interface PreviousStoriesProps {
    stories: IStory[],
-   onClickAction: (storyId: string) => void,
 }
 
-export const PreviousStories = ({ stories, onClickAction }: PreviousStoriesProps) => {
+export const PreviousStories = ({ stories }: PreviousStoriesProps) => {
    return (
-      <Div>
+      <Div className='col-12 pt-5'>
          <Div className='h2 mb-2'>Previous stories</Div>
          <Div className='row'>
             {stories.map((story, index) => {
@@ -18,8 +17,7 @@ export const PreviousStories = ({ stories, onClickAction }: PreviousStoriesProps
                   <Div key={`previous-story-${index}`} className='col-md-6 mb-4'>
                      <StoryCard
                         story={story}
-                        isLatest={false}
-                        onClickAction={onClickAction}/>
+                        isLatest={false}/>
                   </Div>
                );
             })}

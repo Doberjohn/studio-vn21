@@ -1,4 +1,3 @@
-import React from 'react';
 import { usePlatform } from '../../../../hooks';
 
 interface TemplateSwitchProps {
@@ -8,7 +7,7 @@ interface TemplateSwitchProps {
 export const TemplateSwitch = ({ children }: TemplateSwitchProps) => {
    const platform = usePlatform();
 
-   if (platform === 'mobile') return children[0];
-   if (platform === 'tablet') return children[1];
+   if (platform === 'desktop') return children[0];
+   if (platform === 'mobile') return children[1];
    return children[2];
 };

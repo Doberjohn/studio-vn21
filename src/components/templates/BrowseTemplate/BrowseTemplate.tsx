@@ -1,10 +1,10 @@
+import { BrowseTemplateDesktop } from './Desktop/BrowseTemplateDesktop';
+import { BrowseTemplateMobile } from './Mobile/BrowseTemplateMobile';
+import { BrowseTemplateTablet } from './Tablet/BrowseTemplateTablet';
 import { Div } from '../../UI/atoms';
 import { IStory } from '../../../interfaces';
-import { LoadingSpinner } from '../../UI/molecules';
 import React from 'react';
-// import useAnalyticsEventTracker from '../../../hooks/useAnalyticsEventTracker';
-import { useNavigate } from 'react-router-dom';
-import { LatestStory, PreviousStories } from '../../UI/organisms';
+import { LoadingSpinner, TemplateSwitch } from '../../UI/molecules';
 
 interface HomeTemplateProps {
    latestStory: IStory;
@@ -12,36 +12,19 @@ interface HomeTemplateProps {
    isLoading: boolean;
 }
 
-export const BrowseTemplate = ({ latestStory, previousStories, isLoading }: HomeTemplateProps) => {
-   const navigate = useNavigate();
-   // const gaEventTracker = useAnalyticsEventTracker('Story');
-
-   const openStoryPage = (storyId: string) => {
-      navigate(`/story/${storyId}`);
-      // gaEventTracker('Read on site', title);
-   };
-
+export const BrowseTemplate = ({ isLoading, latestStory, previousStories }: HomeTemplateProps) => {
    return (
-      <Div>
+      <Div className='full-height'>
          {isLoading ? (
-            <Div className='perfectly-centered full-height'>
-               <LoadingSpinner size={300}/>
+            <Div className='perfectly-centered'>
+               <LoadingSpinner/>
             </Div>
          ) : (
-            <Div className='container narrow-container full-height pt-5'>
-               <Div className='row'>
-                  <Div className='col-lg-12 py-5'>
-                     <LatestStory
-                        story={latestStory}
-                        onClickAction={openStoryPage}/>
-                  </Div>
-                  <Div className='col-lg-12 py-lg-5 text-start'>
-                     <PreviousStories
-                        stories={previousStories}
-                        onClickAction={openStoryPage}/>
-                  </Div>
-               </Div>
-            </Div>
+            <TemplateSwitch>
+               <BrowseTemplateDesktop latestStory={latestStory} previousStories={previousStories}/>
+               <BrowseTemplateMobile latestStory={latestStory} previousStories={previousStories}/>
+               <BrowseTemplateTablet latestStory={latestStory} previousStories={previousStories}/>
+            </TemplateSwitch>
          )}
       </Div>
    );
