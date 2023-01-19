@@ -47,6 +47,7 @@ body {
   cursor: pointer;
 }
 
-.narrow-container {
+.container {
+  padding: 0;
   max-width: 1000px;
 }

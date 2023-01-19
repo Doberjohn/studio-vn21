@@ -1,5 +1,4 @@
 import { inject } from '@vercel/analytics';
-import { NavigationBar } from './components/UI/molecules';
 import Parse from 'parse';
 import React from 'react';
 import { StoryProvider } from './contexts/Story';
@@ -17,13 +16,10 @@ Parse.serverURL = PARSE_HOST_URL;
 
 inject(); // enable vercel analytics
 
-console.log(process.env);
-
 function App() {
    return (
       <StoryProvider>
          <Router>
-            <NavigationBar/>
             <Routes>
                <Route path='/' element={<LandingPage/>}/>
                <Route path='/browse' element={<BrowsePage/>}/>

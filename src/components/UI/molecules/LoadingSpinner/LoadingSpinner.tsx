@@ -1,11 +1,7 @@
 import React from 'react';
 import { Animate, Circle, Svg } from '../../atoms';
 
-interface LoadingSpinnerProps {
-   size: number
-}
-
-export const LoadingSpinner = ({ size }: LoadingSpinnerProps) => {
+export const LoadingSpinner = () => {
    const redVariation = '#FF000082';
    const redAnimation = 'rgba(255,0,0,0.51);#ff0033;rgba(255,0,0,0.51)';
    const blueVariation = '#034FC7';
@@ -13,7 +9,7 @@ export const LoadingSpinner = ({ size }: LoadingSpinnerProps) => {
 
    return (
       <Svg xmlns='http://www.w3.org/2000/svg'
-           width={size} height={size} viewBox='0 0 100 100' preserveAspectRatio='xMidYMid'
+           width={300} height={300} viewBox='0 0 100 100' preserveAspectRatio='xMidYMid'
            className='' aria-label='three-dots-loading' role='status'>
          <Circle cx='6.451612903225806' cy='60.6229' r='3.41988'
                  fill={redVariation}>

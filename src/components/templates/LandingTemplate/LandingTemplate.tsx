@@ -7,9 +7,9 @@ import { TemplateSwitch } from '../../UI/molecules';
 export const LandingTemplate = ({ ...props }) => {
    return (
       <TemplateSwitch>
+         <LandingTemplateDesktop {...props}/>
          <LandingTemplateMobile {...props}/>
          <LandingTemplateTablet {...props}/>
-         <LandingTemplateDesktop {...props}/>
       </TemplateSwitch>
    );
 };
