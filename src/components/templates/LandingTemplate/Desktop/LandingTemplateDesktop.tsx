@@ -13,7 +13,7 @@ const LandingPageArtCover = styled.div`
 
 export const LandingTemplateDesktop = () => {
    return (
-      <Div className='full-width'>
+      <Div className='overflow-hidden'>
          <Div className='row'>
             <Div className='col-5'>
                <WelcomeSection/>
