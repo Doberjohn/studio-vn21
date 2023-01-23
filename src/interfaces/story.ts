@@ -1,6 +1,7 @@
 import React from 'react';
 
 export interface IStory extends React.HTMLAttributes<Element> {
+   author: string;
    content: string[];
    imageUrl: string;
    publishDate: Date;

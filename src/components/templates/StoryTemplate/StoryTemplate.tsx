@@ -47,12 +47,15 @@ export const StoryTemplate = ({ story }: ReaderTemplateProps) => {
    };
 
    return (
-      <Div className='container narrow-container pt-5'>
-         <Div className='row pt-5 h1'>
-            {story.title}
+      <Div className='container narrow-container ps-0 pt-5'>
+         <Div className='d-flex flex-column mt-5 mb-3'>
+            <Div className='h1'>{story.title}</Div>
+            <Div className='mb-0 h6'>
+               by {story.author}
+            </Div>
          </Div>
          <Div className='row py-4'>
-            <Div className='col-md-8 h5 ps-0 pt-0'>
+            <Div className='col-md-8 h5 pt-0'>
                {words.map((wordElement: IWordElement, index: number) => {
                   return (
                      <Span key={`word-${wordElement.index}`}>

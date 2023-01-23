@@ -16,6 +16,7 @@ export const useStory = () => {
          query.find().then((backendStories) => {
             const mappedStories: IStory[] = backendStories.map((backendProduct) => {
                return {
+                  author: backendProduct.get('author'),
                   content: backendProduct.get('content')
                      .split(/[\n]/g)
                      .filter((entry: string) => entry !== ''),
