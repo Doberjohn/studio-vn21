@@ -54,7 +54,7 @@ export const StoryTemplateDesktop = ({ story }: ReaderTemplateProps) => {
                Written by {story.author} at {story.publishDate.toLocaleDateString('el')}
             </Div>
          </Div>
-         <Div className='row py-4'>
+         <Div className='row py-2'>
             <Div className='col-8 h5 pt-0'>
                {words.map((wordElement: IWordElement, index: number) => {
                   return (
@@ -75,7 +75,7 @@ export const StoryTemplateDesktop = ({ story }: ReaderTemplateProps) => {
                   );
                })}
             </Div>
-            <Div className='col-md-4' style={{ borderLeft: '2px solid' }}>
+            <Div className='col-4' style={{ borderLeft: '2px solid' }}>
                <Div className='row ps-4'>
                   <StoryCard
                      story={story}

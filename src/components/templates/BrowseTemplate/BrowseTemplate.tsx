@@ -14,9 +14,9 @@ interface HomeTemplateProps {
 
 export const BrowseTemplate = ({ isLoading, latestStory, previousStories }: HomeTemplateProps) => {
    return (
-      <Div className='full-height'>
+      <Div>
          {isLoading ? (
-            <Div className='perfectly-centered'>
+            <Div className='full-height perfectly-centered'>
                <LoadingSpinner/>
             </Div>
          ) : (
