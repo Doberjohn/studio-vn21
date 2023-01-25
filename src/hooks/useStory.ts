@@ -20,7 +20,8 @@ export const useStory = () => {
                   content: backendProduct.get('content')
                      .split(/[\n]/g)
                      .filter((entry: string) => entry !== ''),
-                  imageUrl: backendProduct.get('coverImage')._url,
+                  coverUrl: backendProduct.get('coverImage')._url,
+                  mobileCoverUrl: backendProduct.get('mobileCoverImage')._url,
                   storyId: backendProduct.get('storyId'),
                   title: backendProduct.get('title'),
                   timestamps: backendProduct.get('voiceoverTimestamps'),

@@ -10,10 +10,15 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 interface IStoryCard extends React.HTMLAttributes<Element> {
    story: IStory,
    isLatest: boolean,
+   useMobileCover?: boolean
 }
 
 export const StoryCard = (
-   { story: { title, storyId, imageUrl }, isLatest }: IStoryCard) => {
+   {
+      story: { title, storyId, coverUrl, mobileCoverUrl },
+      isLatest,
+      useMobileCover = false
+   }: IStoryCard) => {
    const platform = usePlatform();
    const navigate = useNavigate();
 
@@ -38,7 +43,7 @@ export const StoryCard = (
                width='100%'
                height={ isLatest ? latestCoverHeight : previousCoverHeight}
                placeholderSrc={PlaceholderImage}
-               src={imageUrl}
+               src={useMobileCover ? mobileCoverUrl: coverUrl}
                effect='blur'
                alt={title}/>
          </Div>
