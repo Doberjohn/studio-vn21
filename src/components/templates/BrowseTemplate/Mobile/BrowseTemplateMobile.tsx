@@ -42,17 +42,17 @@ export const BrowseTemplateMobile = ({ latestStory, previousStories }: HomeTempl
                title='Scary stories to keep you awake'
                stories={scaryStories}/>
          </Div>
-         <Div className='px-3 pt-1'>
+         <Div className='px-3 pt-4'>
             <StorySlider
                title='100-word drabbles for speed readers'
                stories={drabbles}/>
          </Div>
-         <Div className='px-3 pt-1'>
+         <Div className='px-3 pt-4'>
             <StorySlider
                title='Stories for impact'
                stories={storiesForImpact}/>
          </Div>
-         <Div className='px-3 pt-1'>
+         <Div className='px-3 pt-4'>
             <StorySlider
                title='Vampires vs Cyborgs'
                stories={bloodNMetalStories}/>

@@ -2,6 +2,8 @@ import { Div } from '../../atoms';
 import { IStory } from '../../../../interfaces';
 import React from 'react';
 import { StoryCard } from '../StoryCard/StoryCard';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
 interface StorySliderProps {
    title: string;
@@ -11,19 +13,16 @@ interface StorySliderProps {
 export const StorySlider = ({ title, stories }: StorySliderProps) => {
    return (
       <Div>
-         <Div className='h5 mb-2'>{title}</Div>
-         <Div className='row'>
-            {stories.map((story, index) => {
+         <Div className='h5'>{title}</Div>
+         <Swiper spaceBetween={20} slidesPerView={3}>
+            {stories.map((story) => {
                return (
-                  <Div key={`previous-story-${index}`} className='col-4 mb-4'>
-                     <StoryCard
-                        story={story}
-                        isLatest={false}
-                        useMobileCover={true}/>
-                  </Div>
+                  <SwiperSlide key={`slide-${story.storyId}`}>
+                     <StoryCard story={story} isLatest={false} useMobileCover={true}/>
+                  </SwiperSlide>
                );
             })}
-         </Div>
+         </Swiper>
       </Div>
    );
 };
