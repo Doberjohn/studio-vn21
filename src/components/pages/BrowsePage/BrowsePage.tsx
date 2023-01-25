@@ -17,7 +17,7 @@ export const BrowsePage = () => {
    return (
       <BrowseTemplate
          latestStory={stories[0]}
-         previousStories={stories.slice(1, 7)}
+         previousStories={stories}
          isLoading={isLoadingStories}
       />
    );

@@ -3,7 +3,8 @@ import React from 'react';
 export interface IStory extends React.HTMLAttributes<Element> {
    author: string;
    content: string[];
-   imageUrl: string;
+   coverUrl: string;
+   mobileCoverUrl: string;
    publishDate: Date;
    storyId: string;
    timestamps: number[];
