@@ -22,7 +22,7 @@ export const StorySlider = (
    }: StorySliderProps) => {
    return (
       <Div>
-         <Div className='h5'>{title}</Div>
+         <Div className='h4'>{title}</Div>
          <Swiper
             modules={[FreeMode]}
             freeMode={{ enabled: true, sticky: false }}
