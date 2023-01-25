@@ -34,7 +34,7 @@ export const BrowseTemplateMobile = ({ latestStory, previousStories }: HomeTempl
    });
 
    return (
-      <Div className='container'>
+      <Div className='container pb-3'>
          <LatestStory
             story={latestStory}/>
          <Div className='ps-3 pt-4'>
