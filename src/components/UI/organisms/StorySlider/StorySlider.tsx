@@ -1,4 +1,5 @@
 import { Div } from '../../atoms';
+import { FreeMode } from 'swiper';
 import { IStory } from '../../../../interfaces';
 import React from 'react';
 import { StoryCard } from '../StoryCard/StoryCard';
@@ -22,14 +23,19 @@ export const StorySlider = (
    return (
       <Div>
          <Div className='h5'>{title}</Div>
-         <Swiper spaceBetween={spaceBetweenStories} slidesPerView={storiesPerView}>
-            {stories.map((story) => {
-               return (
-                  <SwiperSlide key={`slide-${story.storyId}`}>
-                     <StoryCard story={story} isLatest={false} useMobileCover={true}/>
-                  </SwiperSlide>
-               );
-            })}
+         <Swiper
+            modules={[FreeMode]}
+            freeMode={{ enabled: true, sticky: false }}
+            spaceBetween={spaceBetweenStories}
+            slidesPerView={storiesPerView}>
+               {stories.map((story) => {
+                  return (
+                     <SwiperSlide key={`slide-${story.storyId}`}>
+                        <StoryCard story={story} isLatest={false} useMobileCover={true}/>
+                     </SwiperSlide>
+                  );
+               })
+            }
          </Swiper>
       </Div>
    );
