@@ -8,13 +8,21 @@ import 'swiper/css';
 interface StorySliderProps {
    title: string;
    stories: IStory[],
+   storiesPerView: number;
+   spaceBetweenStories: number;
 }
 
-export const StorySlider = ({ title, stories }: StorySliderProps) => {
+export const StorySlider = (
+   {
+      title,
+      stories,
+      storiesPerView,
+      spaceBetweenStories
+   }: StorySliderProps) => {
    return (
       <Div>
          <Div className='h5'>{title}</Div>
-         <Swiper spaceBetween={20} slidesPerView={2.5}>
+         <Swiper spaceBetween={spaceBetweenStories} slidesPerView={storiesPerView}>
             {stories.map((story) => {
                return (
                   <SwiperSlide key={`slide-${story.storyId}`}>

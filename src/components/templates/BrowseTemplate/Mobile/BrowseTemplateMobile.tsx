@@ -6,9 +6,17 @@ import { LatestStory, StorySlider } from '../../../UI/organisms';
 interface HomeTemplateProps {
    latestStory: IStory;
    previousStories: IStory[];
+   storiesPerView?: number;
+   spaceBetweenStories?: number;
 }
 
-export const BrowseTemplateMobile = ({ latestStory, previousStories }: HomeTemplateProps) => {
+export const BrowseTemplateMobile = (
+   {
+      latestStory,
+      previousStories,
+      storiesPerView = 2.5,
+      spaceBetweenStories = 20,
+   }: HomeTemplateProps) => {
    const scaryStories = previousStories.filter((story) => {
       return story.storyId === 'dystopian_lab' ||
          story.storyId === 'pumpkins_wink' ||
@@ -40,22 +48,30 @@ export const BrowseTemplateMobile = ({ latestStory, previousStories }: HomeTempl
          <Div className='ps-3 pt-4'>
             <StorySlider
                title='Scary stories to keep you awake'
-               stories={scaryStories}/>
+               stories={scaryStories}
+               storiesPerView={storiesPerView}
+               spaceBetweenStories={spaceBetweenStories}/>
          </Div>
          <Div className='ps-3 pt-4'>
             <StorySlider
                title='100-word drabbles for speed readers'
-               stories={drabbles}/>
+               stories={drabbles}
+               storiesPerView={storiesPerView}
+               spaceBetweenStories={spaceBetweenStories}/>
          </Div>
          <Div className='ps-3 pt-4'>
             <StorySlider
                title='Stories for impact'
-               stories={storiesForImpact}/>
+               stories={storiesForImpact}
+               storiesPerView={storiesPerView}
+               spaceBetweenStories={spaceBetweenStories}/>
          </Div>
          <Div className='ps-3 pt-4'>
             <StorySlider
                title='Vampires vs Cyborgs'
-               stories={bloodNMetalStories}/>
+               stories={bloodNMetalStories}
+               storiesPerView={storiesPerView}
+               spaceBetweenStories={spaceBetweenStories}/>
          </Div>
       </Div>
    );
