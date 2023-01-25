@@ -37,7 +37,7 @@ export const BrowseTemplateMobile = ({ latestStory, previousStories }: HomeTempl
       <Div className='container'>
          <LatestStory
             story={latestStory}/>
-         <Div className='px-3 pt-4'>
+         <Div className='ps-3 pt-4'>
             <StorySlider
                title='Scary stories to keep you awake'
                stories={scaryStories}/>

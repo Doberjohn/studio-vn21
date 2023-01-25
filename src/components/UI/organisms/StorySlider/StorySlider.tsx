@@ -14,7 +14,7 @@ export const StorySlider = ({ title, stories }: StorySliderProps) => {
    return (
       <Div>
          <Div className='h5'>{title}</Div>
-         <Swiper spaceBetween={20} slidesPerView={3}>
+         <Swiper spaceBetween={20} slidesPerView={2.5}>
             {stories.map((story) => {
                return (
                   <SwiperSlide key={`slide-${story.storyId}`}>
