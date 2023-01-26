@@ -6,9 +6,17 @@ import { LatestStory, StorySlider } from '../../../UI/organisms';
 interface HomeTemplateProps {
    latestStory: IStory;
    previousStories: IStory[];
+   storiesPerView?: number;
+   spaceBetweenStories?: number;
 }
 
-export const BrowseTemplateMobile = ({ latestStory, previousStories }: HomeTemplateProps) => {
+export const BrowseTemplateMobile = (
+   {
+      latestStory,
+      previousStories,
+      storiesPerView = 2.5,
+      spaceBetweenStories = 20,
+   }: HomeTemplateProps) => {
    const scaryStories = previousStories.filter((story) => {
       return story.storyId === 'dystopian_lab' ||
          story.storyId === 'pumpkins_wink' ||
@@ -19,7 +27,8 @@ export const BrowseTemplateMobile = ({ latestStory, previousStories }: HomeTempl
 
    const drabbles = previousStories.filter((story) => {
       return story.storyId === 'abyss' ||
-         story.storyId === 'a_spark_of_creativity';
+         story.storyId === 'a_spark_of_creativity'||
+         story.storyId === 'healing_touch';
    });
 
    const storiesForImpact = previousStories.filter((story) => {
@@ -30,32 +39,41 @@ export const BrowseTemplateMobile = ({ latestStory, previousStories }: HomeTempl
 
    const bloodNMetalStories = previousStories.filter((story) => {
       return story.storyId === '75th_floor' ||
-         story.storyId === 'safer_passage_1';
+         story.storyId === 'safer_passage_1' ||
+         story.storyId === 'what_happens_in_the_dark_1';
    });
 
    return (
-      <Div className='container'>
+      <Div className='container pb-3'>
          <LatestStory
             story={latestStory}/>
-         <Div className='px-3 pt-4'>
+         <Div className='ps-3 pt-4'>
             <StorySlider
                title='Scary stories to keep you awake'
-               stories={scaryStories}/>
+               stories={scaryStories}
+               storiesPerView={storiesPerView}
+               spaceBetweenStories={spaceBetweenStories}/>
          </Div>
-         <Div className='px-3 pt-1'>
+         <Div className='ps-3 pt-4'>
             <StorySlider
                title='100-word drabbles for speed readers'
-               stories={drabbles}/>
+               stories={drabbles}
+               storiesPerView={storiesPerView}
+               spaceBetweenStories={spaceBetweenStories}/>
          </Div>
-         <Div className='px-3 pt-1'>
+         <Div className='ps-3 pt-4'>
             <StorySlider
                title='Stories for impact'
-               stories={storiesForImpact}/>
+               stories={storiesForImpact}
+               storiesPerView={storiesPerView}
+               spaceBetweenStories={spaceBetweenStories}/>
          </Div>
-         <Div className='px-3 pt-1'>
+         <Div className='ps-3 pt-4'>
             <StorySlider
                title='Vampires vs Cyborgs'
-               stories={bloodNMetalStories}/>
+               stories={bloodNMetalStories}
+               storiesPerView={storiesPerView}
+               spaceBetweenStories={spaceBetweenStories}/>
          </Div>
       </Div>
    );
