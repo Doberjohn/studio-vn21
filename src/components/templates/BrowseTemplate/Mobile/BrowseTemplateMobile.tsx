@@ -27,7 +27,8 @@ export const BrowseTemplateMobile = (
 
    const drabbles = previousStories.filter((story) => {
       return story.storyId === 'abyss' ||
-         story.storyId === 'a_spark_of_creativity';
+         story.storyId === 'a_spark_of_creativity'||
+         story.storyId === 'healing_touch';
    });
 
    const storiesForImpact = previousStories.filter((story) => {
@@ -38,7 +39,8 @@ export const BrowseTemplateMobile = (
 
    const bloodNMetalStories = previousStories.filter((story) => {
       return story.storyId === '75th_floor' ||
-         story.storyId === 'safer_passage_1';
+         story.storyId === 'safer_passage_1' ||
+         story.storyId === 'what_happens_in_the_dark_1';
    });
 
    return (
