@@ -53,8 +53,13 @@ export const StoryTemplateTablet = ({ story }: ReaderTemplateProps) => {
             isLatest={false}/>
          <Div className='d-flex align-items-center justify-content-between mt-5 mb-3 px-3'>
             <Div className='h1'>{story.title}</Div>
-            <Div className='h6 mb-0 fst-italic'>
-               Written by {story.author} at {story.publishDate.toLocaleDateString('el')}
+            <Div className='h5 mb-0 fst-italic'>
+               <Span>Written by </Span>
+               {story.author === 'Katerina Markopoulou' ? (
+                  <a href='https://medium.com/@katesagimark' target='_blank'>{story.author}</a>
+               ) : story.author === 'Elena Mit' ? (
+                  <a href='https://medium.com/@elena-mit' target='_blank'>{story.author}</a>
+               ) : <Span>{story.author}</Span>}
             </Div>
          </Div>
          <Div className='container px-3'>

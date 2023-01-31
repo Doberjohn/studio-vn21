@@ -14,7 +14,6 @@ html {
   font-weight: normal;
 }
 
-
 body {
   margin: 0;
   font-family: FS-Me, sans-serif;
@@ -50,4 +49,8 @@ body {
 .container {
   padding: 0;
   max-width: 1200px;
+}
+
+a {
+  color: var(--bs-white);
 }
