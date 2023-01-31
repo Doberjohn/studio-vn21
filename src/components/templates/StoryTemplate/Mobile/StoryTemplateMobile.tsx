@@ -54,7 +54,12 @@ export const StoryTemplateMobile = ({ story }: ReaderTemplateProps) => {
          <Div className='d-flex flex-column mt-3 mb-3 px-3'>
             <Div className='h1'>{story.title}</Div>
             <Div className='h6 mb-0 fst-italic'>
-               Written by {story.author}
+               <Span>Written by </Span>
+               {story.author === 'Katerina Markopoulou' ? (
+                  <a href='https://medium.com/@katesagimark' target='_blank'>{story.author}</a>
+               ) : story.author === 'Elena Mit' ? (
+                  <a href='https://medium.com/@elena-mit' target='_blank'>{story.author}</a>
+               ) : <Span>{story.author}</Span>}
             </Div>
          </Div>
          <Div className='container px-3'>
