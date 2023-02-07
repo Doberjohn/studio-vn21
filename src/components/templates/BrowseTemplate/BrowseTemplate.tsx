@@ -1,10 +1,10 @@
-import { BrowseTemplateDesktop } from './Desktop/BrowseTemplateDesktop';
-import { BrowseTemplateMobile } from './Mobile/BrowseTemplateMobile';
-import { BrowseTemplateTablet } from './Tablet/BrowseTemplateTablet';
-import { Div } from '../../UI/atoms';
+import { BrowseTemplateDesktop } from './BrowseTemplateDesktop';
+import { BrowseTemplateMobile } from './BrowseTemplateMobile';
+import { BrowseTemplateTablet } from './BrowseTemplateTablet';
+import { Div } from '../../atoms';
 import { IStory } from '../../../interfaces';
 import React from 'react';
-import { LoadingSpinner, TemplateSwitch } from '../../UI/molecules';
+import { LoadingSpinner, TemplateSwitch } from '../../molecules';
 
 interface HomeTemplateProps {
    latestStory: IStory;
