@@ -1,15 +1,11 @@
-import { IStory } from '../../../interfaces';
+import { IStoryTemplate } from '../../../interfaces';
 import { IWordElement } from '../../../interfaces';
 import { useStory } from '../../../hooks';
 import { Div, Span } from '../../atoms';
 import React, { useEffect, useState } from 'react';
 import { StoryCard, VOPlayer } from '../../organisms';
 
-interface ReaderTemplateProps {
-   story: IStory;
-}
-
-export const StoryTemplateMobile = ({ story }: ReaderTemplateProps) => {
+export const StoryTemplateMobile: React.FC<IStoryTemplate> = ({ story }) => {
    if (!story) return null;
 
    const isProdEnv = process.env.REACT_APP_VERCEL_ENV === 'production';

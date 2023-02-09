@@ -5,22 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { usePlatform } from '../../../hooks';
 import { Div, Image } from '../../atoms';
 
-const StudioNavbar = styled.span`
-  position: fixed;
-  z-index: 11;
-  width: 100vw;
-`;
-
-const StudioBrandName = styled.span`
-  font-size: 24px;
-`;
-
-const AppVersion = styled.span`
-  position: absolute;
-  right: 30px;
-  font-style: italic;
-`;
-
 export const NavigationBar: React.FC = () => {
    const navigate = useNavigate();
    const platform = usePlatform();
@@ -53,3 +37,19 @@ export const NavigationBar: React.FC = () => {
       </StudioNavbar>
    );
 };
+
+const StudioNavbar = styled.span`
+  position: fixed;
+  z-index: 11;
+  width: 100vw;
+`;
+
+const StudioBrandName = styled.span`
+  font-size: 24px;
+`;
+
+const AppVersion = styled.span`
+  position: absolute;
+  right: 30px;
+  font-style: italic;
+`;

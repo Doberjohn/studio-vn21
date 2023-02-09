@@ -1,8 +1,10 @@
 import { BrowseTemplate } from '../../templates';
 import { useStory } from '../../../hooks';
 import React, { useEffect, useState } from 'react';
+import {Div} from "../../atoms";
+import {LoadingSpinner} from "../../molecules";
 
-export const BrowsePage = () => {
+export const BrowsePage: React.FC = () => {
    const { stories, getStoriesFromBackend } = useStory();
    const [ isLoadingStories, setIsLoadingStories ] = useState(true);
 
@@ -15,10 +17,17 @@ export const BrowsePage = () => {
    }, [stories]);
 
    return (
-      <BrowseTemplate
-         latestStory={stories[0]}
-         previousStories={stories}
-         isLoading={isLoadingStories}
-      />
+      <Div>
+         {isLoadingStories ? (
+             <Div className='full-height perfectly-centered'>
+                <LoadingSpinner/>
+             </Div>
+         ): (
+             <BrowseTemplate
+                 latestStory={stories[0]}
+                 previousStories={stories}
+             />
+         )}
+      </Div>
    );
 };

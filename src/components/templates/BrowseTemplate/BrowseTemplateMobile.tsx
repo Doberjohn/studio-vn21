@@ -1,22 +1,13 @@
 import { Div } from '../../atoms';
-import { IStory } from '../../../interfaces';
+import { IBrowseTemplate } from '../../../interfaces';
 import React from 'react';
 import { LatestStory, StorySlider } from '../../organisms';
 
-interface HomeTemplateProps {
-   latestStory: IStory;
-   previousStories: IStory[];
-   storiesPerView?: number;
-   spaceBetweenStories?: number;
-}
+export const BrowseTemplateMobile: React.FC<IBrowseTemplate> =
+    ({ latestStory, previousStories }) => {
+   const storiesPerView = 2.5;
+   const spaceBetweenStories = 20;
 
-export const BrowseTemplateMobile = (
-   {
-      latestStory,
-      previousStories,
-      storiesPerView = 2.5,
-      spaceBetweenStories = 20,
-   }: HomeTemplateProps) => {
    const scaryStories = previousStories.filter((story) => {
       return story.storyId === 'dystopian_lab' ||
          story.storyId === 'pumpkins_wink' ||

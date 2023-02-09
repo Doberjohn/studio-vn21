@@ -3,7 +3,7 @@ import { StoryTemplate } from '../../templates';
 import { useParams } from 'react-router-dom';
 import { useStory } from '../../../hooks';
 
-export const StoryPage = () => {
+export const StoryPage: React.FC = () => {
    const params = useParams();
    const { getStoryInfo } = useStory();
    const storyId = params.storyId || '';

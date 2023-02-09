@@ -8,8 +8,8 @@ interface WaveformProps {
    setSeek: (newPosition: number) => void
 }
 
-export const Waveform = (
-   { audio, audioPCM, isPlaying, setSeek }: WaveformProps) => {
+export const Waveform: React.FC<WaveformProps> = (
+   { audio, audioPCM, isPlaying, setSeek }) => {
    const containerRef = useRef<HTMLDivElement>(null);
    const waveSurferRef = useRef<WaveSurfer>();
 

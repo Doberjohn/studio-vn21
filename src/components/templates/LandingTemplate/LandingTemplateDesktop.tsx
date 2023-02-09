@@ -1,17 +1,10 @@
 import { Div } from '../../atoms';
-import landingPageArt from '../../../shared/assets/landingPageArt.webp';
+import { landingPageArt } from '../../../shared';
 import React from 'react';
 import styled from 'styled-components';
 import { WelcomeSection } from '../../molecules';
 
-const LandingPageArtCover = styled.div`
-  background-image: url(${landingPageArt});
-  background-size: cover;
-  height: 100vh;
-  width: 100vw;
-`;
-
-export const LandingTemplateDesktop = () => {
+export const LandingTemplateDesktop: React.FC = () => {
    return (
       <Div className='overflow-hidden'>
          <Div className='row'>
@@ -23,3 +16,10 @@ export const LandingTemplateDesktop = () => {
       </Div>
    );
 };
+
+const LandingPageArtCover = styled.div`
+  background-image: url(${landingPageArt});
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+`;

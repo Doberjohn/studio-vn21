@@ -4,12 +4,12 @@ import { LandingTemplateTablet } from './LandingTemplateTablet';
 import React from 'react';
 import { TemplateSwitch } from '../../molecules';
 
-export const LandingTemplate = ({ ...props }) => {
+export const LandingTemplate: React.FC = () => {
    return (
       <TemplateSwitch>
-         <LandingTemplateDesktop {...props}/>
-         <LandingTemplateMobile {...props}/>
-         <LandingTemplateTablet {...props}/>
+         <LandingTemplateDesktop/>
+         <LandingTemplateMobile/>
+         <LandingTemplateTablet/>
       </TemplateSwitch>
    );
 };

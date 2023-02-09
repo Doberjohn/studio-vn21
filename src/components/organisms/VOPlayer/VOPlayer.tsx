@@ -1,6 +1,6 @@
-import { Waveform } from './components/organisms';
-import { PageTemplate, Pause, Play, PlayerTemplate } from './components';
-import { pauseBtn, playBtn } from './icons';
+import styled from 'styled-components';
+import { Waveform } from '../../organisms';
+import { pauseBtn, playBtn } from '../../../shared';
 import React, { useEffect, useState } from 'react';
 
 interface VOPlayerProps {
@@ -10,8 +10,8 @@ interface VOPlayerProps {
    setIsPlaying: (status: boolean) => void;
 }
 
-export const VOPlayer = (
-   { voiceoverUrl, voiceoverPCM, setIsPlaying, setVOPosition }: VOPlayerProps) => {
+export const VOPlayer: React.FC<VOPlayerProps> = (
+   { voiceoverUrl, voiceoverPCM, setIsPlaying, setVOPosition }) => {
    const [audio, setAudio] = useState<HTMLAudioElement>();
    const [active, setActive] = useState(false);
    const [seek, setSeek] = useState(0);
@@ -49,14 +49,12 @@ export const VOPlayer = (
 
    useEffect(() => {
       reset();
-      // eslint-disable-next-line
    }, [end]);
 
    useEffect(() => {
       if (audio != null) {
          audio.currentTime = seek;
       }
-      // eslint-disable-next-line
    }, [seek]);
 
    const play = () => {
@@ -81,8 +79,8 @@ export const VOPlayer = (
          <PlayerTemplate>
             <div>
                {active ?
-                  <Pause src={pauseBtn} onClick={pause}/> :
-                  <Play src={playBtn} onClick={play}/>
+                  <PlayerIcon src={pauseBtn} onClick={pause}/> :
+                  <PlayerIcon src={playBtn} onClick={play}/>
                }
             </div>
             {audio &&
@@ -105,3 +103,32 @@ export const VOPlayer = (
       </PageTemplate>
    );
 };
+
+const PageTemplate = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 !important;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+`;
+
+const PlayerTemplate = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 30px;
+  margin: 0 auto;
+  background-color: #202020;
+  overflow: auto;
+`;
+
+const PlayerIcon = styled.img`
+  width: 30px;
+  height: 30px;
+  transition: transform 0.2s;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;

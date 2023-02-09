@@ -1,14 +1,10 @@
 import { Div } from '../../atoms';
-import { IStory } from '../../../interfaces';
+import { IBrowseTemplate } from '../../../interfaces';
 import React from 'react';
 import { LatestStory, PreviousStories } from '../../organisms';
 
-interface HomeTemplateProps {
-   latestStory: IStory;
-   previousStories: IStory[];
-}
-
-export const BrowseTemplateDesktop = ({ latestStory, previousStories }: HomeTemplateProps) => {
+export const BrowseTemplateDesktop: React.FC<IBrowseTemplate> =
+    ({ latestStory, previousStories }) => {
    return (
       <Div className='container'>
          <LatestStory
