@@ -9,29 +9,8 @@ export const useStory = () => {
 
    const getStoriesFromBackend = function() {
       try {
-         const query = new Parse.Query('Story');
-         query.equalTo('isReadable', true);
-         query.descending('publishDate');
-
-         query.find().then((backendStories) => {
-            const mappedStories: IStory[] = backendStories.map((backendProduct) => {
-               return {
-                  author: backendProduct.get('author'),
-                  content: backendProduct.get('content')
-                     .split(/[\n]/g)
-                     .filter((entry: string) => entry !== ''),
-                  coverUrl: backendProduct.get('coverImage')._url,
-                  mobileCoverUrl: backendProduct.get('mobileCoverImage')._url,
-                  storyId: backendProduct.get('storyId'),
-                  title: backendProduct.get('title'),
-                  timestamps: backendProduct.get('voiceoverTimestamps'),
-                  publishDate: backendProduct.get('publishDate'),
-                  voiceoverUrl: backendProduct.get('voiceover')?._url,
-                  voiceoverPCM: backendProduct.get('voiceoverPCM'),
-               };
-            });
-
-            dispatch({ type: 'SET_STORIES', payload: mappedStories });
+         Parse.Cloud.run('getStories').then((stories: IStory[]) => {
+            dispatch({ type: 'SET_STORIES', payload: stories });
          });
       } catch (e) {
          console.error(e);
