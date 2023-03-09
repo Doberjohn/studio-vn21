@@ -1,8 +1,8 @@
 import { BrowseTemplate } from '../../templates';
+import { Div } from '../../atoms';
+import { LoadingSpinner } from '../../molecules';
 import { useStory } from '../../../hooks';
 import React, { useEffect, useState } from 'react';
-import {Div} from "../../atoms";
-import {LoadingSpinner} from "../../molecules";
 
 export const BrowsePage: React.FC = () => {
    const { stories, getStoriesFromBackend } = useStory();
