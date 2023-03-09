@@ -6,7 +6,7 @@ import { LatestStory, StorySlider } from '../../organisms';
 export const BrowseTemplateMobile: React.FC<IBrowseTemplate> =
    ({ latestStory, previousStories }) => {
       const storiesPerView = 2.5;
-      const spaceBetweenStories = 20;
+      const spaceBetweenStories = 25;
 
       const scaryStories = previousStories.filter((story) => {
          return story.storyId === 'dystopian_lab' ||
