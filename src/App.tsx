@@ -14,7 +14,7 @@ const PARSE_JAVASCRIPT_KEY = process.env.REACT_APP_PARSE_JAVASCRIPT_KEY as strin
 Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
 Parse.serverURL = PARSE_HOST_URL;
 
-inject(); // enable vercel analytics
+inject(); // Enable Vercel Analytics
 
 function App() {
    return (

@@ -1,15 +1,15 @@
-import { LandingTemplateDesktop } from './Desktop/LandingTemplateDesktop';
-import { LandingTemplateMobile } from './Mobile/LandingTemplateMobile';
-import { LandingTemplateTablet } from './Tablet/LandingTemplateTablet';
+import { LandingTemplateDesktop } from './LandingTemplateDesktop';
+import { LandingTemplateMobile } from './LandingTemplateMobile';
+import { LandingTemplateTablet } from './LandingTemplateTablet';
 import React from 'react';
-import { TemplateSwitch } from '../../UI/molecules';
+import { TemplateSwitch } from '../../molecules';
 
-export const LandingTemplate = ({ ...props }) => {
+export const LandingTemplate: React.FC = () => {
    return (
       <TemplateSwitch>
-         <LandingTemplateDesktop {...props}/>
-         <LandingTemplateMobile {...props}/>
-         <LandingTemplateTablet {...props}/>
+         <LandingTemplateDesktop/>
+         <LandingTemplateMobile/>
+         <LandingTemplateTablet/>
       </TemplateSwitch>
    );
 };
