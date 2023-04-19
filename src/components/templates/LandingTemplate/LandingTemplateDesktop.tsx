@@ -9,7 +9,7 @@ export const LandingTemplateDesktop: React.FC = () => {
       <Div className='overflow-hidden'>
          <Div className='row'>
             <Div className='col-5'>
-               <WelcomeSection/>
+               <WelcomeSection canStartReading={false}/>
             </Div>
             <LandingPageArtCover className='col'/>
          </Div>
