@@ -9,7 +9,7 @@ export const BrowseTemplate: React.FC<IBrowseTemplate> =
     ({ latestStory, previousStories }) => {
    return (
        <TemplateSwitch>
-          <BrowseTemplateDesktop latestStory={latestStory} previousStories={previousStories}/>
+          <BrowseTemplateDesktop/>
           <BrowseTemplateMobile latestStory={latestStory} previousStories={previousStories}/>
           <BrowseTemplateTablet latestStory={latestStory} previousStories={previousStories}/>
        </TemplateSwitch>

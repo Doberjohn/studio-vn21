@@ -8,7 +8,7 @@ import { TemplateSwitch } from '../../molecules';
 export const StoryTemplate: React.FC<IStoryTemplate> = ({ story }) => {
    return (
       <TemplateSwitch>
-         <StoryTemplateDesktop story={story}/>
+         <StoryTemplateDesktop/>
          <StoryTemplateMobile story={story}/>
          <StoryTemplateTablet story={story}/>
       </TemplateSwitch>
