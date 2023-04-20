@@ -9,9 +9,8 @@ export const BrowseTemplateMobile: React.FC<IBrowseTemplate> =
       const spaceBetweenStories = 25;
 
       const scaryStories = previousStories.filter((story) => {
-         return story.storyId === 'dark_alliance' ||
-            story.storyId === 'night_of_the_monsters' ||
-            story.storyId === 'the_man_in_the_window' ||
+         return story.storyId === 'the_man_in_the_window' ||
+            story.storyId === 'haunted_pumpkin_patch' ||
             story.storyId === 'the_reflection';
       });
 
@@ -20,6 +19,12 @@ export const BrowseTemplateMobile: React.FC<IBrowseTemplate> =
             story.storyId === 'a_spark_of_creativity' ||
             story.storyId === 'spellbent' ||
             story.storyId === 'healing_touch';
+      });
+
+      const poems = previousStories.filter((story) => {
+         return story.storyId === 'dystopian_lab' ||
+            story.storyId === 'dark_alliance' ||
+            story.storyId === 'night_of_the_monsters';
       });
 
       const storiesForImpact = previousStories.filter((story) => {
@@ -43,6 +48,13 @@ export const BrowseTemplateMobile: React.FC<IBrowseTemplate> =
                <StorySlider
                   title='100-word drabbles for speed readers'
                   stories={drabbles}
+                  storiesPerView={storiesPerView}
+                  spaceBetweenStories={spaceBetweenStories}/>
+            </Div>
+            <Div className='ps-3 pt-4'>
+               <StorySlider
+                  title={'Rhyme Time: Poet\'s corner'}
+                  stories={poems}
                   storiesPerView={storiesPerView}
                   spaceBetweenStories={spaceBetweenStories}/>
             </Div>
