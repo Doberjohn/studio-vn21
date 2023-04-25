@@ -1,8 +1,8 @@
-import {IStory} from "./story";
+import { ICategory, IStory, IStoryThumbnail } from './story';
 
 export interface IBrowseTemplate {
-    latestStory: IStory;
-    previousStories: IStory[];
+    latestStory: IStoryThumbnail;
+    categories: ICategory[];
 }
 
 export interface IStoryTemplate {

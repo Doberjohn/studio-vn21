@@ -2,7 +2,7 @@ import { inject } from '@vercel/analytics';
 import Parse from 'parse';
 import React from 'react';
 import { StoryProvider } from './contexts/Story';
-import { BrowsePage, LandingPage, StoryPage } from './components/pages';
+import { BrowsePage, LandingPage, StoryPage } from './pages';
 import { Route,
    BrowserRouter as Router,
    Routes } from 'react-router-dom';

@@ -1,32 +1,36 @@
 import { IStory } from '../interfaces';
-import { IWordElement } from '../interfaces';
 import Parse from 'parse';
 import React from 'react';
 import { StoryContext } from '../contexts/Story';
+import { IBrowseTemplate, IWordElement } from '../interfaces';
 
 export const useStory = () => {
    const { state, dispatch } = React.useContext(StoryContext);
 
-   const getStoriesFromBackend = function() {
+   const getHomeContentFromBackend = function() {
       try {
-         Parse.Cloud.run('getStories').then((stories: IStory[]) => {
-            dispatch({ type: 'SET_STORIES', payload: stories });
+         dispatch({ type: 'CLEAR_SELECTED_STORY', payload: {} });
+
+         Parse.Cloud.run('getHomePageContent').then((homePageData: IBrowseTemplate) => {
+            dispatch({ type: 'SET_HOME_CONTENT', payload: homePageData });
          });
       } catch (e) {
          console.error(e);
       }
    };
 
-   const getStoryInfo = (storyId: string): IStory => {
-      const stories = state.stories;
-      if (stories.length === 0) getStoriesFromBackend();
-      return stories.find((story) => story.storyId === storyId) as IStory;
+   const getStoryInfo = (storyId: string) => {
+      try {
+         Parse.Cloud.run('getStoryDetails', { storyId }).then((story: IStory) => {
+            dispatch({ type: 'SET_SELECTED_STORY', payload: story });
+         });
+      } catch (e) {
+         console.error(e);
+      }
    };
 
-   const getStoryContentDetails = (storyId: string) => {
-      const stories = state.stories;
-      if (stories.length === 0) getStoriesFromBackend();
-      const story = stories.find((story) => story.storyId === storyId) as IStory;
+   const getStoryContentDetails = () => {
+      const story = state.selectedStory;
 
       const paragraphs = story.content.map((paragraph) => paragraph.split( ' '));
       const sentences = story.content.map((paragraph) => paragraph.split( /[.?] /));
@@ -55,8 +59,14 @@ export const useStory = () => {
 
       const audioTimestamps = story.timestamps;
 
-      return { paragraphs, words, paragraphBreakpoints, sentenceBreakpoints, audioTimestamps };
+      return { words, paragraphBreakpoints, sentenceBreakpoints, audioTimestamps };
    };
 
-   return { stories: state.stories, getStoriesFromBackend, getStoryInfo, getStoryContentDetails };
+   return {
+      homePageContent: state.homePageContent,
+      selectedStory: state.selectedStory,
+      getStoryCategoriesFromBackend: getHomeContentFromBackend,
+      getStoryInfo,
+      getStoryContentDetails
+   };
 };

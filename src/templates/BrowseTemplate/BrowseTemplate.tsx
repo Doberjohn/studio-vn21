@@ -1,17 +1,17 @@
 import { BrowseTemplateDesktop } from './BrowseTemplateDesktop';
 import { BrowseTemplateMobile } from './BrowseTemplateMobile';
 import { BrowseTemplateTablet } from './BrowseTemplateTablet';
-import { IBrowseTemplate } from '../../../interfaces';
+import { IBrowseTemplate } from '../../interfaces';
 import React from 'react';
-import { TemplateSwitch } from '../../molecules';
+import { TemplateSwitch } from '../../components/molecules';
 
 export const BrowseTemplate: React.FC<IBrowseTemplate> =
-    ({ latestStory, previousStories }) => {
+    ({ latestStory, categories }) => {
    return (
        <TemplateSwitch>
           <BrowseTemplateDesktop/>
-          <BrowseTemplateMobile latestStory={latestStory} previousStories={previousStories}/>
-          <BrowseTemplateTablet latestStory={latestStory} previousStories={previousStories}/>
+          <BrowseTemplateMobile latestStory={latestStory} categories={categories}/>
+          <BrowseTemplateTablet latestStory={latestStory} categories={categories}/>
        </TemplateSwitch>
    );
 };

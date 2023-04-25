@@ -1,9 +1,9 @@
-import { IStoryTemplate } from '../../../interfaces';
-import { IWordElement } from '../../../interfaces';
-import { useStory } from '../../../hooks';
-import { Div, Span } from '../../atoms';
+import { IStoryTemplate } from '../../interfaces';
+import { IWordElement } from '../../interfaces';
+import { useStory } from '../../hooks';
+import { Div, Span } from '../../components/atoms';
 import React, { useEffect, useState } from 'react';
-import { StoryCard, VOPlayer } from '../../organisms';
+import { StoryCard, VOPlayer } from '../../components/organisms';
 
 export const StoryTemplateMobile: React.FC<IStoryTemplate> = ({ story }) => {
    if (!story) return null;
@@ -15,14 +15,14 @@ export const StoryTemplateMobile: React.FC<IStoryTemplate> = ({ story }) => {
    const [activeWordIndex, setActiveWordIndex] = useState(0);
    const [activeSentenceIndex, setActiveSentenceIndex] = useState(0);
    const { words, sentenceBreakpoints, paragraphBreakpoints, audioTimestamps } =
-      getStoryContentDetails(story.storyId);
+      getStoryContentDetails();
 
    useEffect(() => {
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
    }, []);
 
    useEffect(() => {
-      if (isPlaying) {
+      if (isPlaying && audioTimestamps) {
          const activeWord = audioTimestamps.find((ts) => ts >= voPosition) || 0;
          const wordIndex = audioTimestamps.indexOf(activeWord) || 0;
          const activeSentence = sentenceBreakpoints.find((bp) => bp >= wordIndex) || 0;

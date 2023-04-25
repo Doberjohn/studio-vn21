@@ -1,20 +1,59 @@
-import { IStory } from '../../interfaces';
+import { IBrowseTemplate, IStory } from '../../interfaces';
 
-export interface Action {type: string, payload: IStory[]}
-interface State {stories: IStory[]}
+export interface Action {
+   type: string,
+   payload: any;
+}
 
-export const reducer = (state: State, action: Action) => {
+interface State {
+   homePageContent: IBrowseTemplate;
+   selectedStory: IStory;
+}
+
+export const reducer = (state: State, action: Action): State => {
    switch (action.type) {
-      case 'SET_STORIES':
+      case 'SET_HOME_CONTENT':
          return {
             ...state,
-            stories: action.payload
+            homePageContent: action.payload
+         };
+      case 'SET_SELECTED_STORY':
+         return {
+            ...state,
+            selectedStory: action.payload
+         };
+      case 'CLEAR_SELECTED_STORY':
+         return {
+            ...state,
+            selectedStory: {
+               author: '',
+               content: [],
+               coverUrl: '',
+               publishDate: new Date(),
+               storyId: '',
+               title: ''
+            }
          };
       default:
-         return state;
+         throw new Error();
    }
 };
 
-export const initialState: {stories: IStory[]} = {
-   stories: []
+export const initialState: State = {
+   homePageContent: {
+      latestStory: {
+         coverUrl: '',
+         storyId: '',
+         title: ''
+      },
+      categories: []
+   },
+   selectedStory: {
+      author: '',
+      content: [],
+      coverUrl: '',
+      publishDate: new Date(),
+      storyId: '',
+      title: ''
+   }
 };

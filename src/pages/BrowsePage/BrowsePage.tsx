@@ -1,20 +1,22 @@
 import { BrowseTemplate } from '../../templates';
-import { Div } from '../../atoms';
-import { LoadingSpinner } from '../../molecules';
-import { useStory } from '../../../hooks';
+import { Div } from '../../components/atoms';
+import { LoadingSpinner } from '../../components/molecules';
+import { useStory } from '../../hooks';
 import React, { useEffect, useState } from 'react';
 
 export const BrowsePage: React.FC = () => {
-   const { stories, getStoriesFromBackend } = useStory();
+   const { homePageContent, getStoryCategoriesFromBackend } = useStory();
    const [ isLoadingStories, setIsLoadingStories ] = useState(true);
 
    useEffect(() => {
-      getStoriesFromBackend();
+      getStoryCategoriesFromBackend();
    }, []);
 
    useEffect(() => {
-      if (stories.length > 0) setIsLoadingStories(false);
-   }, [stories]);
+      if (homePageContent.categories && homePageContent.categories.length > 0) {
+         setIsLoadingStories(false);
+      }
+   }, [homePageContent]);
 
    return (
       <Div>
@@ -24,8 +26,8 @@ export const BrowsePage: React.FC = () => {
              </Div>
          ): (
              <BrowseTemplate
-                 latestStory={stories[0]}
-                 previousStories={stories}
+                 latestStory={homePageContent.latestStory}
+                 categories={homePageContent.categories}
              />
          )}
       </Div>

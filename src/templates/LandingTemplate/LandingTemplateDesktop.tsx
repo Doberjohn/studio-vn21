@@ -1,8 +1,8 @@
-import { Div } from '../../atoms';
-import { landingPageArt } from '../../../shared';
+import { Div } from '../../components/atoms';
+import { landingPageArt } from '../../shared';
 import React from 'react';
 import styled from 'styled-components';
-import { WelcomeSection } from '../../molecules';
+import { WelcomeSection } from '../../components/molecules';
 
 export const LandingTemplateDesktop: React.FC = () => {
    return (
