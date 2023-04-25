@@ -1,7 +1,7 @@
-import { Div } from '../../atoms';
-import { IBrowseTemplate } from '../../../interfaces';
+import { Div } from '../../components/atoms';
+import { IBrowseTemplate } from '../../interfaces';
 import React from 'react';
-import { LatestStory, StorySlider } from '../../organisms';
+import { LatestStory, StorySlider } from '../../components/organisms';
 
 export const BrowseTemplateMobile: React.FC<IBrowseTemplate> =
    ({ latestStory, categories }) => {
@@ -13,7 +13,7 @@ export const BrowseTemplateMobile: React.FC<IBrowseTemplate> =
                story={latestStory}/>
             {categories.map((category) => {
                return (
-                  <Div className='ps-3 pt-4'>
+                  <Div className='ps-3 pt-4' key={category.title}>
                      <StorySlider
                         title={category.title}
                         stories={category.stories}

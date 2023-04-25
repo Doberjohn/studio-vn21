@@ -1,7 +1,7 @@
 import { BrowseTemplate } from '../../templates';
-import { Div } from '../../atoms';
-import { LoadingSpinner } from '../../molecules';
-import { useStory } from '../../../hooks';
+import { Div } from '../../components/atoms';
+import { LoadingSpinner } from '../../components/molecules';
+import { useStory } from '../../hooks';
 import React, { useEffect, useState } from 'react';
 
 export const BrowsePage: React.FC = () => {

@@ -1,8 +1,8 @@
-import { Div } from '../../atoms';
+import { Div } from '../../components/atoms';
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
 
-export const StoryTemplateDesktop: React.FC = () => {
+export const BrowseTemplateDesktop: React.FC = () => {
    const navigate = useNavigate();
 
    useEffect(() => {

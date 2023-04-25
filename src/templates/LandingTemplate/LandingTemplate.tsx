@@ -2,7 +2,7 @@ import { LandingTemplateDesktop } from './LandingTemplateDesktop';
 import { LandingTemplateMobile } from './LandingTemplateMobile';
 import { LandingTemplateTablet } from './LandingTemplateTablet';
 import React from 'react';
-import { TemplateSwitch } from '../../molecules';
+import { TemplateSwitch } from '../../components/molecules';
 
 export const LandingTemplate: React.FC = () => {
    return (

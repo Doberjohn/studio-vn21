@@ -1,7 +1,7 @@
-import { Div } from '../../atoms';
-import { IBrowseTemplate } from '../../../interfaces';
+import { Div } from '../../components/atoms';
+import { IBrowseTemplate } from '../../interfaces';
 import React from 'react';
-import { LatestStory, StorySlider } from '../../organisms';
+import { LatestStory, StorySlider } from '../../components/organisms';
 
 export const BrowseTemplateTablet: React.FC<IBrowseTemplate> =
    ({ latestStory, categories }) => {

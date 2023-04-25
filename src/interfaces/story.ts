@@ -11,7 +11,7 @@ export interface IStory extends React.HTMLAttributes<Element> {
    coverUrl: string;
    publishDate: Date;
    storyId: string;
-   timestamps: number[];
+   timestamps?: number[];
    title: string;
    voiceoverUrl?: string;
    voiceoverPCM?: number[];
