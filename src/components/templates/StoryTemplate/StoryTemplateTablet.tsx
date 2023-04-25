@@ -21,15 +21,15 @@ export const StoryTemplateTablet: React.FC<IStoryTemplate> = ({ story }) => {
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
    }, []);
 
-   useEffect(() => {
-      if (isPlaying) {
-         const activeWord = audioTimestamps.find((ts) => ts >= voPosition) || 0;
-         const wordIndex = audioTimestamps.indexOf(activeWord) || 0;
-         const activeSentence = sentenceBreakpoints.find((bp) => bp >= wordIndex) || 0;
-         setActiveWordIndex(wordIndex ? wordIndex : 0);
-         setActiveSentenceIndex(sentenceBreakpoints.indexOf(activeSentence));
-      }
-   }, [voPosition]);
+   // useEffect(() => {
+   //    if (isPlaying) {
+   //       const activeWord = audioTimestamps.find((ts) => ts >= voPosition) || 0;
+   //       const wordIndex = audioTimestamps.indexOf(activeWord) || 0;
+   //       const activeSentence = sentenceBreakpoints.find((bp) => bp >= wordIndex) || 0;
+   //       setActiveWordIndex(wordIndex ? wordIndex : 0);
+   //       setActiveSentenceIndex(sentenceBreakpoints.indexOf(activeSentence));
+   //    }
+   // }, [voPosition]);
 
    const test = (index: number): boolean => {
       if (isPlaying) {

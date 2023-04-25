@@ -1,5 +1,5 @@
 import { Div } from '../../atoms';
-import { IStory } from '../../../interfaces';
+import { IStoryThumbnail } from '../../../interfaces';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import PlaceholderImage from '../../../shared/assets/storyLoadingArt.webp';
 import { useNavigate } from 'react-router-dom';
@@ -8,15 +8,15 @@ import React, { useState } from 'react';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 interface IStoryCard extends React.HTMLAttributes<Element> {
-   story: IStory,
+   story: IStoryThumbnail,
    isLatest: boolean,
    useMobileCover?: boolean
 }
 
-export const StoryCard: React.FC<IStoryCard> = ({ story, isLatest, useMobileCover = false }) => {
+export const StoryCard: React.FC<IStoryCard> = ({ story, isLatest }) => {
    const platform = usePlatform();
    const navigate = useNavigate();
-   const { title, storyId, coverUrl, mobileCoverUrl } = story;
+   const { title, storyId, coverUrl } = story;
 
    const [latestCoverHeight, setLatestCoverHeight] =
       useState(platform === 'mobile' ? '200px' : '550px');
@@ -39,7 +39,7 @@ export const StoryCard: React.FC<IStoryCard> = ({ story, isLatest, useMobileCove
                width='100%'
                height={ isLatest ? latestCoverHeight : previousCoverHeight}
                placeholderSrc={PlaceholderImage}
-               src={useMobileCover ? mobileCoverUrl: coverUrl}
+               src={coverUrl}
                effect='blur'
                alt={title}/>
          </Div>

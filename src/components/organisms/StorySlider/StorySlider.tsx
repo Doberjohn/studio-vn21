@@ -1,6 +1,6 @@
 import { Div } from '../../atoms';
 import { FreeMode } from 'swiper';
-import { IStory } from '../../../interfaces';
+import { IStoryThumbnail } from '../../../interfaces';
 import React from 'react';
 import { StoryCard } from '../StoryCard/StoryCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -8,7 +8,7 @@ import 'swiper/css';
 
 interface StorySliderProps {
    title: string;
-   stories: IStory[],
+   stories: IStoryThumbnail[],
    storiesPerView: number;
    spaceBetweenStories: number;
 }

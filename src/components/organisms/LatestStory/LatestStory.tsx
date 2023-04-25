@@ -1,9 +1,9 @@
-import { IStory } from '../../../interfaces';
+import { IStoryThumbnail } from '../../../interfaces';
 import React from 'react';
 import { StoryCard } from '../index';
 
 interface LatestStoryProps {
-   story: IStory,
+   story: IStoryThumbnail,
 }
 
 export const LatestStory: React.FC<LatestStoryProps> = ({ story }) => {
