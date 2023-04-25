@@ -16,7 +16,6 @@ export const StoryPage: React.FC = () => {
    }, []);
 
    useEffect(() => {
-      console.log(selectedStory);
       if (selectedStory.content.length > 0) {
          setIsLoadingStories(false);
       }
